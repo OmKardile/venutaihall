@@ -1,0 +1,594 @@
+(() => {
+  const qs = (sel, root = document) => root.querySelector(sel);
+  const qsa = (sel, root = document) => [...root.querySelectorAll(sel)];
+  const todayStr = new Date().toISOString().slice(0, 10);
+
+  const SPACE_INFO = {
+    big: { name: 'Big Hall', cap: 'Up to 1200 guests', ideal: 'Weddings & large events', page: 'big-hall.html' },
+    small: { name: 'Small Hall', cap: 'Up to 350 guests', ideal: 'Engagements & birthdays', page: 'small-hall.html' },
+    dining: { name: 'Dining Hall', cap: 'Up to 400 guests', ideal: 'Meals & reception dining', page: 'dining-hall.html' },
+    vip: { name: 'VIP A/C Dining', cap: 'Up to 50 guests', ideal: 'Close family & VIP dining', page: 'vip-dining.html' },
+    rooms: { name: 'A/C Guest Rooms', cap: 'Up to 8 rooms', ideal: 'Family & invitee stay', page: 'guest-rooms.html' },
+  };
+
+  qsa('input[type="date"]').forEach((input) => {
+    if (!input.min) input.min = todayStr;
+  });
+
+  const currentFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  qsa('.main-nav a, .nav-drawer-links a, .footer-links a').forEach((link) => {
+    const href = (link.getAttribute('href') || '').split('#')[0].toLowerCase();
+    if (href && href === currentFile) link.setAttribute('aria-current', 'page');
+  });
+
+  const header = qs('.site-header');
+  const floats = qs('.float-actions');
+  const onScroll = () => {
+    const y = window.scrollY;
+    if (header) header.classList.toggle('is-scrolled', y > 12);
+    if (floats) floats.classList.toggle('is-visible', y > 420);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const menuButton = qs('.menu-toggle');
+  const drawer = qs('#nav-drawer');
+  let drawerTimer = 0;
+
+  const openDrawer = () => {
+    if (!drawer || !menuButton) return;
+    clearTimeout(drawerTimer);
+    drawer.hidden = false;
+    void drawer.offsetHeight;
+    drawer.classList.add('is-open');
+    menuButton.setAttribute('aria-expanded', 'true');
+    menuButton.setAttribute('aria-label', 'Close menu');
+    const use = qs('use', menuButton);
+    if (use) use.setAttribute('href', '#i-close');
+    document.body.classList.add('is-locked');
+    qs('.nav-drawer-close', drawer)?.focus();
+  };
+
+  const closeDrawer = () => {
+    if (!drawer || !menuButton) return;
+    drawer.classList.remove('is-open');
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', 'Open menu');
+    const use = qs('use', menuButton);
+    if (use) use.setAttribute('href', '#i-menu');
+    document.body.classList.remove('is-locked');
+    clearTimeout(drawerTimer);
+    drawerTimer = window.setTimeout(() => { drawer.hidden = true; }, 320);
+  };
+
+  menuButton?.addEventListener('click', () => {
+    if (drawer?.classList.contains('is-open')) closeDrawer();
+    else openDrawer();
+  });
+  qsa('[data-drawer-close]').forEach((el) => el.addEventListener('click', closeDrawer));
+  qsa('.nav-drawer-links a, .nav-drawer-actions a').forEach((link) => link.addEventListener('click', closeDrawer));
+
+  const revealEls = qsa('.reveal');
+  if (revealEls.length) {
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -36px' });
+      revealEls.forEach((el) => io.observe(el));
+    }
+    const checkReveals = () => {
+      revealEls.forEach((el) => {
+        if (el.classList.contains('is-visible')) return;
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.94) el.classList.add('is-visible');
+      });
+    };
+    checkReveals();
+    window.addEventListener('scroll', checkReveals, { passive: true });
+    window.addEventListener('resize', checkReveals);
+    window.setTimeout(checkReveals, 600);
+  }
+
+  const eventCards = qsa('[data-event-card]');
+  const revealPanel = qs('#celebrate-reveal');
+  if (eventCards.length && revealPanel) {
+    const revealTitle = qs('#reveal-title');
+    const revealSpaces = qs('#reveal-spaces');
+    const revealPage = qs('#reveal-page');
+    const revealCta = qs('#reveal-cta');
+
+    const closePanel = () => {
+      eventCards.forEach((card) => card.setAttribute('aria-expanded', 'false'));
+      revealPanel.classList.remove('is-open');
+      revealPanel.hidden = true;
+    };
+
+    eventCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const wasOpen = card.getAttribute('aria-expanded') === 'true';
+        eventCards.forEach((other) => other.setAttribute('aria-expanded', 'false'));
+        if (wasOpen) {
+          closePanel();
+          return;
+        }
+        card.setAttribute('aria-expanded', 'true');
+        const eventName = card.dataset.event || '';
+        const heading = qs('h3', card)?.textContent || eventName;
+        const keys = (card.dataset.spaces || '').split(',').map((s) => s.trim()).filter(Boolean);
+        if (revealTitle) revealTitle.textContent = heading;
+        if (revealSpaces) {
+          revealSpaces.replaceChildren();
+          keys.forEach((key) => {
+            const info = SPACE_INFO[key];
+            if (!info) return;
+            const chip = document.createElement('a');
+            chip.className = 'reveal-space';
+            chip.href = info.page;
+            const label = document.createElement('span');
+            label.textContent = info.name;
+            const cap = document.createElement('small');
+            cap.textContent = info.cap;
+            chip.append(label, cap);
+            revealSpaces.append(chip);
+          });
+        }
+        if (revealPage) revealPage.href = card.dataset.page || 'events.html';
+        if (revealCta) revealCta.href = `check-availability.html?event=${encodeURIComponent(eventName)}`;
+        revealPanel.hidden = false;
+        void revealPanel.offsetHeight;
+        revealPanel.classList.add('is-open');
+        revealPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+  }
+
+  const matchForm = qs('#match-form');
+  if (matchForm) {
+    const resultTitle = qs('#match-result-title');
+    const resultList = qs('#match-result-list');
+    const params = new URLSearchParams(location.search);
+    const prefill = params.get('event');
+    if (prefill) {
+      const select = qs('#match-event', matchForm);
+      if (select && [...select.options].some((o) => o.value === prefill || o.text === prefill)) {
+        select.value = prefill || select.value;
+        if (!select.value) select.value = [...select.options].find((o) => o.text === prefill)?.value || '';
+      }
+    }
+
+    const recommend = (guests, reqs, eventName) => {
+      const picks = [];
+      if (guests >= 700) picks.push('big');
+      else if (guests <= 350) picks.push('small');
+      else picks.push('big');
+      if (reqs.has('dining') || guests > 250) picks.push('dining');
+      if (reqs.has('rooms')) picks.push('rooms');
+      if (reqs.has('family') || eventName === 'Naming Ceremony') picks.push('vip');
+      if ((reqs.has('meeting') || guests <= 50) && !picks.includes('vip')) picks.push('vip');
+      return [...new Set(picks)].filter((key) => SPACE_INFO[key]);
+    };
+
+    matchForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!matchForm.reportValidity()) return;
+      const guests = Number(qs('#match-guests', matchForm).value);
+      const eventName = qs('#match-event', matchForm)?.value || '';
+      const reqs = new Set(qsa('input[name="req"]:checked', matchForm).map((box) => box.value));
+      const picks = recommend(guests, reqs, eventName);
+      if (resultTitle) {
+        resultTitle.textContent = picks.length === 1 ? '1 space fits your requirements.' : `${picks.length} spaces fit your requirements.`;
+      }
+      if (resultList) {
+        resultList.replaceChildren();
+        if (!picks.length) {
+          const empty = document.createElement('p');
+          empty.className = 'result-empty';
+          empty.textContent = 'We could not match a space for that guest count. Please call the venue team and we will help you choose.';
+          resultList.append(empty);
+          return;
+        }
+        picks.forEach((key) => {
+          const info = SPACE_INFO[key];
+          const item = document.createElement('a');
+          item.className = 'result-space';
+          item.href = info.page;
+          const copy = document.createElement('div');
+          const name = document.createElement('strong');
+          name.textContent = info.name;
+          const cap = document.createElement('span');
+          cap.textContent = `${info.cap} · ${info.ideal}`;
+          copy.append(name, cap);
+          const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          icon.setAttribute('class', 'icon');
+          icon.setAttribute('aria-hidden', 'true');
+          const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+          use.setAttribute('href', '#i-arrow');
+          icon.append(use);
+          item.append(copy, icon);
+          resultList.append(item);
+        });
+      }
+    });
+  }
+
+  const filterButtons = qsa('.gallery-filter');
+  const galleryTiles = qsa('[data-gallery-item]');
+  if (filterButtons.length && galleryTiles.length) {
+    const categories = new Set(galleryTiles.map((tile) => tile.dataset.category).filter(Boolean));
+    filterButtons.forEach((button) => {
+      const value = button.dataset.filter;
+      if (value !== 'all' && !categories.has(value)) button.hidden = true;
+    });
+    const emptyNote = qs('.gallery-empty');
+    const applyFilter = (value) => {
+      let visible = 0;
+      galleryTiles.forEach((tile) => {
+        const show = value === 'all' || tile.dataset.category === value;
+        tile.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (emptyNote) emptyNote.hidden = visible > 0;
+    };
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
+        applyFilter(button.dataset.filter || 'all');
+      });
+    });
+  }
+
+  const lightbox = qs('#lightbox');
+  if (lightbox && galleryTiles.length) {
+    const stage = qs('#lightbox-stage');
+    const titleEl = qs('#lightbox-title');
+    const categoryEl = qs('#lightbox-category');
+    const countEl = qs('#lightbox-count');
+    const closeBtn = qs('.lightbox-close', lightbox);
+    const prevBtn = qs('#lightbox-prev');
+    const nextBtn = qs('#lightbox-next');
+    let index = 0;
+    let lastFocus = null;
+
+    const visibleTiles = () => galleryTiles.filter((tile) => !tile.hidden);
+
+    const render = () => {
+      const tiles = visibleTiles();
+      if (!tiles.length) return;
+      index = (index + tiles.length) % tiles.length;
+      const tile = tiles[index];
+      const image = tile.dataset.image || '';
+      const caption = tile.dataset.caption || tile.dataset.label || '';
+      const crop = tile.dataset.crop || '';
+      stage.replaceChildren();
+      if (crop) {
+        const frame = document.createElement('span');
+        frame.className = 'crop-frame';
+        frame.setAttribute('role', 'img');
+        frame.setAttribute('aria-label', caption);
+        frame.style.backgroundImage = `url("${image}")`;
+        frame.style.cssText += `;${crop}`;
+        stage.append(frame);
+      } else {
+        const img = document.createElement('img');
+        img.src = image;
+        img.alt = caption;
+        img.draggable = false;
+        stage.append(img);
+      }
+      if (titleEl) titleEl.textContent = caption;
+      if (categoryEl) categoryEl.textContent = tile.dataset.label || tile.dataset.category || '';
+      if (countEl) countEl.textContent = `${index + 1} / ${tiles.length}`;
+    };
+
+    const openLightbox = (tile) => {
+      const tiles = visibleTiles();
+      const start = tiles.indexOf(tile);
+      index = start >= 0 ? start : 0;
+      lastFocus = document.activeElement;
+      lightbox.hidden = false;
+      void lightbox.offsetHeight;
+      lightbox.classList.add('is-open');
+      document.body.classList.add('is-locked');
+      render();
+      closeBtn?.focus();
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-open');
+      lightbox.hidden = true;
+      document.body.classList.remove('is-locked');
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    };
+
+    const step = (delta) => {
+      index += delta;
+      render();
+    };
+
+    galleryTiles.forEach((tile) => tile.addEventListener('click', () => openLightbox(tile)));
+    closeBtn?.addEventListener('click', closeLightbox);
+    prevBtn?.addEventListener('click', () => step(-1));
+    nextBtn?.addEventListener('click', () => step(1));
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    let touchX = 0;
+    lightbox.addEventListener('touchstart', (event) => {
+      touchX = event.changedTouches[0].clientX;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', (event) => {
+      const delta = event.changedTouches[0].clientX - touchX;
+      if (Math.abs(delta) > 46) step(delta > 0 ? -1 : 1);
+    }, { passive: true });
+
+    document.addEventListener('keydown', (event) => {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (event.key === 'Escape') closeLightbox();
+      else if (event.key === 'ArrowLeft') step(-1);
+      else if (event.key === 'ArrowRight') step(1);
+      else if (event.key === 'Tab') {
+        const focusables = qsa('button, [href], input, select, textarea', lightbox).filter((el) => !el.disabled && el.offsetParent !== null);
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && drawer?.classList.contains('is-open')) closeDrawer();
+  });
+
+  const setStatus = (el, message, state) => {
+    if (!el) return;
+    el.textContent = message;
+    el.classList.remove('is-loading', 'is-ok', 'is-error');
+    if (state) el.classList.add(state);
+  };
+
+  const postForm = async (form) => {
+    const status = qs('.form-status', form);
+    const submit = qs('[type="submit"]', form);
+    const honeypot = form.elements.website;
+    if (honeypot && honeypot.value) return;
+    if (!form.reportValidity()) return;
+    if (submit) submit.disabled = true;
+    setStatus(status, 'Sending your enquiry…', 'is-loading');
+    try {
+      const response = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      let result = {};
+      try { result = await response.json(); } catch { result = {}; }
+      if (response.ok) {
+        setStatus(status, result.message || 'Thank you — your enquiry has been received. Our team will contact you shortly.', 'is-ok');
+        form.reset();
+        qsa('input[type="date"]', form).forEach((input) => { input.min = todayStr; });
+      } else {
+        setStatus(status, result.error || result.message || 'Could not send your enquiry. Please call the venue on 9359567494.', 'is-error');
+      }
+    } catch {
+      setStatus(status, 'Could not send your enquiry. Please call the venue on 9359567494.', 'is-error');
+    } finally {
+      if (submit) submit.disabled = false;
+    }
+  };
+
+  qsa('form.enquiry-form').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      postForm(form);
+    });
+  });
+
+  const wizard = qs('#wizard');
+  if (wizard) {
+    const stepsBar = qs('.steps-bar');
+    const tabs = qsa('.step-tab', stepsBar || document);
+    const panes = qsa('.wizard-pane', wizard);
+    const success = qs('#wizard-success');
+    const rec = qs('.wizard-rec', wizard);
+    const status = qs('.form-status', wizard);
+    let current = 1;
+
+    const params = new URLSearchParams(location.search);
+    const prefillEvent = params.get('event');
+    if (prefillEvent) {
+      const select = qs('[name="event"]', wizard);
+      if (select) {
+        const option = [...select.options].find((o) => o.value === prefillEvent || o.text === prefillEvent);
+        if (option) select.value = option.value || option.text;
+      }
+    }
+
+    const updateRec = () => {
+      if (!rec) return;
+      const guests = Number(qs('[name="guests"]', wizard)?.value || 0);
+      const recText = qs('span', rec);
+      if (!recText) return;
+      if (!guests) {
+        recText.innerHTML = 'Enter your guest count and we will suggest the best-fitting <strong>space</strong>.';
+        return;
+      }
+      const key = guests >= 700 ? 'big' : guests <= 350 ? 'small' : 'big';
+      const info = SPACE_INFO[key];
+      recText.innerHTML = `Best fit for ${guests} guests: <strong>${info.name}</strong> — ${info.cap.toLowerCase()}.`;
+    };
+
+    const clearErrors = (pane) => {
+      qsa('.field-error', pane).forEach((el) => el.remove());
+      qsa('[aria-invalid]', pane).forEach((el) => el.removeAttribute('aria-invalid'));
+    };
+
+    const validatePane = (pane) => {
+      clearErrors(pane);
+      let ok = true;
+      let firstInvalid = null;
+      qsa('[required]', pane).forEach((field) => {
+        if (field.checkValidity()) return;
+        ok = false;
+        field.setAttribute('aria-invalid', 'true');
+        const wrap = field.closest('.field') || field.parentElement;
+        const error = document.createElement('p');
+        error.className = 'field-error';
+        error.textContent = field.validationMessage || 'This field is required.';
+        wrap?.append(error);
+        if (!firstInvalid) firstInvalid = field;
+      });
+      firstInvalid?.focus();
+      return ok;
+    };
+
+    const goTo = (step) => {
+      current = step;
+      panes.forEach((pane) => pane.classList.toggle('is-active', Number(pane.dataset.pane) === step));
+      tabs.forEach((tab) => {
+        const num = Number(tab.dataset.step);
+        tab.setAttribute('aria-selected', String(num === step));
+        tab.classList.toggle('is-done', num < step);
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = Number(tab.dataset.step);
+        if (target < current) goTo(target);
+        else if (target === current + 1 && validatePane(panes.find((p) => Number(p.dataset.pane) === current))) goTo(target);
+      });
+    });
+
+    qs('[data-wizard-next]', wizard)?.addEventListener('click', () => {
+      const pane = panes.find((p) => Number(p.dataset.pane) === current);
+      if (pane && validatePane(pane)) goTo(current + 1);
+    });
+    qs('[data-wizard-back]', wizard)?.addEventListener('click', () => goTo(Math.max(1, current - 1)));
+
+    qs('[name="guests"]', wizard)?.addEventListener('input', updateRec);
+    qs('[name="event"]', wizard)?.addEventListener('change', updateRec);
+    updateRec();
+
+    wizard.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const pane = panes.find((p) => Number(p.dataset.pane) === current);
+      if (pane && !validatePane(pane)) return;
+      const honeypot = wizard.elements.website;
+      if (honeypot && honeypot.value) return;
+      const submit = qs('[type="submit"]', wizard);
+      if (submit) submit.disabled = true;
+      setStatus(status, 'Sending your enquiry…', 'is-loading');
+      try {
+        const response = await fetch(wizard.action, { method: 'POST', body: new FormData(wizard) });
+        let result = {};
+        try { result = await response.json(); } catch { result = {}; }
+        if (response.ok) {
+          setStatus(status, '', null);
+          if (success) {
+            wizard.hidden = true;
+            if (stepsBar) stepsBar.hidden = true;
+            success.hidden = false;
+            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            setStatus(status, result.message || 'Thank you — your enquiry has been received.', 'is-ok');
+            wizard.reset();
+            goTo(1);
+          }
+        } else {
+          setStatus(status, result.error || result.message || 'Could not send your enquiry. Please call the venue on 9359567494.', 'is-error');
+        }
+      } catch {
+        setStatus(status, 'Could not send your enquiry. Please call the venue on 9359567494.', 'is-error');
+      } finally {
+        if (submit) submit.disabled = false;
+      }
+    });
+  }
+
+  const loadWebsitePopup = async () => {
+    try {
+      const response = await fetch('popup.php', { cache: 'no-store' });
+      if (!response.ok) return;
+      const popup = await response.json();
+      const closedAt = Number(localStorage.getItem('vcm-popup-closed') || 0);
+      if (!popup.enabled || Date.now() - closedAt < (popup.cooldownHours || 24) * 3600000) return;
+      const overlay = document.createElement('div');
+      overlay.className = 'website-popup-overlay';
+      const card = document.createElement('section');
+      card.className = `website-popup-card website-popup-${popup.type || 'text'}`;
+      card.setAttribute('role', 'dialog');
+      card.setAttribute('aria-modal', 'true');
+      card.setAttribute('aria-label', popup.headline || 'Venue announcement');
+      const close = document.createElement('button');
+      close.className = 'website-popup-close';
+      close.type = 'button';
+      close.textContent = '×';
+      close.setAttribute('aria-label', 'Close popup');
+      card.append(close);
+      if (popup.type === 'image' && (popup.desktopImage || popup.mobileImage)) {
+        const picture = document.createElement('picture');
+        if (popup.mobileImage) {
+          const source = document.createElement('source');
+          source.media = '(max-width: 600px)';
+          source.srcset = popup.mobileImage;
+          picture.append(source);
+        }
+        const image = document.createElement('img');
+        image.src = popup.desktopImage || popup.mobileImage;
+        image.alt = popup.headline || 'Venue offer';
+        picture.append(image);
+        if (popup.clickUrl) {
+          const link = document.createElement('a');
+          link.href = popup.clickUrl;
+          link.append(picture);
+          card.append(link);
+        } else card.append(picture);
+      } else {
+        const content = document.createElement('div');
+        content.className = 'website-popup-copy';
+        const title = document.createElement('h2');
+        title.textContent = popup.headline || '';
+        const text = document.createElement('p');
+        text.textContent = popup.text || '';
+        content.append(title, text);
+        const actions = document.createElement('div');
+        actions.className = 'website-popup-actions';
+        [[popup.primaryText, popup.primaryUrl, 'primary'], [popup.secondaryText, popup.secondaryUrl, 'secondary']].forEach(([label, url, style]) => {
+          if (!label || !url) return;
+          const link = document.createElement('a');
+          link.textContent = label;
+          link.href = url;
+          link.className = style;
+          actions.append(link);
+        });
+        content.append(actions);
+        card.append(content);
+      }
+      const dismiss = () => {
+        localStorage.setItem('vcm-popup-closed', String(Date.now()));
+        overlay.remove();
+      };
+      close.addEventListener('click', dismiss);
+      overlay.addEventListener('click', (event) => { if (event.target === overlay) dismiss(); });
+      document.addEventListener('keydown', function escape(event) {
+        if (event.key === 'Escape') {
+          dismiss();
+          document.removeEventListener('keydown', escape);
+        }
+      });
+      overlay.append(card);
+      document.body.append(overlay);
+      close.focus();
+    } catch {
+    }
+  };
+  loadWebsitePopup();
+})();
