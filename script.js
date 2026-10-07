@@ -146,75 +146,6 @@
     });
   }
 
-  const matchForm = qs('#match-form');
-  if (matchForm) {
-    const resultTitle = qs('#match-result-title');
-    const resultList = qs('#match-result-list');
-    const params = new URLSearchParams(location.search);
-    const prefill = params.get('event');
-    if (prefill) {
-      const select = qs('#match-event', matchForm);
-      if (select && [...select.options].some((o) => o.value === prefill || o.text === prefill)) {
-        select.value = prefill || select.value;
-        if (!select.value) select.value = [...select.options].find((o) => o.text === prefill)?.value || '';
-      }
-    }
-
-    const recommend = (guests, reqs, eventName) => {
-      const picks = [];
-      if (guests >= 700) picks.push('big');
-      else if (guests <= 350) picks.push('small');
-      else picks.push('big');
-      if (reqs.has('dining') || guests > 250) picks.push('dining');
-      if (reqs.has('rooms')) picks.push('rooms');
-      if (reqs.has('family') || eventName === 'Naming Ceremony') picks.push('vip');
-      if ((reqs.has('meeting') || guests <= 50) && !picks.includes('vip')) picks.push('vip');
-      return [...new Set(picks)].filter((key) => SPACE_INFO[key]);
-    };
-
-    matchForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      if (!matchForm.reportValidity()) return;
-      const guests = Number(qs('#match-guests', matchForm).value);
-      const eventName = qs('#match-event', matchForm)?.value || '';
-      const reqs = new Set(qsa('input[name="req"]:checked', matchForm).map((box) => box.value));
-      const picks = recommend(guests, reqs, eventName);
-      if (resultTitle) {
-        resultTitle.textContent = picks.length === 1 ? '1 space fits your requirements.' : `${picks.length} spaces fit your requirements.`;
-      }
-      if (resultList) {
-        resultList.replaceChildren();
-        if (!picks.length) {
-          const empty = document.createElement('p');
-          empty.className = 'result-empty';
-          empty.textContent = 'We could not match a space for that guest count. Please call the venue team and we will help you choose.';
-          resultList.append(empty);
-          return;
-        }
-        picks.forEach((key) => {
-          const info = SPACE_INFO[key];
-          const item = document.createElement('a');
-          item.className = 'result-space';
-          item.href = info.page;
-          const copy = document.createElement('div');
-          const name = document.createElement('strong');
-          name.textContent = info.name;
-          const cap = document.createElement('span');
-          cap.textContent = `${info.cap} · ${info.ideal}`;
-          copy.append(name, cap);
-          const icon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-          icon.setAttribute('class', 'icon');
-          icon.setAttribute('aria-hidden', 'true');
-          const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-          use.setAttribute('href', '#i-arrow');
-          icon.append(use);
-          item.append(copy, icon);
-          resultList.append(item);
-        });
-      }
-    });
-  }
-
   const filterButtons = qsa('.gallery-filter');
   const galleryTiles = qsa('[data-gallery-item]');
   if (filterButtons.length && galleryTiles.length) {
@@ -358,6 +289,69 @@
     if (state) el.classList.add(state);
   };
 
+  const HALL_NAMES = { big: 'Big Hall', small: 'Small Hall' };
+
+  const bookingHall = (value) => (value === 'small' || value === 'vip' ? 'small' : 'big');
+
+  const availabilityCache = new Map();
+
+  const fetchAvailability = (hall) => {
+    if (!availabilityCache.has(hall)) {
+      availabilityCache.set(
+        hall,
+        fetch(`booking.php?hall=${hall}`, { cache: 'no-store' })
+          .then((response) => (response.ok ? response.json() : null))
+          .then((data) => (data && Array.isArray(data.bookedDates) ? new Set(data.bookedDates) : null))
+          .catch(() => null)
+      );
+    }
+    return availabilityCache.get(hall);
+  };
+
+  const clearFieldError = (field) => {
+    const wrap = field.closest('.field') || field.parentElement;
+    qsa('.field-error', wrap).forEach((el) => el.remove());
+    field.removeAttribute('aria-invalid');
+  };
+
+  const setFieldError = (field, message) => {
+    const wrap = field.closest('.field') || field.parentElement;
+    qsa('.field-error', wrap).forEach((el) => el.remove());
+    field.setAttribute('aria-invalid', 'true');
+    const error = document.createElement('p');
+    error.className = 'field-error';
+    error.textContent = message;
+    wrap?.append(error);
+  };
+
+  const prepareBookingData = (form) => {
+    const data = new FormData(form);
+    const hallSelect = qs('select[name="hall"]', form);
+    if (!hallSelect) return data;
+    const raw = hallSelect.value;
+    if (!raw) {
+      data.delete('hall');
+    } else if (raw !== 'small' && raw !== 'big') {
+      const label = (hallSelect.selectedOptions[0]?.textContent || '').split(' — ')[0].trim();
+      data.set('hall', bookingHall(raw));
+      const message = String(data.get('message') || '');
+      data.set('message', message ? `${message}\nPreferred space: ${label}.` : `Preferred space: ${label}.`);
+    }
+    return data;
+  };
+
+  const checkAvailability = async (form) => {
+    const dateInput = qs('input[type="date"][name="date"]', form);
+    if (!dateInput || !dateInput.value) return true;
+    const hallSelect = qs('select[name="hall"]', form);
+    const hall = bookingHall(hallSelect ? hallSelect.value : '');
+    const booked = await fetchAvailability(hall);
+    if (!booked || !booked.has(dateInput.value)) return true;
+    setFieldError(dateInput, `This date is already booked for the ${HALL_NAMES[hall]}. Please choose another date.`);
+    dateInput.focus();
+    return false;
+  };
+
   const postForm = async (form) => {
     const status = qs('.form-status', form);
     const submit = qs('[type="submit"]', form);
@@ -367,7 +361,12 @@
     if (submit) submit.disabled = true;
     setStatus(status, 'Sending your enquiry…', 'is-loading');
     try {
-      const response = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      const available = await checkAvailability(form);
+      if (!available) {
+        setStatus(status, 'That date is already booked. Please choose another date.', 'is-error');
+        return;
+      }
+      const response = await fetch(form.action, { method: 'POST', body: prepareBookingData(form) });
       let result = {};
       try { result = await response.json(); } catch { result = {}; }
       if (response.ok) {
@@ -385,6 +384,10 @@
   };
 
   qsa('form.enquiry-form').forEach((form) => {
+    const hallSelect = qs('select[name="hall"]', form);
+    fetchAvailability(bookingHall(hallSelect ? hallSelect.value : ''));
+    qsa('input[type="date"]', form).forEach((input) => input.addEventListener('input', () => clearFieldError(input)));
+    if (form.hasAttribute('data-custom-submit')) return;
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       postForm(form);
@@ -487,7 +490,12 @@
       if (submit) submit.disabled = true;
       setStatus(status, 'Sending your enquiry…', 'is-loading');
       try {
-        const response = await fetch(wizard.action, { method: 'POST', body: new FormData(wizard) });
+        const available = await checkAvailability(wizard);
+        if (!available) {
+          setStatus(status, 'That date is already booked. Please choose another date.', 'is-error');
+          return;
+        }
+        const response = await fetch(wizard.action, { method: 'POST', body: prepareBookingData(wizard) });
         let result = {};
         try { result = await response.json(); } catch { result = {}; }
         if (response.ok) {

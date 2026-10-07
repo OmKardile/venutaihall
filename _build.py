@@ -626,6 +626,7 @@ def event_main(slug, e):
           <div class="faq-list reveal">
             {faqs}
           </div>
+          <p class="reveal" style="text-align:center">Still deciding? <a class="text-link" href="contact.html#enquire">Send an enquiry</a> and our team will help you plan.</p>
         </div>
       </section>
 
@@ -832,7 +833,6 @@ spaces_main = f"""
           <p class="lede">Five connected spaces — pick by guest count first, then refine with the comparison below. All spaces are fully air-conditioned.</p>
           <div class="hero-ctas">
             <a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a>
-            <a class="button button-ghost-light" href="index.html#match">Match My Space</a>
           </div>
         </div>
       </section>
@@ -1249,6 +1249,15 @@ def event_options(select_first="Select event type"):
     return "".join(opts)
 
 
+def hall_options():
+    return """<option value="">No preference — suggest one</option>
+                      <option value="big">Big Hall — up to 1200</option>
+                      <option value="small">Small Hall — up to 350</option>
+                      <option value="dining">Dining Hall — up to 400</option>
+                      <option value="vip">VIP A/C Dining — up to 50</option>
+                      <option value="rooms">A/C Guest Rooms — 8 rooms</option>"""
+
+
 def contact_form_card(form_id="enquire"):
     return f"""
           <form class="enquiry-form form-card reveal" id="{form_id}" action="booking.php" method="post" aria-labelledby="form-title">
@@ -1278,13 +1287,17 @@ def contact_form_card(form_id="enquire"):
                   <select id="c-event" name="event" required>{event_options()}</select>
                 </div>
                 <div class="field">
-                  <label for="c-date">Preferred date <span class="hint">(optional)</span></label>
-                  <input id="c-date" name="date" type="date" />
+                  <label for="c-date">Preferred date <span class="req">*</span></label>
+                  <input id="c-date" name="date" type="date" required />
                 </div>
+              </div>
+              <div class="field field-full">
+                <label for="c-hall">Preferred space <span class="hint">(optional)</span></label>
+                <select id="c-hall" name="hall">{hall_options()}</select>
               </div>
               <div class="field">
                 <label for="c-message">Message <span class="hint">(optional)</span></label>
-                <textarea id="c-message" name="message" rows="4" placeholder="Guest count, hall preference, questions…"></textarea>
+                <textarea id="c-message" name="message" rows="4" maxlength="2000" placeholder="Guest count, layout ideas, questions…"></textarea>
               </div>
             </div>
             <label class="booking-trap" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label>
@@ -1305,6 +1318,7 @@ contact_main = f"""
           <div class="hero-ctas">
             <a class="button button-light button-lg" href="tel:+919359567494">{icon("i-phone")} Call the Venue</a>
             <a class="button button-ghost-light" href="https://wa.me/919359567494" target="_blank" rel="noopener noreferrer">{icon("i-whatsapp")} WhatsApp</a>
+            <a class="button button-ghost-light" href="#enquire">Send an Enquiry</a>
           </div>
         </div>
       </section>
@@ -1459,7 +1473,7 @@ wizard_main = f"""
             </button>
           </div>
 
-          <form class="wizard enquiry-form" id="wizard" action="booking.php" method="post" novalidate>
+          <form class="wizard enquiry-form" id="wizard" action="booking.php" method="post" novalidate data-custom-submit>
             <div class="wizard-pane is-active" data-pane="1">
               <h2>What are you planning?</h2>
               <p class="lede">Start with the basics — we'll suggest a space based on your guest count.</p>
@@ -1471,21 +1485,16 @@ wizard_main = f"""
                   </div>
                   <div class="field">
                     <label for="w-guests">Guest count <span class="req">*</span></label>
-                    <input id="w-guests" name="guests" type="number" inputmode="numeric" min="1" placeholder="e.g. 700" required />
+                    <input id="w-guests" name="guests" type="number" inputmode="numeric" min="1" max="10000" placeholder="e.g. 700" required />
                   </div>
                   <div class="field">
-                    <label for="w-date">Preferred date <span class="hint">(optional)</span></label>
-                    <input id="w-date" name="date" type="date" />
+                    <label for="w-date">Preferred date <span class="req">*</span></label>
+                    <input id="w-date" name="date" type="date" required />
                   </div>
                   <div class="field field-full">
                     <label for="w-hall">Preferred space <span class="hint">(optional)</span></label>
                     <select id="w-hall" name="hall">
-                      <option value="">No preference — suggest one</option>
-                      <option value="big">Big Hall — up to 1200</option>
-                      <option value="small">Small Hall — up to 350</option>
-                      <option value="dining">Dining Hall — up to 400</option>
-                      <option value="vip">VIP A/C Dining — up to 50</option>
-                      <option value="rooms">A/C Guest Rooms — 8 rooms</option>
+                      {hall_options()}
                     </select>
                   </div>
                 </div>
@@ -1525,7 +1534,7 @@ wizard_main = f"""
                   </div>
                   <div class="field field-full">
                     <label for="w-message">Message <span class="hint">(optional)</span></label>
-                    <textarea id="w-message" name="message" rows="4" placeholder="Questions, layout ideas, anything else…"></textarea>
+                    <textarea id="w-message" name="message" rows="4" maxlength="2000" placeholder="Questions, layout ideas, anything else…"></textarea>
                   </div>
                 </div>
               </div>
