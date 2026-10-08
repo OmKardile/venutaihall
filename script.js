@@ -91,11 +91,21 @@
 
   const revealEls = qsa('.reveal');
   if (revealEls.length) {
+    const guardReveal = (el) => {
+      window.setTimeout(() => {
+        if (!el.classList.contains('is-visible')) return;
+        if (Number(getComputedStyle(el).opacity) >= 1) return;
+        el.style.setProperty('transition', 'none', 'important');
+        el.style.setProperty('opacity', '1', 'important');
+        el.style.setProperty('transform', 'none', 'important');
+      }, 1500);
+    };
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
+            guardReveal(entry.target);
             io.unobserve(entry.target);
           }
         });
@@ -105,7 +115,10 @@
     const checkReveals = () => {
       revealEls.forEach((el) => {
         if (el.classList.contains('is-visible')) return;
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.94) el.classList.add('is-visible');
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.94) {
+          el.classList.add('is-visible');
+          guardReveal(el);
+        }
       });
     };
     checkReveals();
