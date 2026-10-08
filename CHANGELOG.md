@@ -2,6 +2,13 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-08 — Polish: card hover lift, hero ken-burns, lightbox entrance
+
+- **Cards now lift on hover.** Explorer and fit cards gain a 3–4px `translateY` plus a border-color shift (`--line` → `--line-2`) alongside their existing shadow lift, so the explorer and fit grids now feel tactile when you move across them. The event-card already had the lift; this brings the other two card families in line. The `transform` is added to each card's existing `transition` list so it animates in step with the shadow.
+- **The hero photo now drifts.** A 24s ease-in-out alternate ken-burns (`scale(1.04)` → `scale(1.12)`, infinite) runs on `.hero-media img`, giving the first impression a slow cinematic breath without distracting from the headline. The existing global `prefers-reduced-motion: reduce` rule (`*, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }` at line 298) collapses it to effectively-instant for reduced-motion users.
+- **Lightbox images now enter.** Each time the lightbox renders an image (on open and on every prev/next step), it fades from `opacity:0` + `scale(0.97)` to full over 0.34s with a `cubic-bezier(0.22, 1, 0.36, 1)` ease — a small acknowledgement of each new photograph. Same reduced-motion neutralisation applies.
+- Verified: `_check.py` resolves 1380 local refs, `node --check` passes, CSS braces balance at 0; zero console errors across the 27-page sweep at 1280; zero horizontal overflow at 320/360/768/1280 on the homepage and gallery; the ken-burns, lightbox entrance, and card-hover transform are all confirmed live via computed-style probes; zero code comments added (per the project rule).
+
 ## 2026-10-08 — Back-to-top, reading progress, anchor scroll-margin, print FAQ
 
 - **A back-to-top control is now site-wide.** A 4th fixed circular button (brass-deep, palette) appears bottom-right after 560px of scroll — stacked above the float-actions column on desktop and above the mobile bottom-bar at ≤768px (right:16px, bottom: calc(var(--bottom-bar-h) + 14px)). One click smooth-scrolls to the top. The control was entirely absent before; long pages (details.html, index.html) forced a manual scroll-up.

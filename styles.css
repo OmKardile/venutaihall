@@ -450,6 +450,11 @@
     object-fit: cover;
     object-position: center 40%;
   }
+  .hero-media img { animation: hero-kenburns 24s ease-in-out infinite alternate; }
+  @keyframes hero-kenburns {
+    from { transform: scale(1.04); }
+    to { transform: scale(1.12); }
+  }
   .hero-media::after {
     content: "";
     position: absolute;
@@ -698,9 +703,9 @@
     border: 1px solid var(--line);
     border-radius: var(--radius);
     overflow: hidden;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   }
-  .explorer-card:hover { box-shadow: var(--shadow-2); }
+  .explorer-card:hover { box-shadow: var(--shadow-2); transform: translateY(-4px); border-color: var(--line-2); }
   .explorer-card:nth-child(even) { grid-template-columns: 1fr 1.25fr; }
   .explorer-card:nth-child(even) .explorer-media { order: 2; }
   .explorer-media { position: relative; min-height: 320px; }
@@ -1016,6 +1021,11 @@
     box-shadow: var(--shadow-3);
     user-select: none;
     -webkit-user-drag: none;
+    animation: lb-image-in 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes lb-image-in {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
   }
   .lightbox-stage .crop-frame {
     display: block;
@@ -1409,9 +1419,9 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: box-shadow 0.25s ease;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
   }
-  .fit-card:hover { box-shadow: var(--shadow-2); }
+  .fit-card:hover { box-shadow: var(--shadow-2); transform: translateY(-3px); border-color: var(--line-2); }
   .fit-card-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; display: block; background: var(--bone); }
   .fit-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
   .fit-card:hover .fit-card-media img { transform: scale(1.04); }
