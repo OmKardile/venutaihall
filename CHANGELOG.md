@@ -2,6 +2,14 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-08 — Big Hall Package points pass
+
+- **The five package points are now the loudest thing on the homepage.** Pattern chosen: an **oversized-number editorial spec list** — one full-width row per point, hairline-separated — instead of keeping the photo bento or switching to a stat-card grid. Why: the brief is that the client's figures must dominate, giant display numerals read at hero scale while photos demote to supporting evidence, and a list keeps every figure legible at a glance on a phone, where competing imagery was exactly the old problem.
+- The client's points, verbatim and in order: **Full A/C Hall — up to 1200 guests**, **Separate Dining — 400 at a time**, **VIP A/C Dining Hall — max 50 at a time**, **VIP Guest Rooms — 8 A/C rooms**, **On-site Parking** (icon + label only, no figure, keeps `data-placeholder="CONFIRM with client: dedicated parking?"`). Labels are semantic `<h3>`s; "up to" / "max" sit as small-caps prefixes above the numeral, units in `--ink-2` for contrast.
+- Numerals are h1-scale `clamp(56px, 7vw, 104px)` (never below 56px on mobile) in wine — the base-layer `strong { color: var(--ink) }` rule beats inheritance, so `.pkg-num` sets wine explicitly. The Guest Rooms row is clearly the biggest: numerals `clamp(72px, 9.5vw, 132px)`, sage **Speciality** badge raised to 19px/800 (large-bold text only needs 3:1; white on sage is 4.27:1) with its guest-room photo running large beside the text.
+- Contrast sweep after the rebuild: numerals 10.7:1 and headings 13.5:1 on ivory; prefixes, units and the "Enquire for pricing" note (moved off `--ink-3`, 4.31:1 fail → `--ink-2`, 8.25:1) all pass; eyebrow 5.08:1, wine button 10.7:1, badge 4.27:1 at its large-bold size. Rows stack to one column below 640px with thumbnails capped at 340px. Dead bento CSS (`.package-grid`, `.package-hero*`, `.package-tile*`, `.package-point*`, `.feature-foot`, `.compact-*`, `.cap-value`) and its media-query overrides removed.
+- Verified: `python _build.py` writes 28 pages, `_check.py` resolves 1381 local refs, `node --check` passes, CSS braces balance; no-store harness audit at 320/360/768/1280 — five rows, five h3s in client order, numerals ≥56px, featured row biggest at every width, parking placeholder intact, zero horizontal overflow, zero console errors.
+
 ## 2026-10-08 — Header, compare and emphasis pass
 
 - Brand plate everywhere: the ivory plate now wraps the logo **and** the English name in the header and footer, reading as one badge — logo up to 46px (header) / 96px (footer), the name sits inside the plate on dark ink instead of under a rule line, and the footer plate is centred and narrower so the name wraps to two lines.

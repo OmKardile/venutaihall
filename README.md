@@ -37,6 +37,7 @@ Edit `index.html` for homepage or shared-chrome changes; never edit generated `.
 ## Content rules
 
 - Never invent prices, capacities or facilities. Figures used: 10+ years, 1000+ events, capacity 1200 (Big Hall) / 350 (Small) / 400 at a time (Dining) / 50 at a time (VIP), 8 A/C rooms, 5 venue spaces, © 2025.
+- The Big Hall Package section is an oversized spec list of the client's five confirmed points, verbatim (label + figure) — rewording or adding points needs client sign-off. Pattern rationale lives in `CHANGELOG.md`.
 - WhatsApp: `https://wa.me/919359567494`
 - Missing or unconfirmed photos are marked with `data-placeholder` attributes and HTML comments — see `PLACEHOLDERS.md`.
 
