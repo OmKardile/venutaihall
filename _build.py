@@ -20,13 +20,15 @@ drawer = drawer.replace(' aria-current="page"', "")
 FONT_LINK = (
     '<link rel="preconnect" href="https://fonts.googleapis.com" />\n'
     '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />\n'
-    '  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@500;600&display=swap" rel="stylesheet" />'
+    '  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Serif+Devanagari:wght@500;600&display=swap" rel="stylesheet" />'
 )
 
 OG_IMAGE = "https://venutaihall.com/assets/hero-hall.jpg"
 SITE_NAME = "Late Venutai Chavan Multipurpose Hall"
 
 SEO = {
+    "details.html": ("Detailed Overview | Late Venutai Chavan Multipurpose Hall",
+                     "The full detail behind the homepage highlights — the five spaces, event types, setups, planning notes, heritage story and venue visit information."),
     "spaces.html": ("Banquet Halls in Nigdi Pradhikaran | Our Spaces",
                     "Compare five air-conditioned spaces in Nigdi Pradhikaran, Pune — Big Hall, Small Hall, Dining Hall, VIP Dining and Guest Rooms for weddings, parties and corporate events."),
     "big-hall.html": ("Big Hall — Up to 1200 Guests | Nigdi Pradhikaran",
@@ -1751,6 +1753,72 @@ Allow: /
 Sitemap: https://venutaihall.com/sitemap.xml
 """
 
+
+def details_main():
+    return f"""
+      <section class="legal-head">
+        <div class="shell">
+          {breadcrumb("Detailed Overview")}
+          <h1>Detailed Overview</h1>
+          <p class="lede">The full detail behind the homepage highlights — spaces, events, setups, planning notes and the story behind the venue.</p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="shell">
+          <div class="prose">
+            <h2 id="overview">The venue at a glance</h2>
+            <p>A spacious, air-conditioned event venue in Nigdi, Pune, designed for weddings, family functions, corporate gatherings and memorable celebrations.</p>
+            <p>The Big Hall package includes everything: hall, dining, VIP dining and stay.</p>
+
+            <h2 id="spaces">The five spaces</h2>
+            <p>Five connected spaces — pick by guest count first, then refine with the comparison on the homepage.</p>
+            <p><strong>Big Hall</strong> — The largest space in the venue: a full-size banquet hall for weddings, receptions and large community events, with room for a stage, seating and procession flow.</p>
+            <p><strong>Small Hall</strong> — A mid-sized hall that suits engagements, birthdays, naming ceremonies and family functions — big enough for a stage, close enough to feel personal.</p>
+            <p><strong>Dining Hall</strong> — A separate air-conditioned room for the meal — round-table seating for up to 400, with catering support so service stays out of the main programme.</p>
+            <p><strong>VIP A/C Dining</strong> — A private dining room for close family, elders and honoured guests — quieter than the main hall, finished to the same standard.</p>
+            <p><strong>A/C Guest Rooms</strong> — Up to 8 comfortable, air-conditioned bedrooms so out-of-town family can stay at the venue instead of travelling between function and hotel.</p>
+
+            <h2 id="events">Events we host</h2>
+            <p>Pick your occasion to see which spaces fit — then plan it with the team.</p>
+            <p><strong>Weddings</strong> — Ceremony, reception and dining under one roof — with rooms for family staying overnight.</p>
+            <p><strong>Engagements</strong> — Ring ceremonies and intimate gatherings, with a dining space nearby for the meal.</p>
+            <p><strong>Receptions</strong> — Stage, seating and a separate dining flow for an evening reception.</p>
+            <p><strong>Birthdays</strong> — Room for cake, games and the full guest list — scaled to your party size.</p>
+            <p><strong>Naming Ceremonies</strong> — Close family gatherings with a dedicated meal space — and rooms if elders stay over.</p>
+            <p><strong>Family Functions</strong> — Anniversaries, thread ceremonies and get-togethers — with room to dine together.</p>
+            <p><strong>Corporate Events</strong> — Presentations, meetings and annual functions — acoustic system, LED screen and projector ready.</p>
+            <p><strong>Social Gatherings</strong> — Community meetings, festivals and neighbourhood events with space to gather and eat.</p>
+
+            <h2 id="compare">Compare the spaces</h2>
+            <p>Capacities as listed by the venue. All spaces are fully air-conditioned. The full comparison table is on the homepage.</p>
+
+            <h2 id="gallery">Photographs of the venue</h2>
+            <p>Real photographs of the halls, dining rooms and guest spaces — no stock imagery.</p>
+
+            <h2 id="facilities">Facilities</h2>
+            <p>Grouped by what you'll actually look for when planning an event — comfort, dining, event technology, safety and access. The full list sits on the homepage and the facilities page.</p>
+
+            <h2 id="setups">Event setups</h2>
+            <p>Each setup is arranged around your programme. Photos on the homepage are of the venue spaces themselves; real event photography will be added as it becomes available.</p>
+            <p><strong>Wedding Setup</strong> — Stage, seating and procession flow in the Big Hall, with the Dining Hall handling the meal for up to 400.</p>
+            <p><strong>Reception Setup</strong> — Welcome seating, stage moments and a separate dining room so guests can move between programme and meal.</p>
+            <p><strong>Corporate Setup</strong> — Rows or clusters with LED screen, projector and acoustic system for presentations and annual functions.</p>
+            <p><strong>Family Function Setup</strong> — Flexible seating for anniversaries, naming ceremonies and get-togethers, scaled to your guest list.</p>
+            <p><strong>Dining Setup</strong> — Round-table seating for up to 400 in the Dining Hall, or private service in VIP A/C Dining for up to 50.</p>
+
+            <h2 id="heritage">Our namesake</h2>
+            <p>This multipurpose hall carries the name of Late Venutai Chavan — a life dedicated to the service of society, and to bringing people together.</p>
+            <p>The venue was created as a tribute to that spirit: a well-equipped, welcoming place where neighbours, families and organisations can celebrate milestones and meet, right here in Nigdi Pradhikaran.</p>
+
+            <h2 id="visit">Venue visits</h2>
+            <p>Visit the venue, explore the spaces and talk through your requirements with our team.</p>
+          </div>
+        </div>
+      </section>
+      {cta_band("Ready to check <em>your date?</em>")}
+"""
+
+
 SITEMAP_PAGES = [
     ("", "1.0"),
     ("spaces.html", "0.9"),
@@ -1774,6 +1842,7 @@ SITEMAP_PAGES = [
     ("contact.html", "0.8"),
     ("visit.html", "0.7"),
     ("check-availability.html", "0.9"),
+    ("details.html", "0.6"),
     ("privacy-policy.html", "0.3"),
     ("terms.html", "0.3"),
 ]
@@ -1833,6 +1902,7 @@ def build():
     page("contact.html", contact_main)
     page("visit.html", visit_main)
     page("check-availability.html", wizard_main)
+    page("details.html", details_main(), body_class="solid-header")
     page(
         "privacy-policy.html",
         legal_main(

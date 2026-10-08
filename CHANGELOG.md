@@ -2,9 +2,18 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-08 — First-sight homepage pass
+
+- Hero rebuilt for instant understanding: left = eyebrow, headline, CTAs and place line; right = a big display focus block (**Up to 1200 Guests**, **Fully Air-Conditioned**) with icons. Hero paragraph removed.
+- All section intro paragraphs and card descriptions (explorer, events, compare, gallery, facilities, setups, heritage, visit, package close) moved off the homepage into a new **Detailed Overview** page (`details.html`, built via `_build.py`, sitemap priority 0.6), linked from the footer, section heads (package, compare, setups) and anchored by section.
+- Points restyled as big title-style figures with icons: package points (dining, VIP dining, rooms, parking) now kicker + large title with pictorial icons; explorer spec values, celebrate capacities, setup titles, event card titles and gallery overlay capacities are large display type.
+- `.hl` / `.hl-dark` highlight redesigned: **no background** — stands out like a heading (Fraunces display font, semibold); `.hl-dark` is warm gold on dark imagery. Compare capacity column set in display type.
+- Fixed the pre-existing compare-table clip gap at 641–767px (scrollable below 960px now) and synced the Google Fonts link in `_build.py` with the homepage (adds Noto Sans Devanagari to all generated pages).
+- Verified: build writes 26 pages, 1267 local refs resolve, `node --check` passes; desktop layout, 8-width responsive sweep (320–1280), `details.html`, deep-link navigation, drawer/reveal/lightbox/FAQ interactions — zero console errors.
+
 ## 2026-10-08 — Homepage revamp
 
-- Replaced the header and footer text lockup with the logo image (`assets/logo.webp` + `assets/logo.png`) and swapped the favicon to `assets/favicon.svg` (applies to all pages via the build).
+- Replaced the header and footer text lockup with the logo image (`assets/logo.webp` + `assets/logo.png`) and swapped the favicon to `assets/favicon.svg` (applies to all pages via the build). The Marathi name lives in the logo, so the old Marathi `<small>` lines were removed; the English name **Late Venutai Chavan Multipurpose Hall** now sits under the logo with a hairline divider, and the logo sits on a small ivory plate so it stays readable over the dark hero and footer.
 - Added sage `--sage: #688164` accent, used for the new **Speciality** badge.
 - Restructured the homepage order: hero → trust stats → **The Big Hall Package** → space explorer → event discovery → compare → gallery → facilities → setups → heritage → visit CTA → location → FAQ → final CTA.
 - Added the new **The Big Hall Package** section (bento grid: full A/C hall highlight, dining, VIP dining, guest rooms + second-angle tile, parking tile) with `Check Availability` CTA and `Enquire for pricing` note.
@@ -12,6 +21,7 @@ All notable changes to the venutaihall.com website. Dates are local.
 - Marathi heading brackets (Noto Sans Devanagari, new font loaded) on all 13 homepage headings.
 - Highlight style `.hl` / `.hl-dark` applied to stats, capacities, and key figures; dining/VIP capacities reworded to **400 at a time** / **50 at a time** (index chips, specs, compare table).
 - Image-first treatment on explorer cards (hover zoom) — gallery already renders edge-to-edge cover tiles.
+- Responsive verification: homepage audited at 10 widths (320–1440) and 9 other pages at 4 widths via iframe viewport emulation — no horizontal overflow anywhere, header brand clears the navigation and fits the header height at every breakpoint; drawer, gallery filters, FAQ and availability-wizard interactions verified.
 - Placeholders for `parking.jpg` and `guest-room-2.jpg` (see `PLACEHOLDERS.md`).
 
 ## 2026-10-08 — Developer signature
