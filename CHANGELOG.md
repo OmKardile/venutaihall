@@ -2,6 +2,16 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-08 — Package and polish pass
+
+- Package bento photos now fill their frames edge to edge: the `picture` inside every `.media-frame` gets a definite height, so dining, VIP, feature, celebrate, setup, event and editorial cards no longer show a beige strip under the photo. The two pending-photo boxes were dropped — the parking tile is now a compact icon + title tile (car icon, "On-site Parking") carrying `data-placeholder="CONFIRM with client: dedicated parking?"`, and the second-angle guest room keeps only an HTML comment (see `PLACEHOLDERS.md`).
+- Hero package cap reworked: gold display title **Full A/C Hall** with a plain **up to 1200 guests** value line (was small kicker + gold number).
+- Logo up ~20% on desktop: mark 36 → 43px, English name 10 → 12px, plate padding and footer sizes with it (46 → 55px / 11 → 13px); header height raised 76 → 86px to fit. Below 960px logo sizes stay as before, and 961–1100px gets tighter tracking so the English name never touches the navigation.
+- Marathi heading brackets: larger (`clamp(14px, 1.5vw, 17px)`, 13.5px on small screens), wine accent on light sections (brass kept on the hero, sand on dark bands), and more spacing around the line so it reads as a proper bracket.
+- Dining/VIP capacity wording unified to **400 at a time** / **50 at a time** wherever it reads as a title or chip: space page specs, chips, asides and gallery labels, homepage gallery overlays, compare table, explorer chips; `Max 50 at a time` → `50 at a time`. Prose, FAQ answers, form options and SEO titles keep the plain wording.
+- **Ample parking** claim removed from the homepage and `facilities.html` Safety & Access lists; both lists carry `data-placeholder="CONFIRM parking"` until the client confirms (see `PLACEHOLDERS.md`).
+- Verified: `python _build.py` writes 27 pages, `_check.py` resolves 1268 local refs, `node --check` passes, CSS braces balance; responsive sweep at 320/360/641/700/768/900/961/1024/1100/1280 with zero horizontal overflow and zero console errors.
+
 ## 2026-10-08 — First-sight homepage pass
 
 - Hero rebuilt for instant understanding: left = eyebrow, headline, CTAs and place line; right = a big display focus block (**Up to 1200 Guests**, **Fully Air-Conditioned**) with icons. Hero paragraph removed.
