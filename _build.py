@@ -29,6 +29,8 @@ SITE_NAME = "Late Venutai Chavan Multipurpose Hall"
 SEO = {
     "details.html": ("Detailed Overview | Late Venutai Chavan Multipurpose Hall",
                      "The full detail behind the homepage highlights — the five spaces, event types, setups, planning notes, heritage story and venue visit information."),
+    "compare.html": ("Compare the Spaces | Late Venutai Chavan Multipurpose Hall",
+                     "Big Hall, Small Hall, Dining Hall, VIP Dining and Guest Rooms side by side — capacity, what sets each space apart and the events each suits."),
     "spaces.html": ("Banquet Halls in Nigdi Pradhikaran | Our Spaces",
                     "Compare five air-conditioned spaces in Nigdi Pradhikaran, Pune — Big Hall, Small Hall, Dining Hall, VIP Dining and Guest Rooms for weddings, parties and corporate events."),
     "big-hall.html": ("Big Hall — Up to 1200 Guests | Nigdi Pradhikaran",
@@ -803,26 +805,70 @@ EXPLORERS = [
 ]
 
 COMPARE_ROWS = [
-    ("big-hall.html", "Big Hall", "1200 guests", "Weddings / Large events"),
-    ("small-hall.html", "Small Hall", "350 guests", "Engagements / Birthdays"),
-    ("dining-hall.html", "Dining Hall", "400 at a time", "Meals / Receptions"),
-    ("vip-dining.html", "VIP Dining", "50 at a time", "Close family / VIP dining"),
-    ("guest-rooms.html", "Guest Rooms", "8 rooms", "Guest stay"),
+    ("big-hall.html", "Big Hall", "1200 guests",
+     "<em>The scale</em> — room for a stage, seating and procession flow in one hall",
+     "Weddings / Large events"),
+    ("small-hall.html", "Small Hall", "350 guests",
+     "<em>Mid-sized with a stage</em> — big enough to programme, close enough to feel personal",
+     "Engagements / Birthdays"),
+    ("dining-hall.html", "Dining Hall", "400 at a time",
+     "<em>Keeps the meal separate</em> — dining never competes with the programme",
+     "Meals / Receptions"),
+    ("vip-dining.html", "VIP Dining", "50 at a time",
+     "<em>Privacy</em> — a quieter room for close family and honoured guests",
+     "Close family / VIP dining"),
+    ("guest-rooms.html", "Guest Rooms", "8 rooms",
+     "<em>Stay on site</em> — family rests at the venue instead of travelling",
+     "Guest stay"),
 ]
 
 
 def compare_table():
     rows = []
-    for href, name, cap, ideal in COMPARE_ROWS:
+    for href, name, cap, diff, ideal in COMPARE_ROWS:
         rows.append(
             f"""              <tr>
                 <td class="space-name"><a href="{href}">{name}</a></td>
                 <td class="compare-cap">{cap}</td>
-                <td><span class="compare-yes">{icon("i-check")} Yes</span></td>
+                <td class="compare-diff">{diff}</td>
                 <td>{ideal}</td>
               </tr>"""
         )
     return "\n".join(rows)
+
+
+def compare_main():
+    return f"""
+      <section class="legal-head">
+        <div class="shell">
+          {breadcrumb("Compare the Spaces")}
+          <h1>Compare the Spaces<span class="heading-mr" lang="mr">(जागांची तुलना)</span></h1>
+          <p class="lede">Five spaces, side by side — capacity, what each one does better, and the events it suits.</p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="shell">
+          <div class="compare-wrap reveal">
+            <table class="compare-table">
+              <thead>
+                <tr>
+                  <th scope="col">Space</th>
+                  <th scope="col">Capacity</th>
+                  <th scope="col">What sets it apart</th>
+                  <th scope="col">Ideal for</th>
+                </tr>
+              </thead>
+              <tbody>
+{compare_table()}
+              </tbody>
+            </table>
+          </div>
+          <p class="compare-note">Enquire for pricing on any space. Ask about availability for your preferred date.</p>
+        </div>
+      </section>
+
+      {cta_band("Ready to check <em>your date?</em>")}
+"""
 
 
 spaces_main = f"""
@@ -832,7 +878,7 @@ spaces_main = f"""
           {breadcrumb("Spaces")}
           <p class="eyebrow">Our spaces</p>
           <h1 id="spaces-title">Spaces for<br /><em>every occasion</em></h1>
-          <p class="lede">Five connected spaces — pick by guest count first, then refine with the comparison below. All spaces are fully air-conditioned.</p>
+          <p class="lede">Five connected spaces — pick by guest count first, then refine with the <a href="compare.html">space comparison</a>. All spaces are fully air-conditioned.</p>
           <div class="hero-ctas">
             <a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a>
           </div>
@@ -852,32 +898,6 @@ spaces_main = f"""
           <div class="explorer-grid">
 {"".join(EXPLORERS)}
           </div>
-        </div>
-      </section>
-
-      <section class="section band-paper" aria-labelledby="compare-title">
-        <div class="shell">
-          <div class="section-head-center reveal">
-            <p class="eyebrow">At a glance</p>
-            <h2 id="compare-title">Compare the Spaces</h2>
-            <p class="lede">Capacities as listed by the venue. All spaces are fully air-conditioned.</p>
-          </div>
-          <div class="compare-wrap reveal">
-            <table class="compare-table">
-              <thead>
-                <tr>
-                  <th scope="col">Space</th>
-                  <th scope="col">Capacity</th>
-                  <th scope="col">AC</th>
-                  <th scope="col">Ideal for</th>
-                </tr>
-              </thead>
-              <tbody>
-{compare_table()}
-              </tbody>
-            </table>
-          </div>
-          <p class="compare-note">Enquire for pricing on any space. Ask about availability for your preferred date.</p>
         </div>
       </section>
 
@@ -1772,7 +1792,7 @@ def details_main():
             <p>The Big Hall package includes everything: hall, dining, VIP dining and stay.</p>
 
             <h2 id="spaces">The five spaces</h2>
-            <p>Five connected spaces — pick by guest count first, then refine with the comparison on the homepage.</p>
+            <p>Five connected spaces — pick by guest count first, then refine with the <a href="compare.html">space comparison</a>.</p>
             <p><strong>Big Hall</strong> — The largest space in the venue: a full-size banquet hall for weddings, receptions and large community events, with room for a stage, seating and procession flow.</p>
             <p><strong>Small Hall</strong> — A mid-sized hall that suits engagements, birthdays, naming ceremonies and family functions — big enough for a stage, close enough to feel personal.</p>
             <p><strong>Dining Hall</strong> — A separate air-conditioned room for the meal — round-table seating for up to 400, with catering support so service stays out of the main programme.</p>
@@ -1791,7 +1811,7 @@ def details_main():
             <p><strong>Social Gatherings</strong> — Community meetings, festivals and neighbourhood events with space to gather and eat.</p>
 
             <h2 id="compare">Compare the spaces</h2>
-            <p>Capacities as listed by the venue. All spaces are fully air-conditioned. The full comparison table is on the homepage.</p>
+            <p>Capacities as listed by the venue. All spaces are fully air-conditioned. The full <a href="compare.html">differences table</a> is on its own page.</p>
 
             <h2 id="gallery">Photographs of the venue</h2>
             <p>Real photographs of the halls, dining rooms and guest spaces — no stock imagery.</p>
@@ -1844,6 +1864,7 @@ SITEMAP_PAGES = [
     ("visit.html", "0.7"),
     ("check-availability.html", "0.9"),
     ("details.html", "0.6"),
+    ("compare.html", "0.7"),
     ("privacy-policy.html", "0.3"),
     ("terms.html", "0.3"),
 ]
@@ -1904,6 +1925,7 @@ def build():
     page("visit.html", visit_main)
     page("check-availability.html", wizard_main)
     page("details.html", details_main(), body_class="solid-header")
+    page("compare.html", compare_main(), body_class="solid-header")
     page(
         "privacy-policy.html",
         legal_main(
