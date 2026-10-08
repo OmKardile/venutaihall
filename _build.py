@@ -452,14 +452,14 @@ SPACES = {
         hero_alt="Dining hall with round tables",
         eyebrow="Dining", h1="Dining Hall for<br /><em>shared meals</em>",
         lede="A separate air-conditioned room for the meal — round-table seating for up to 400, with catering support so service stays out of the main programme.",
-        specs=[("Capacity", "Up to 400 guests"), ("Air-conditioning", "Fully air-conditioned"), ("Ideal for", "Meals · Receptions dining"), ("Pricing", "Enquire for pricing")],
-        chips=[("Up to 400 guests", "i-people"), ("Full AC", "i-ac"), ("Round tables", "i-dining"), ("Catering support", "i-tray")],
+        specs=[("Capacity", "400 at a time"), ("Air-conditioning", "Fully air-conditioned"), ("Ideal for", "Meals · Receptions dining"), ("Pricing", "Enquire for pricing")],
+        chips=[("400 at a time", "i-people"), ("Full AC", "i-ac"), ("Round tables", "i-dining"), ("Catering support", "i-tray")],
         overview_h2="Give the meal its own room",
         overview=[
             "The Dining Hall is a dedicated air-conditioned space with round-table seating for up to 400 guests.",
             "Keeping dining separate means the stage programme and the meal do not compete for the same room. Discuss service flow and timing with the venue team.",
         ],
-        capacity=[("Capacity", "Up to 400 guests"), ("Air-conditioning", "Fully air-conditioned"), ("Layout", "Round-table seating"), ("Pricing", "Enquire for pricing")],
+        capacity=[("Capacity", "400 at a time"), ("Air-conditioning", "Fully air-conditioned"), ("Layout", "Round-table seating"), ("Pricing", "Enquire for pricing")],
         best_for=["Wedding meals", "Reception dining", "Family function dining", "Community gatherings"],
         dining=[
             "Catering support is listed so your caterer can work on site.",
@@ -471,7 +471,7 @@ SPACES = {
         faqs=[("How many guests can the Dining Hall seat?", "The Dining Hall is listed for up to 400 guests."),
               ("Do you provide catering?", "Catering support is listed. Menu and pricing are handled with your caterer — contact the venue team for current arrangements."),
               ("Is VIP dining also available?", "Yes — VIP A/C Dining is listed for up to 50 guests for close family and honoured guests.")],
-        gallery=[("dining", "dining-hall.jpg", "Dining Hall — round-table seating", "Dining Hall", "Up to 400 guests")],
+        gallery=[("dining", "dining-hall.jpg", "Dining Hall — round-table seating", "Dining Hall", "400 at a time")],
         related=[("vip-dining.html", "VIP Dining"), ("big-hall.html", "Big Hall"), ("small-hall.html", "Small Hall"), ("spaces.html", "All spaces")],
         final="Let’s plan dining for your event",
     ),
@@ -480,14 +480,14 @@ SPACES = {
         hero_alt="VIP dining room with gold tablecloths",
         eyebrow="Private dining", h1="VIP A/C Dining for<br /><em>close family</em>",
         lede="A private dining room for close family, elders and honoured guests — quieter than the main hall, finished to the same standard.",
-        specs=[("Capacity", "Up to 50 guests"), ("Air-conditioning", "Fully air-conditioned"), ("Ideal for", "Close family · VIP dining"), ("Pricing", "Enquire for pricing")],
-        chips=[("Up to 50 guests", "i-people"), ("Full AC", "i-ac"), ("Private room", "i-shield"), ("Near main hall", "i-building")],
+        specs=[("Capacity", "50 at a time"), ("Air-conditioning", "Fully air-conditioned"), ("Ideal for", "Close family · VIP dining"), ("Pricing", "Enquire for pricing")],
+        chips=[("50 at a time", "i-people"), ("Full AC", "i-ac"), ("Private room", "i-shield"), ("Near main hall", "i-building")],
         overview_h2="A quieter room for the people closest to the occasion",
         overview=[
             "VIP A/C Dining is a private air-conditioned room for up to 50 guests — suited to close family, elders and honoured guests.",
             "Ask the team how this room can work alongside the Dining Hall and main programme on your date.",
         ],
-        capacity=[("Capacity", "Up to 50 guests"), ("Air-conditioning", "Fully air-conditioned"), ("Layout", "Private dining room"), ("Pricing", "Enquire for pricing")],
+        capacity=[("Capacity", "50 at a time"), ("Air-conditioning", "Fully air-conditioned"), ("Layout", "Private dining room"), ("Pricing", "Enquire for pricing")],
         best_for=["Close family meals", "Elders and honoured guests", "Naming ceremonies", "Small private dinners"],
         dining=[
             "Pair with the Dining Hall for larger groups while keeping a private table for close family.",
@@ -499,7 +499,7 @@ SPACES = {
         faqs=[("How many guests can VIP Dining seat?", "VIP A/C Dining is listed for up to 50 guests."),
               ("Is it air-conditioned?", "Yes. The room is listed as fully air-conditioned."),
               ("Can we use it with the Big Hall?", "Discuss a combined arrangement with the team when you plan your event.")],
-        gallery=[("dining", "vip-dining.jpg", "VIP A/C Dining — private dining room", "VIP Dining", "Up to 50 guests")],
+        gallery=[("dining", "vip-dining.jpg", "VIP A/C Dining — private dining room", "VIP Dining", "50 at a time")],
         related=[("dining-hall.html", "Dining Hall"), ("big-hall.html", "Big Hall"), ("guest-rooms.html", "Guest Rooms"), ("spaces.html", "All spaces")],
         final="Let’s plan dining for your guests",
     ),
@@ -787,14 +787,14 @@ EXPLORERS = [
                   '<span class="chip chip-wine">Up to 350</span>'),
     explorer_card("03", "Dining", "Dining Hall",
                   "A separate air-conditioned room for the meal — round-table seating for up to 400, with catering support so service stays out of the main programme.",
-                  [("Capacity", "Up to 400 guests"), ("Air-conditioning", "Fully air-conditioned"), ("Ideal for", "Meals · Receptions dining"), ("Pricing", "Enquire for pricing")],
+                  [("Capacity", "400 at a time"), ("Air-conditioning", "Fully air-conditioned"), ("Ideal for", "Meals · Receptions dining"), ("Pricing", "Enquire for pricing")],
                   "dining-hall.html", "dining-hall.jpg", "Dining hall with round tables",
-                  '<span class="chip chip-wine">Up to 400</span>'),
+                  '<span class="chip chip-wine">400 at a time</span>'),
     explorer_card("04", "Private Dining", "VIP A/C Dining",
                   "A private dining room for close family, elders and honoured guests — quieter than the main hall, finished to the same standard.",
-                  [("Capacity", "Up to 50 guests"), ("Air-conditioning", "Fully air-conditioned"), ("Ideal for", "Close family · VIP dining"), ("Pricing", "Enquire for pricing")],
+                  [("Capacity", "50 at a time"), ("Air-conditioning", "Fully air-conditioned"), ("Ideal for", "Close family · VIP dining"), ("Pricing", "Enquire for pricing")],
                   "vip-dining.html", "vip-dining.jpg", "VIP air-conditioned dining room",
-                  '<span class="chip chip-wine">Up to 50</span>'),
+                  '<span class="chip chip-wine">50 at a time</span>'),
     explorer_card("05", "Stay", "A/C Guest Rooms",
                   "Up to 8 comfortable, air-conditioned bedrooms so out-of-town family can stay at the venue instead of travelling between function and hotel.",
                   [("Rooms", "Up to 8 bedrooms"), ("Air-conditioning", "Fully air-conditioned"), ("Ideal for", "Family stay · Invitees"), ("Pricing", "Enquire for pricing")],
@@ -805,8 +805,8 @@ EXPLORERS = [
 COMPARE_ROWS = [
     ("big-hall.html", "Big Hall", "1200 guests", "Weddings / Large events"),
     ("small-hall.html", "Small Hall", "350 guests", "Engagements / Birthdays"),
-    ("dining-hall.html", "Dining Hall", "400 guests", "Meals / Receptions"),
-    ("vip-dining.html", "VIP Dining", "50 guests", "Close family / VIP dining"),
+    ("dining-hall.html", "Dining Hall", "400 at a time", "Meals / Receptions"),
+    ("vip-dining.html", "VIP Dining", "50 at a time", "Close family / VIP dining"),
     ("guest-rooms.html", "Guest Rooms", "8 rooms", "Guest stay"),
 ]
 
@@ -945,18 +945,19 @@ FACILITY_GROUPS = [
     ("i-ac", "Comfort", ["Fully air-conditioned halls", "A/C guest rooms", "Clean washrooms", "Lobby &amp; waiting area", "Lift access"]),
     ("i-dining", "Dining", ["Dining Hall — up to 400", "VIP A/C Dining — up to 50", "Catering support for your caterer"]),
     ("i-projector", "Event Technology", ["Acoustic system", "LED screen", "Projector", "Wi-Fi connectivity"]),
-    ("i-shield", "Safety &amp; Access", ["CCTV surveillance", "Fire alarm system", "Ample parking", "Easy access in Nigdi Pradhikaran"]),
+    ("i-shield", "Safety &amp; Access", ["CCTV surveillance", "Fire alarm system", "Easy access in Nigdi Pradhikaran"], "CONFIRM parking"),
 ]
 
 
-def facility_group(icon_id, title, items):
+def facility_group(icon_id, title, items, placeholder=None):
+    ph = f' data-placeholder="{placeholder}"' if placeholder else ""
     lis = "\n                ".join(f'<li>{icon("i-check")}{item}</li>' for item in items)
     delay = {"Comfort": "", "Dining": " reveal-delay-1", "Event Technology": " reveal-delay-2", "Safety &amp; Access": " reveal-delay-3"}.get(title, "")
     return f"""
           <div class="facility-group reveal{delay}">
             <span class="group-icon">{icon(icon_id)}</span>
             <h3>{title}</h3>
-            <ul>
+            <ul{ph}>
                 {lis}
             </ul>
           </div>"""
@@ -1067,8 +1068,8 @@ GALLERY_FILTERS = [
 GALLERY_TILES = [
     plain_tile("big-hall", "hero-hall.jpg", "Big Hall — banquet seating", "Big Hall", "Up to 1200 guests", "Big Hall with chandeliers and rows of seats"),
     plain_tile("small-hall", "small-hall.jpg", "Small Hall — celebration seating", "Small Hall", "Up to 350 guests", "Small Hall seating with centre aisle"),
-    plain_tile("dining", "dining-hall.jpg", "Dining Hall — round-table seating", "Dining Hall", "Up to 400 guests", "Dining hall with round tables"),
-    plain_tile("dining", "vip-dining.jpg", "VIP A/C Dining — private dining room", "VIP Dining", "Up to 50 guests", "VIP dining room with gold tablecloths"),
+    plain_tile("dining", "dining-hall.jpg", "Dining Hall — round-table seating", "Dining Hall", "400 at a time", "Dining hall with round tables"),
+    plain_tile("dining", "vip-dining.jpg", "VIP A/C Dining — private dining room", "VIP Dining", "50 at a time", "VIP dining room with gold tablecloths"),
     plain_tile("guest-rooms", "guest-room.jpg", "A/C Guest Room", "Guest Rooms", "Up to 8 rooms", "Guest bedroom with large bed"),
     plain_tile("facilities", "venue-exterior.jpg", "Venue exterior — Sector 27A, Pradhikaran", "Exterior", "Nigdi, Pune", "Venue exterior"),
     crop_tile("facilities", "Lobby & Reception", "34.328%", "54.721%", "427.362%", "744.720%", "Lobby"),
