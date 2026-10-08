@@ -2,6 +2,10 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-08 — Footer brand card
+
+- **The footer brand column is now one ivory rounded card.** `.footer-brand` gets `var(--ivory)` background, the same 14px radius as the logo plate, `align-self: start` and centered content — logo, tagline (now wine italic instead of sand), address (`--ink-2`) and the WhatsApp/Maps buttons (wine borders/icons) all sit inside it. Previously the logo floated on its centered plate while everything under it was left-aligned. The inner plate keeps its background (same ivory → seamless) but loses its box-shadow, and the duplicate `.brand-en` line is hidden since the artwork already carries the name.
+
 ## 2026-10-08 — Hero focus legibility + functional QA pass
 
 - **Reveal animations can no longer strand content invisible.** Failure seen: `.reveal` elements carried `is-visible` but stayed at computed `opacity: 0` when the browser stalled the 0.8s fade transition (frozen animation clock after a tab/GPU glitch), leaving sections blank in an otherwise healthy page. `script.js` now guards every reveal — 1.5s after `is-visible` (past the 0.8s duration + 0.3s worst-case delay) any element still below full opacity gets `transition/opacity/transform` forced inline, so a stuck transition can delay an entrance but can never hide content.

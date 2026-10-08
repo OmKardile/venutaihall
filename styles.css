@@ -1643,25 +1643,33 @@
     gap: clamp(30px, 4vw, 56px);
     padding-bottom: clamp(40px, 5vw, 64px);
   }
-  .footer-brand .brand { width: fit-content; margin-inline: auto; padding-top: 11px; }
+  .footer-brand {
+    background: var(--ivory);
+    border-radius: 14px;
+    padding: clamp(20px, 2.2vw, 28px);
+    align-self: start;
+    text-align: center;
+  }
+  .footer-brand .brand { width: fit-content; margin-inline: auto; padding-top: 0; box-shadow: none; }
+  .footer-brand .brand-en { display: none; }
   .footer-tagline {
     font-family: var(--font-display);
     font-style: italic;
     font-size: 18px;
-    color: var(--sand);
-    margin-top: 20px;
+    color: var(--wine);
+    margin-top: 16px;
   }
-  .footer-address { font-size: 14.5px; line-height: 1.7; margin-top: 14px; color: rgba(246, 241, 232, 0.7); }
-  .footer-social { display: flex; gap: 10px; margin-top: 22px; }
+  .footer-address { font-size: 14.5px; line-height: 1.7; margin-top: 12px; color: var(--ink-2); }
+  .footer-social { display: flex; justify-content: center; gap: 10px; margin-top: 18px; }
   .footer-social a, .footer-social span {
     width: 42px; height: 42px;
     display: grid; place-items: center;
-    border: 1px solid rgba(246, 241, 232, 0.3);
+    border: 1px solid rgba(100, 28, 44, 0.3);
     border-radius: 50%;
-    color: var(--ivory);
+    color: var(--wine);
     transition: background 0.2s ease, border-color 0.2s ease;
   }
-  .footer-social a:hover { background: rgba(246, 241, 232, 0.12); border-color: var(--sand); }
+  .footer-social a:hover { background: rgba(100, 28, 44, 0.07); border-color: var(--wine); }
   .footer-col h3 {
     font-family: var(--font-body);
     font-size: 11.5px;
