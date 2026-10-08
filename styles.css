@@ -2037,7 +2037,7 @@
     background: var(--brass);
     border-radius: 50%;
   }
-  .heading-mr { display: block; margin-top: 7px; font-family: "Noto Sans Devanagari", var(--font-body); font-size: clamp(13px, 1.3vw, 15px); font-weight: 500; letter-spacing: 0.01em; color: var(--brass-deep); }
+  .heading-mr { display: block; margin-top: 9px; margin-bottom: 6px; font-family: "Noto Sans Devanagari", var(--font-body); font-size: clamp(14px, 1.5vw, 17px); font-weight: 500; letter-spacing: 0.01em; color: var(--wine); }
   .hero .heading-mr { color: var(--brass); }
   .band-wine .heading-mr, .visit-cta .heading-mr, .cta-band .heading-mr { color: var(--sand); }
   .hl.hl { color: var(--wine); font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
@@ -2209,7 +2209,7 @@
     .brand-en { font-size: 8.5px; letter-spacing: 0.09em; margin-top: 5px; padding-top: 4px; }
     .footer-brand .brand-logo img { height: 34px; }
     .footer-brand .brand-en { font-size: 9.5px; }
-    .heading-mr { font-size: 12.5px; }
+    .heading-mr { font-size: 13.5px; }
   }
   @media (max-width: 980px) {
     .package-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
