@@ -45,7 +45,7 @@
     --font-display: "Fraunces", Georgia, "Times New Roman", serif;
     --font-body: "Manrope", "Segoe UI", Arial, sans-serif;
     --font-deva: "Noto Serif Devanagari", "Fraunces", serif;
-    --header-h: 76px;
+    --header-h: 86px;
     --bottom-bar-h: 0px;
   }
 
@@ -2042,11 +2042,11 @@
   .band-wine .heading-mr, .visit-cta .heading-mr, .cta-band .heading-mr { color: var(--sand); }
   .hl.hl { color: var(--wine); font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
   .hl-dark.hl-dark { color: #f2dcae; font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
-  .brand-logo { display: block; line-height: 0; padding: 4px 10px; background: var(--ivory); border-radius: 8px; box-shadow: 0 1px 5px rgba(42, 37, 33, 0.28); }
-  .brand-logo img { display: block; width: auto; height: 36px; }
-  .brand-en { margin-top: 6px; padding-top: 4px; border-top: 1px solid currentColor; font-family: var(--font-body); font-size: 10px; font-weight: 750; letter-spacing: 0.13em; text-transform: uppercase; white-space: nowrap; text-align: center; color: inherit; }
-  .footer-brand .brand-logo img { height: 46px; }
-  .footer-brand .brand-en { font-size: 11px; margin-top: 9px; padding-top: 6px; }
+  .brand-logo { display: block; line-height: 0; padding: 5px 12px; background: var(--ivory); border-radius: 8px; box-shadow: 0 1px 5px rgba(42, 37, 33, 0.28); }
+  .brand-logo img { display: block; width: auto; height: 43px; }
+  .brand-en { margin-top: 6px; padding-top: 4px; border-top: 1px solid currentColor; font-family: var(--font-body); font-size: 12px; font-weight: 750; letter-spacing: 0.13em; text-transform: uppercase; white-space: nowrap; text-align: center; color: inherit; }
+  .footer-brand .brand-logo img { height: 55px; }
+  .footer-brand .brand-en { font-size: 13px; margin-top: 9px; padding-top: 6px; }
   .package-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
   .package-hero { position: relative; grid-column: 1 / 4; grid-row: 1; min-height: clamp(300px, 34vw, 430px); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--bone); }
   .package-hero .media-frame { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; }
@@ -2091,8 +2091,14 @@
     .header-call span { display: none; }
   }
 
+  @media (min-width: 961px) and (max-width: 1100px) {
+    .brand-en { letter-spacing: 0.07em; }
+  }
+
   @media (max-width: 960px) {
     :root { --shell: min(100% - 40px, 1280px); --shell-narrow: min(100% - 40px, 920px); --header-h: 68px; }
+    .brand-en { font-size: 10px; }
+    .footer-brand .brand-en { font-size: 11px; }
     .main-nav, .header-call { display: none; }
     .menu-toggle { display: inline-flex; }
     .editorial-split { grid-template-columns: 1fr; }
