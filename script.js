@@ -44,13 +44,24 @@
 
   const header = qs('.site-header');
   const floats = qs('.float-actions');
+  const toTop = qs('.to-top');
+  const progressTrack = qs('.reading-progress span');
+  const docEl = document.documentElement;
   const onScroll = () => {
     const y = window.scrollY;
     if (header) header.classList.toggle('is-scrolled', y > 12);
     if (floats) floats.classList.toggle('is-visible', y > 420);
+    if (toTop) toTop.classList.toggle('is-visible', y > 560);
+    if (progressTrack) {
+      const max = docEl.scrollHeight - docEl.clientHeight;
+      progressTrack.style.width = max > 0 ? ((y / max) * 100) + '%' : '0%';
+    }
   };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
+  if (toTop) {
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
 
   const menuButton = qs('.menu-toggle');
   const drawer = qs('#nav-drawer');
@@ -633,4 +644,14 @@
     }
   };
   loadWebsitePopup();
+
+  let faqPrintState = [];
+  addEventListener('beforeprint', () => {
+    faqPrintState = qsa('details.faq-item').map(d => d.open);
+    qsa('details.faq-item').forEach(d => { d.open = true; });
+  });
+  addEventListener('afterprint', () => {
+    qsa('details.faq-item').forEach((d, i) => { if (!faqPrintState[i]) d.open = false; });
+    faqPrintState = [];
+  });
 })();

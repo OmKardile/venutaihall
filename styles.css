@@ -128,6 +128,8 @@
   .band-wine h2, .band-wine h3 { color: var(--ivory); }
   .band-wine em { color: var(--sand); }
 
+  main [id] { scroll-margin-top: calc(var(--header-h) + 18px); }
+
   .eyebrow {
     display: inline-flex;
     align-items: center;
@@ -1761,6 +1763,46 @@
   }
   .float-actions a:hover::after, .float-actions a:focus-visible::after { opacity: 1; transform: translateY(-50%) translateX(0); }
 
+  .reading-progress {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 110;
+    background: transparent;
+    pointer-events: none;
+  }
+  .reading-progress span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--brass), var(--brass-deep));
+    transition: width 0.12s linear;
+  }
+
+  .to-top {
+    position: fixed;
+    right: 22px;
+    bottom: 218px;
+    z-index: 90;
+    width: 46px; height: 46px;
+    display: grid; place-items: center;
+    background: var(--brass-deep);
+    color: var(--ivory);
+    border: none;
+    border-radius: 50%;
+    box-shadow: var(--shadow-2);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(14px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+  }
+  .to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+  .to-top:hover { background: var(--wine); transform: translateY(-2px); }
+  .to-top:active { transform: translateY(0); }
+  .to-top .icon { width: 20px; height: 20px; }
+
   .bottom-bar {
     display: none;
     position: fixed;
@@ -2123,6 +2165,7 @@
     :root { --bottom-bar-h: 76px; }
     .bottom-bar { display: flex; }
     .float-actions { display: none; }
+    .to-top { right: 16px; bottom: calc(var(--bottom-bar-h) + 14px); width: 44px; height: 44px; }
     .nav-drawer { grid-template-columns: 1fr; }
     .nav-drawer-scrim { display: none; }
     .nav-drawer-panel { padding: 22px 22px 34px; }
@@ -2189,9 +2232,12 @@
   }
 
   @media print {
-    .site-header, .bottom-bar, .float-actions, .nav-drawer, .lightbox, .skip-link, .website-popup-overlay { display: none !important; }
+    .site-header, .bottom-bar, .float-actions, .to-top, .reading-progress, .nav-drawer, .lightbox, .skip-link, .website-popup-overlay { display: none !important; }
     body { padding-bottom: 0; }
     .reveal { opacity: 1; transform: none; }
+    .faq-item { page-break-inside: avoid; }
+    .faq-item .faq-answer { display: block !important; }
+    .section { padding-block: 22px; }
   }
 
   #spaces .explorer-card:hover .explorer-media .media-frame img { transform: scale(1.03); }
