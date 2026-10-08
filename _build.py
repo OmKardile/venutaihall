@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+import hashlib
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).parent
+SCRIPT_V = hashlib.md5((ROOT / "script.js").read_bytes()).hexdigest()[:8]
 index = (ROOT / "index.html").read_text(encoding="utf-8")
 
 sprite_start = index.index('<svg class="icon-library"')
@@ -108,7 +111,7 @@ def page(name, main, body_class=""):
   {FONT_LINK}
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
+  <script src="script.js?v={SCRIPT_V}" defer></script>
 </head>
 <body{cls}>
   {skip_link}
@@ -1912,6 +1915,17 @@ def build_webp():
 
 
 def build():
+    ip = ROOT / "index.html"
+    itxt = ip.read_bytes().decode("utf-8")
+    itxt2 = re.sub(
+        r'<script src="script\.js(?:\?[^"]*)?" defer></script>',
+        f'<script src="script.js?v={SCRIPT_V}" defer></script>',
+        itxt,
+        count=1,
+    )
+    if itxt2 != itxt:
+        ip.write_bytes(itxt2.encode("utf-8"))
+        print("index.html script versioned")
     page("spaces.html", spaces_main)
     for slug, s in SPACES.items():
         page(slug, space_main(slug, s))

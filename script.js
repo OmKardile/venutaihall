@@ -21,6 +21,27 @@
     if (href && href === currentFile) link.setAttribute('aria-current', 'page');
   });
 
+  const scrollToHash = () => {
+    if (!location.hash) return;
+    let id = location.hash.slice(1);
+    try { id = decodeURIComponent(id); } catch { return; }
+    const target = document.getElementById(id);
+    if (!target) return;
+    const root = document.documentElement;
+    const prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    target.scrollIntoView();
+    root.style.scrollBehavior = prev;
+  };
+  const retryHash = (n) => {
+    scrollToHash();
+    if (n > 0) setTimeout(() => retryHash(n - 1), 450);
+  };
+  retryHash(3);
+  window.addEventListener('hashchange', scrollToHash);
+  window.addEventListener('load', () => retryHash(2));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(scrollToHash);
+
   const header = qs('.site-header');
   const floats = qs('.float-actions');
   const onScroll = () => {
