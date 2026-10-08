@@ -2,6 +2,10 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-08 — Cache-bust hash re-stamped across all pages
+
+- **Every committed HTML page referenced a stale `script.js?v=a97deafb`** while the committed `script.js` actually hashed to `776815a5`. The previous commit (`e354fe2`) shipped a `script.js` change without rebuilding the HTML, so browsers kept loading the old cached script for visitors who had visited before. `python _build.py` re-stamps the `?v=` query from the current `script.js` md5 in `index.html` (head) plus all 26 generated pages. No content, markup, or behaviour change — only the cache-bust token is corrected so clients fetch the right script. Verified: `_check.py` still resolves 1380 local refs, `node --check` passes, CSS braces balance at 0.
+
 ## 2026-10-08 — Package image column
 
 - **Package photos are no longer squeezed into a fixed 176px track.** `.pkg-row` goes `1fr 176px` → `1fr 1fr`: at max viewport the title block and image share the 1280px shell equally (verified capture at 1440: image column x743–1358 ≈ 618×386, title present left), where before the photo was a 176×110 thumbnail stacked into a narrow right-edge strip. The ≤640 stack and the featured row (`1fr 1.15fr`) were already fluid. Fixed px tracks that don't restrict images (420px nav drawer panel, 180px spec labels, 44px icon column) are unchanged.
