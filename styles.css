@@ -467,18 +467,6 @@
     align-items: end;
     column-gap: clamp(24px, 4vw, 60px);
   }
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.26em;
-    text-transform: uppercase;
-    color: var(--sand);
-    margin-bottom: 26px;
-  }
-  .hero-eyebrow::before { content: ""; width: 42px; height: 1px; background: var(--brass); }
   .hero h1 {
     color: var(--ivory);
     font-size: clamp(46px, 7.4vw, 96px);
@@ -2187,7 +2175,6 @@
 
   @media (max-width: 380px) {
     .bottom-bar a { font-size: 9.5px; }
-    .hero-eyebrow { font-size: 10px; letter-spacing: 0.18em; }
   }
 
   @media print {
