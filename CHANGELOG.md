@@ -2,6 +2,16 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-08 — Header, compare and emphasis pass
+
+- Brand plate everywhere: the ivory plate now wraps the logo **and** the English name in the header and footer, reading as one badge — logo up to 46px (header) / 96px (footer), the name sits inside the plate on dark ink instead of under a rule line, and the footer plate is centred and narrower so the name wraps to two lines.
+- Hero eyebrow line "— Late Venutai Chavan Multipurpose Hall" removed (markup and CSS).
+- Package tiles: capacity points bolder — titles `clamp(24px, 2.3vw, 33px)`, wine kickers, 34px icons, more padding; the feature-foot point follows.
+- **Compare the Spaces** moved off the homepage to its own page (`compare.html`, breadcrumb header, SEO entry, sitemap 0.7) with a differences-and-advantages table: the new **What sets it apart** column (highlighted lead phrase per space) replaces the all-Yes AC column. The duplicate table was removed from `spaces.html`, the footer Explore nav gained **Compare Spaces**, and `details.html` prose links to the new page. Orphaned `.compare-yes` styles dropped.
+- Devanagari bracket headings enlarged and emboldened: `clamp(18px, 1.9vw, 23px)` at weight 650 (16px on small screens).
+- Navbar gained a **Location** jump (header nav and drawer) targeting `#location-title`; hash scrolling made reliable — fragment jumps are re-asserted with an instant scroll because `scroll-behavior: smooth` swallowed them — and `script.js` is cache-busted with a content-hash `?v=` stamped by `_build.py`.
+- Verified: `python _build.py` writes 28 pages, `_check.py` resolves 1381 local refs, `node --check` passes, CSS braces balance; sweep at 320/360/641/768/961/1280 with zero horizontal overflow, zero `.hl` backgrounds, the brand plate fitting the header at every width, all three hash-jump paths landing below the header, and zero console errors.
+
 ## 2026-10-08 — Package and polish pass
 
 - Package bento photos now fill their frames edge to edge: the `picture` inside every `.media-frame` gets a definite height, so dining, VIP, feature, celebrate, setup, event and editorial cards no longer show a beige strip under the photo. The two pending-photo boxes were dropped — the parking tile is now a compact icon + title tile (car icon, "On-site Parking") carrying `data-placeholder="CONFIRM with client: dedicated parking?"`, and the second-angle guest room keeps only an HTML comment (see `PLACEHOLDERS.md`).

@@ -27,7 +27,7 @@ Marketing website for **Late Venutai Chavan Multipurpose Hall** (Nigdi, Pune) â€
 
 ```powershell
 python _build.py     # regenerate all pages
-python _check.py     # verify local refs (27 pages)
+python _check.py     # verify local refs (28 pages)
 node --check script.js
 python -m http.server 8090   # local preview at http://localhost:8090
 ```
