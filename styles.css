@@ -2049,7 +2049,7 @@
   .footer-brand .brand-logo img { height: 96px; }
   .footer-brand .brand-en { font-size: 10.5px; margin-top: 8px; max-width: 205px; }
   .package-specs { border-top: 1px solid var(--line); }
-  .pkg-row { display: grid; grid-template-columns: 1fr 176px; align-items: center; gap: clamp(18px, 3vw, 44px); padding: clamp(22px, 2.8vw, 34px) 0; border-bottom: 1px solid var(--line); }
+  .pkg-row { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(18px, 3vw, 44px); padding: clamp(22px, 2.8vw, 34px) 0; border-bottom: 1px solid var(--line); }
   .pkg-body { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
   .pkg-head { display: flex; align-items: center; gap: 13px; }
   .pkg-head .icon { width: 25px; height: 25px; color: var(--brass-deep); flex: none; }

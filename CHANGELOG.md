@@ -2,6 +2,10 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-08 — Package image column
+
+- **Package photos are no longer squeezed into a fixed 176px track.** `.pkg-row` goes `1fr 176px` → `1fr 1fr`: at max viewport the title block and image share the 1280px shell equally (verified capture at 1440: image column x743–1358 ≈ 618×386, title present left), where before the photo was a 176×110 thumbnail stacked into a narrow right-edge strip. The ≤640 stack and the featured row (`1fr 1.15fr`) were already fluid. Fixed px tracks that don't restrict images (420px nav drawer panel, 180px spec labels, 44px icon column) are unchanged.
+
 ## 2026-10-08 — Footer brand card
 
 - **The footer brand column is now one ivory rounded card.** `.footer-brand` gets `var(--ivory)` background, the same 14px radius as the logo plate, `align-self: start` and centered content — logo, tagline (now wine italic instead of sand), address (`--ink-2`) and the WhatsApp/Maps buttons (wine borders/icons) all sit inside it. Previously the logo floated on its centered plate while everything under it was left-aligned. The inner plate keeps its background (same ivory → seamless) but loses its box-shadow, and the duplicate `.brand-en` line is hidden since the artwork already carries the name.
