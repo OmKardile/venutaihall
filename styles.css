@@ -1634,7 +1634,7 @@
     gap: clamp(30px, 4vw, 56px);
     padding-bottom: clamp(40px, 5vw, 64px);
   }
-  .footer-brand .brand { width: fit-content; margin-inline: auto; }
+  .footer-brand .brand { width: fit-content; margin-inline: auto; padding-top: 11px; }
   .footer-tagline {
     font-family: var(--font-display);
     font-style: italic;
@@ -2026,8 +2026,8 @@
   .hl.hl { color: var(--wine); font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
   .hl-dark.hl-dark { color: #f2dcae; font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
   .brand-logo { display: block; line-height: 0; }
-  .brand-logo img { display: block; width: auto; height: 46px; }
-  .brand-en { margin-top: 7px; font-family: var(--font-body); font-size: 9px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); text-align: center; line-height: 1.5; }
+  .brand-logo img { display: block; width: auto; height: 46px; transform: scale(1.18); }
+  .brand-en { margin-top: 8px; font-family: var(--font-body); font-size: 9px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); text-align: center; line-height: 1.5; }
   .site-header .brand-en { white-space: nowrap; }
   .footer-brand .brand-logo img { height: 96px; }
   .footer-brand .brand-en { font-size: 10.5px; margin-top: 8px; max-width: 205px; }
@@ -2039,6 +2039,7 @@
   .package-hero-cap .point-title { font-size: clamp(26px, 2.6vw, 38px); line-height: 1.05; }
   .package-tile { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
   .package-tile .media-frame { position: relative; flex: 1 1 auto; min-height: 175px; aspect-ratio: auto; border-radius: 0; }
+  .package-tile > .package-point { order: -1; }
   .package-feature { grid-column: 2 / 5; grid-row: 2 / 4; }
   .package-feature .media-frame { min-height: 270px; }
   .package-badge { position: absolute; top: 14px; right: 14px; z-index: 1; padding: 6px 12px; border-radius: 999px; background: var(--sage); color: #ffffff; font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
@@ -2048,7 +2049,7 @@
   .point-kicker { font-family: var(--font-body); font-size: 12px; font-weight: 750; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); }
   .package-point .point-kicker, .package-tile-compact .point-kicker { color: var(--wine); }
   .point-title { font-family: var(--font-display); font-size: clamp(24px, 2.3vw, 33px); font-weight: 620; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); }
-  .feature-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .feature-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; order: -1; }
   .feature-foot .package-point { padding: 16px 8px 16px 20px; }
   .package-cta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
   .package-note { font-size: 14px; color: var(--ink-3); letter-spacing: 0.02em; }

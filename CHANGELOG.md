@@ -10,6 +10,7 @@ All notable changes to the venutaihall.com website. Dates are local.
 - **Compare the Spaces** moved off the homepage to its own page (`compare.html`, breadcrumb header, SEO entry, sitemap 0.7) with a differences-and-advantages table: the new **What sets it apart** column (highlighted lead phrase per space) replaces the all-Yes AC column. The duplicate table was removed from `spaces.html`, the footer Explore nav gained **Compare Spaces**, and `details.html` prose links to the new page. Orphaned `.compare-yes` styles dropped.
 - Devanagari bracket headings enlarged and emboldened: `clamp(18px, 1.9vw, 23px)` at weight 650 (16px on small screens).
 - Navbar gained a **Location** jump (header nav and drawer) targeting `#location-title`; hash scrolling made reliable — fragment jumps are re-asserted with an instant scroll because `scroll-behavior: smooth` swallowed them — and `script.js` is cache-busted with a content-hash `?v=` stamped by `_build.py`.
+- Package capacity points now sit **above** their photos (dining, VIP and feature tiles); the brand logo is zoomed ~18% inside the plate (transparent artwork scales cleanly, plate dimensions unchanged).
 - Verified: `python _build.py` writes 28 pages, `_check.py` resolves 1381 local refs, `node --check` passes, CSS braces balance; sweep at 320/360/641/768/961/1280 with zero horizontal overflow, zero `.hl` backgrounds, the brand plate fitting the header at every width, all three hash-jump paths landing below the header, and zero console errors.
 
 ## 2026-10-08 — Package and polish pass
