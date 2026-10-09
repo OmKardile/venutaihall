@@ -714,6 +714,10 @@
   .explorer-body .text-link { margin-top: 28px; align-self: flex-start; }
   .explorer-body .pkg-featured { grid-template-columns: 1fr; }
   .explorer-body .pkg-plain { grid-template-columns: 1fr; }
+  .explorer-body .pkg-num { font-size: clamp(28px, 3vw, 42px); }
+  .explorer-body .pkg-featured .pkg-num { font-size: clamp(32px, 3.5vw, 48px); }
+  .explorer-body .pkg-head h3 { font-size: clamp(14px, 1.3vw, 17px); }
+  .explorer-body .pkg-row { padding: 10px 0; }
   .spec-bullets { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 8px; }
   .spec-bullets li { position: relative; padding-left: 20px; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
   .spec-bullets li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--brass); }
