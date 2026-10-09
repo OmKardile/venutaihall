@@ -2,6 +2,11 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-09 — Highlight the capacity points in "Spaces We Offer"
+
+- **The capacity stat is now the loudest point in each explorer card.** Previously all four spec values (Capacity, Air-conditioning, Ideal for, Pricing) sat in a uniform 2×2 grid at 17-20px ink text — nothing stood out. On desktop (≥960px) the first spec (Capacity / Rooms) is now a full-width hero stat: a big wine display number `clamp(28px, 3vw, 36px)` with a brass-deep label and a hairline separator above the remaining specs — so "Up to 1200 guests", "Up to 350 guests", "400 at a time", "50 at a time", "Up to 8 bedrooms" each read as the card's headline figure, matching the package section's loud-numerals design language. On mobile (<960px) the capacity value gets the wine color but stays at the normal size — so the points stand out without re-breaking the viewport fit achieved last round.
+- Verified: desktop first-spec span 36px wine `rgb(100,28,44)` full-width `grid-column: 1 / -1`; other specs 20px; mobile (375×667, 360×640) capacity span 17px wine, card still fits (616 / 634 ≤ 667 / 640); zero overflow at 320/360/768/1280; zero console errors; CSS braces 0.
+
 ## 2026-10-09 — Hero back to full viewport, wine <em> → white, explorer card fits mobile, bigger logo
 
 - **Hero restored to full viewport** (user: "keep the hero at max viewport it looks good"). Reverted the scaling-round `min(calc(100svh - var(--header-h)), 1000px)` back to `min-height: max(640px, 100svh)` — the hero fills the viewport exactly again (verified: heroH == vh on 720 and 768). Mobile hero likewise `max(560px, 100svh)`.

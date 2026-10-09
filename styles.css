@@ -751,6 +751,12 @@
   }
   .explorer-specs div span { display: block; margin-top: 6px; font-family: var(--font-display); font-size: clamp(17px, 1.6vw, 20px); font-weight: 620; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); }
   .explorer-specs div span.hl { color: var(--wine); }
+  .explorer-specs div:first-child span { color: var(--wine); font-weight: 660; }
+  .explorer-specs div:first-child strong { color: var(--brass-deep); }
+  @media (min-width: 960px) {
+    .explorer-specs div:first-child { grid-column: 1 / -1; padding-bottom: 14px; margin-bottom: 4px; border-bottom: 1px solid var(--line); }
+    .explorer-specs div:first-child span { font-size: clamp(28px, 3vw, 36px); font-weight: 650; line-height: 1.1; }
+  }
   .explorer-body .text-link { margin-top: 28px; align-self: flex-start; }
 
   .compare-wrap {
