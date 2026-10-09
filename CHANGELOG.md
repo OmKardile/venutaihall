@@ -2,6 +2,11 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-09 — Mobile burger pinned to the right edge
+
+- **The mobile burger menu is now stuck to the right edge.** On mobile (≤960px) the `.main-nav` — which carries the `margin-left: auto` that normally pushes the right-hand cluster to the edge — is hidden, leaving `.header-actions` (the burger's container) with nothing to push it right. Combined with the `--shell` inset (`min(100% - 40px, 1280px)` ≈ 20px each side at mobile widths), the burger floated with a visible gap from the right edge instead of sitting at it. At ≤960px the header is now **full-bleed**: `.header-inner` goes `width: 100%; margin-inline: 0; padding-inline: 14px; gap: 12px` and `.header-actions` gets `margin-left: auto`, so the burger pins reliably to the right with a 14px safe-area breathing room (was floating with a 20px+ gap and no rightward push). Desktop (>960px) is untouched — the shell inset and the nav's `margin-left: auto` still cluster the nav + actions at the right as before.
+- Verified at 320 / 360 / 375 / 414 / 768px: `header-inner` spans the full viewport width, the burger's right edge sits at `viewport − 14px` at every width (was floating mid-right). `_check.py` 1380 refs resolve, `node --check` passes, CSS braces 0, zero console errors. Screenshot: `/home/z/qa-shots/13-mobile-burger-stuck-right-375.png`.
+
 ## 2026-10-09 — Bigger crisper logo, constant-height header, Speciality chip near title
 
 - **Logo zoomed ~18% and de-softened.** Dropped the `transform: scale(1.18)` (which softened the artwork at high DPI — a known tradeoff flagged in the handover) and set a clear `height: 64px` (from 46px layout / 54px visual). The source `assets/logo.webp` is 1904px wide, so 64px renders crisply at every DPI. Footer logo bumped 96→120px to match. The Devanagari name baked into the logo artwork now reads at a size that balances the English name line beneath it (English bumped 9→11px, line-height 1.5→1.25, so the two lockups no longer fight each other and the Devanagari matches the English in visual weight).

@@ -2149,6 +2149,8 @@
     .footer-brand .brand-en { font-size: 11px; }
     .main-nav, .header-call { display: none; }
     .menu-toggle { display: inline-flex; }
+    .header-inner { width: 100%; margin-inline: 0; padding-inline: 14px; gap: 12px; }
+    .header-actions { margin-left: auto; }
     .editorial-split { grid-template-columns: 1fr; }
     .editorial-media .media-frame { aspect-ratio: 16 / 10; max-height: none; }
     .editorial-media-badge { right: 16px; bottom: 16px; }
