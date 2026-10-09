@@ -2,6 +2,11 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-09 — Non-hero photos no longer escape the viewport (aspect-ratio fix)
+
+- The package and gallery photos were rendering at their full **intrinsic height** (941 / 1024 px) instead of their CSS `aspect-ratio` height, so they spilled past the viewport. Root cause: the `<img>` tags carry `width`/`height` HTML attributes (kept for CLS), and the CSS rules set `width: 100%` + `aspect-ratio` but **no `height`** — so the `height` attribute became a "definite" height, which per spec makes CSS `aspect-ratio` ignored. Fix: added `height: auto` (so the height is no longer definite, letting `aspect-ratio` compute it) + `max-height: 90svh` (a viewport safety cap for very wide screens) to `.pkg-thumb img`, `.pkg-media img`, and `.gallery-tile img`. The gallery img rule was split from the `.reference-photo` rule so real imgs use their intrinsic ratio (preserving masonry variety) while the reference-photo span keeps `aspect-ratio`.
+- Verified: package thumb 372×595 (was 941×595), package media 398×636 (was 1024×636), gallery tile 225×400 (was 941/1024×400); the only photo still at viewport height is the hero itself (833px, intended); page-hero 660px (under viewport); zero overflow at 320/768/1280 on the homepage and big-hall.html; zero console errors.
+
 ## 2026-10-09 — "Explore Venue" button starts a slow auto-scroll tour
 
 - The vertically-rotated **"Explore Venue"** button (`.hero-scroll`, bottom-right of the hero) used to just jump to `#trust` (the first section below the hero). It now triggers a **slow, steady auto-scroll tour** through the whole homepage — from the hero all the way down to the "Check Your Date" final CTA (`.cta-band`), so every section glides past at a readable pace (~100 px/s, capped at 80 s). The `<a href="#trust">` is preserved as the non-JS fallback. The tour **cancels on any user interaction** — wheel, touch-drag, pointer tap, or navigation keys (arrows / PageUp/Down / Space / Home / End / Escape) — so it never fights the user. `aria-expanded` on the button reflects the touring state. `prefers-reduced-motion: reduce` users get the existing default hash jump to `#trust` instead of the long rAF scroll.

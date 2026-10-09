@@ -905,14 +905,21 @@
     border: 0;
   }
   .gallery-tile[hidden] { display: none; }
-  .gallery-tile img, .gallery-tile .reference-photo {
+  .gallery-tile img {
     width: 100%;
+    height: auto;
     display: block;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    aspect-ratio: var(--tile-ratio, 4 / 3);
     object-fit: cover;
+    max-height: 90svh;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .gallery-tile .reference-photo {
+    width: 100%;
+    display: block;
+    aspect-ratio: var(--tile-ratio, 4 / 3);
+    object-fit: cover;
+    max-height: 90svh;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     background-image: var(--ref-src);
     background-size: var(--crop-w) var(--crop-h);
     background-position: var(--crop-x) var(--crop-y);
@@ -2110,13 +2117,13 @@
   .pkg-num { font-size: clamp(56px, 7vw, 104px); font-weight: 640; line-height: 1; letter-spacing: -0.02em; color: var(--wine); }
   .pkg-unit { font-family: var(--font-body); font-size: clamp(16px, 1.5vw, 21px); font-weight: 700; color: var(--ink-2); }
   .pkg-thumb { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bone); }
-  .pkg-thumb img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  .pkg-thumb img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; max-height: 90svh; }
   .pkg-featured { grid-template-columns: 1fr 1.15fr; }
   .pkg-featured .pkg-head h3 { font-size: clamp(26px, 2.6vw, 38px); }
   .pkg-featured .pkg-num { font-size: clamp(72px, 9.5vw, 132px); }
   .pkg-featured .pkg-unit { font-size: clamp(19px, 1.9vw, 27px); }
   .pkg-media { position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--bone); }
-  .pkg-media img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  .pkg-media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; max-height: 90svh; }
   .package-badge { position: absolute; top: 14px; right: 14px; z-index: 1; padding: 7px 15px; border-radius: 999px; background: var(--sage); color: #ffffff; font-size: 19px; font-weight: 800; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase; }
   .pkg-speciality { display: inline-flex; align-items: center; background: var(--sage); color: #ffffff; font-size: 19px; font-weight: 800; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; flex: none; }
   .pkg-plain { grid-template-columns: 1fr; padding-top: clamp(16px, 1.8vw, 24px); padding-bottom: clamp(16px, 1.8vw, 24px); }
