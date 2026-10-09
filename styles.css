@@ -335,7 +335,7 @@
     gap: 26px;
   }
 
-  .brand { display: flex; flex-direction: column; align-items: center; min-width: 0; width: fit-content; color: inherit; background: var(--ivory); border-radius: 14px; padding: 10px 18px 8px; box-shadow: 0 1px 5px rgba(42, 37, 33, 0.28); }
+  .brand { display: flex; flex-direction: column; align-items: center; min-width: 0; width: fit-content; color: inherit; background: transparent; border-radius: 0; padding: 10px 18px 8px; box-shadow: none; }
 
   .main-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
   .main-nav a {
