@@ -45,7 +45,7 @@
     --font-display: "Fraunces", Georgia, "Times New Roman", serif;
     --font-body: "Manrope", "Segoe UI", Arial, sans-serif;
     --font-deva: "Noto Serif Devanagari", "Fraunces", serif;
-    --header-h: 102px;
+    --header-h: 92px;
     --bottom-bar-h: 0px;
   }
 
@@ -436,7 +436,7 @@
 
   .hero {
     position: relative;
-    min-height: max(640px, 100svh);
+    min-height: min(calc(100svh - var(--header-h)), 1000px);
     display: flex;
     align-items: flex-end;
     color: var(--ivory);
@@ -2101,7 +2101,7 @@
   .hl.hl { color: var(--wine); font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
   .hl-dark.hl-dark { color: #f2dcae; font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
   .brand-logo { display: block; line-height: 0; }
-  .brand-logo img { display: block; width: auto; height: 64px; }
+  .brand-logo img { display: block; width: auto; height: 60px; }
   .brand-en { margin-top: 6px; font-family: var(--font-body); font-size: 11px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); text-align: center; line-height: 1.25; }
   .site-header .brand-en { white-space: nowrap; }
   .footer-brand .brand-logo img { height: 120px; }
@@ -2117,13 +2117,13 @@
   .pkg-num { font-size: clamp(48px, 5.6vw, 88px); font-weight: 640; line-height: 1; letter-spacing: -0.02em; color: var(--wine); }
   .pkg-unit { font-family: var(--font-body); font-size: clamp(16px, 1.5vw, 21px); font-weight: 700; color: var(--ink-2); }
   .pkg-thumb { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bone); }
-  .pkg-thumb img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; max-height: 90svh; }
+  .pkg-thumb img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; max-height: 40svh; }
   .pkg-featured { grid-template-columns: 1fr 1.15fr; }
   .pkg-featured .pkg-head h3 { font-size: clamp(24px, 2.2vw, 32px); }
   .pkg-featured .pkg-num { font-size: clamp(60px, 8vw, 104px); }
   .pkg-featured .pkg-unit { font-size: clamp(17px, 1.6vw, 22px); }
   .pkg-media { position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--bone); }
-  .pkg-media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; max-height: 90svh; }
+  .pkg-media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; max-height: 40svh; }
   .package-badge { position: absolute; top: 14px; right: 14px; z-index: 1; padding: 7px 15px; border-radius: 999px; background: var(--sage); color: #ffffff; font-size: 19px; font-weight: 800; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase; }
   .pkg-speciality { display: inline-flex; align-items: center; background: var(--sage); color: #ffffff; font-size: 19px; font-weight: 800; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; flex: none; }
   .pkg-plain { grid-template-columns: 1fr; padding-top: clamp(16px, 1.8vw, 24px); padding-bottom: clamp(16px, 1.8vw, 24px); }
@@ -2215,7 +2215,7 @@
   @media (max-width: 640px) {
     :root { --shell: min(100% - 32px, 1280px); --shell-narrow: min(100% - 32px, 920px); }
     body { font-size: 16px; }
-    .hero { min-height: max(560px, 100svh); }
+    .hero { min-height: max(560px, calc(100svh - var(--header-h))); }
     .hero h1 { font-size: clamp(40px, 11vw, 56px); }
     .hero-ctas .button { flex: 1 1 100%; }
     .celebrate-grid { grid-template-columns: 1fr; }
@@ -2257,6 +2257,16 @@
     .faq-item { page-break-inside: avoid; }
     .faq-item .faq-answer { display: block !important; }
     .section { padding-block: 22px; }
+  }
+  @media (max-height: 800px) {
+    :root { --header-h: 80px; }
+    .brand { padding: 8px 18px 6px; }
+    .brand-logo img { height: 50px; }
+    .brand-en { font-size: 10px; margin-top: 5px; }
+    .hero h1 { font-size: clamp(34px, 5vw, 60px); }
+    .hero-focus-item strong { font-size: clamp(20px, 2.2vw, 30px); }
+    .pkg-num { font-size: clamp(44px, 5vw, 76px); }
+    .pkg-featured .pkg-num { font-size: clamp(56px, 7vw, 92px); }
   }
 
   .explorer-card:hover .explorer-media .media-frame img { transform: scale(1.03); }
