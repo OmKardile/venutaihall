@@ -2,6 +2,17 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-09 — Hero fills the viewport; card hover image-zoom unified
+
+- **Hero photo now fills the viewport.** `.hero` min-height goes `max(640px, 94svh)` → `max(640px, 100svh)` (and mobile `max(560px, 92svh)` → `max(560px, 100svh)`). The hero banquet-hall photo now occupies the full viewport on first load — a more immersive first impression (user: "photo with max height to viewport will be a better UX").
+- **The 05-Stay card's hover effect now applies to all cards.** Previously only the explorer cards (and the fit/gallery tiles) had image-zoom-on-hover; the celebrate, event, and setup cards lifted but their photos stayed static. Added `:hover .media-frame img { transform: scale(1.03) }` to `.celebrate-card`, `.event-card`, and `.setup-card`, and unscoped the explorer rule (dropped the `#spaces` ancestor so it works wherever explorer cards render). `.facility-group` and `.setup-card` also gained `border-color: var(--line-2)` on hover (matching explorer/event/fit) with `border-color` added to their transitions. Now every card with a photo lifts, shadows, borders, and zooms its image uniformly — the 05-Stay hover site-wide.
+- Verified: hero height == viewport on desktop (800=800) and mobile (667=667); 4 card image-zoom rules in place; zero console errors; zero overflow at 320/360/768/1280.
+
+## 2026-10-09 — Simpler homepage section titles for a general audience
+
+- **All 11 homepage section titles rewritten in plain language.** The audience is average people, not aesthetic specialists, so the fancy imperative/question titles are gone: "Find Your Space" → "Spaces We Offer"; "What Are You Celebrating?" → "Events We Host"; "See the Space Before You Visit" → "Photos of the Venue"; "Everything the Day Needs" → "Facilities We Provide"; "Event Setups We Host" → "Ways to Set Up"; "Built With a Sense of Community" → "Our Story"; "See It Before You Celebrate Here" → "Come for a Visit"; "Easy to Reach. Easy to Find." → "How to Reach Us"; "Frequently Asked" → "Common Questions"; "Ready to Check Your Date?" → "Check Your Date"; "One Package. Everything Included." → "Everything Included" (the eyebrow already carries "The Big Hall Package", so the h2 no longer duplicates it). The wine-italic `<em>` emphasis and the Devanagari `<span class="heading-mr">` are preserved, with the Marathi updated to match the simpler English. No facts changed — only wording.
+- Verified: all 11 titles render with the new plain text + matching Devanagari; zero console errors; zero overflow at 320/360/768/1280.
+
 ## 2026-10-09 — Mobile burger pinned to the right edge
 
 - **The mobile burger menu is now stuck to the right edge.** On mobile (≤960px) the `.main-nav` — which carries the `margin-left: auto` that normally pushes the right-hand cluster to the edge — is hidden, leaving `.header-actions` (the burger's container) with nothing to push it right. Combined with the `--shell` inset (`min(100% - 40px, 1280px)` ≈ 20px each side at mobile widths), the burger floated with a visible gap from the right edge instead of sitting at it. At ≤960px the header is now **full-bleed**: `.header-inner` goes `width: 100%; margin-inline: 0; padding-inline: 14px; gap: 12px` and `.header-actions` gets `margin-left: auto`, so the burger pins reliably to the right with a 14px safe-area breathing room (was floating with a 20px+ gap and no rightward push). Desktop (>960px) is untouched — the shell inset and the nav's `margin-left: auto` still cluster the nav + actions at the right as before.
