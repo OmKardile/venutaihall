@@ -2,6 +2,11 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-09 — "Explore Venue" button starts a slow auto-scroll tour
+
+- The vertically-rotated **"Explore Venue"** button (`.hero-scroll`, bottom-right of the hero) used to just jump to `#trust` (the first section below the hero). It now triggers a **slow, steady auto-scroll tour** through the whole homepage — from the hero all the way down to the "Check Your Date" final CTA (`.cta-band`), so every section glides past at a readable pace (~100 px/s, capped at 80 s). The `<a href="#trust">` is preserved as the non-JS fallback. The tour **cancels on any user interaction** — wheel, touch-drag, pointer tap, or navigation keys (arrows / PageUp/Down / Space / Home / End / Escape) — so it never fights the user. `aria-expanded` on the button reflects the touring state. `prefers-reduced-motion: reduce` users get the existing default hash jump to `#trust` instead of the long rAF scroll.
+- Verified: clicking the button sets `aria-expanded=true` and starts advancing `scrollY` toward the `.cta-band`; dispatching a `wheel` event cancels the tour (`aria-expanded=false`, scroll halts). `_check.py` 1380 refs resolve, `node --check` passes, CSS braces 0, zero console errors.
+
 ## 2026-10-09 — Hero fills the viewport; card hover image-zoom unified
 
 - **Hero photo now fills the viewport.** `.hero` min-height goes `max(640px, 94svh)` → `max(640px, 100svh)` (and mobile `max(560px, 92svh)` → `max(560px, 100svh)`). The hero banquet-hall photo now occupies the full viewport on first load — a more immersive first impression (user: "photo with max height to viewport will be a better UX").

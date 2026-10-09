@@ -654,4 +654,46 @@
     qsa('details.faq-item').forEach((d, i) => { if (!faqPrintState[i]) d.open = false; });
     faqPrintState = [];
   });
+
+  const heroScrollBtn = qs('.hero-scroll');
+  const tourTarget = qs('.cta-band');
+  if (heroScrollBtn && tourTarget) {
+    let touring = false;
+    let tourRaf = 0;
+    const stopTour = () => {
+      if (!touring) return;
+      touring = false;
+      cancelAnimationFrame(tourRaf);
+      heroScrollBtn.setAttribute('aria-expanded', 'false');
+    };
+    const startTour = (e) => {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (e) e.preventDefault();
+      if (touring) { stopTour(); return; }
+      const top = tourTarget.getBoundingClientRect().top + window.scrollY - 72;
+      const from = window.scrollY;
+      const dist = top - from;
+      if (dist <= 0) return;
+      const duration = Math.min(dist / 0.1, 80000);
+      const t0 = performance.now();
+      touring = true;
+      heroScrollBtn.setAttribute('aria-expanded', 'true');
+      const step = (now) => {
+        if (!touring) return;
+        const p = Math.min((now - t0) / duration, 1);
+        window.scrollTo(0, from + dist * p);
+        if (p >= 1) { stopTour(); return; }
+        tourRaf = requestAnimationFrame(step);
+      };
+      tourRaf = requestAnimationFrame(step);
+    };
+    heroScrollBtn.addEventListener('click', startTour);
+    const cancelTour = () => { if (touring) stopTour(); };
+    window.addEventListener('wheel', cancelTour, { passive: true });
+    window.addEventListener('touchmove', cancelTour, { passive: true });
+    window.addEventListener('pointerdown', cancelTour);
+    window.addEventListener('keydown', (e) => {
+      if (touring && ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', ' ', 'Home', 'End', 'Escape'].includes(e.key)) stopTour();
+    });
+  }
 })();
