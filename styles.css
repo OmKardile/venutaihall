@@ -45,7 +45,7 @@
     --font-display: "Fraunces", Georgia, "Times New Roman", serif;
     --font-body: "Manrope", "Segoe UI", Arial, sans-serif;
     --font-deva: "Noto Serif Devanagari", "Fraunces", serif;
-    --header-h: 86px;
+    --header-h: 102px;
     --bottom-bar-h: 0px;
   }
 
@@ -325,7 +325,6 @@
     border-bottom-color: var(--line);
     color: var(--ink);
     box-shadow: var(--shadow-1);
-    height: 66px;
   }
 
   .header-inner {
@@ -336,7 +335,7 @@
     gap: 26px;
   }
 
-  .brand { display: flex; flex-direction: column; align-items: center; min-width: 0; width: fit-content; color: inherit; background: var(--ivory); border-radius: 14px; padding: 8px 18px 10px; box-shadow: 0 1px 5px rgba(42, 37, 33, 0.28); }
+  .brand { display: flex; flex-direction: column; align-items: center; min-width: 0; width: fit-content; color: inherit; background: var(--ivory); border-radius: 14px; padding: 10px 18px 8px; box-shadow: 0 1px 5px rgba(42, 37, 33, 0.28); }
 
   .main-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
   .main-nav a {
@@ -2095,15 +2094,15 @@
   .hl.hl { color: var(--wine); font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
   .hl-dark.hl-dark { color: #f2dcae; font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
   .brand-logo { display: block; line-height: 0; }
-  .brand-logo img { display: block; width: auto; height: 46px; transform: scale(1.18); }
-  .brand-en { margin-top: 8px; font-family: var(--font-body); font-size: 9px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); text-align: center; line-height: 1.5; }
+  .brand-logo img { display: block; width: auto; height: 64px; }
+  .brand-en { margin-top: 6px; font-family: var(--font-body); font-size: 11px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); text-align: center; line-height: 1.25; }
   .site-header .brand-en { white-space: nowrap; }
-  .footer-brand .brand-logo img { height: 96px; }
-  .footer-brand .brand-en { font-size: 10.5px; margin-top: 8px; max-width: 205px; }
+  .footer-brand .brand-logo img { height: 120px; }
+  .footer-brand .brand-en { font-size: 13px; margin-top: 6px; max-width: 240px; }
   .package-specs { border-top: 1px solid var(--line); }
   .pkg-row { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(18px, 3vw, 44px); padding: clamp(22px, 2.8vw, 34px) 0; border-bottom: 1px solid var(--line); }
   .pkg-body { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-  .pkg-head { display: flex; align-items: center; gap: 13px; }
+  .pkg-head { display: flex; flex-wrap: wrap; align-items: center; gap: 13px; }
   .pkg-head .icon { width: 25px; height: 25px; color: var(--brass-deep); flex: none; }
   .pkg-head h3 { margin: 0; font-family: var(--font-display); font-size: clamp(22px, 2.1vw, 30px); font-weight: 620; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); }
   .pkg-value { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 16px; font-family: var(--font-display); color: var(--wine); }
@@ -2119,6 +2118,7 @@
   .pkg-media { position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--bone); }
   .pkg-media img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
   .package-badge { position: absolute; top: 14px; right: 14px; z-index: 1; padding: 7px 15px; border-radius: 999px; background: var(--sage); color: #ffffff; font-size: 19px; font-weight: 800; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase; }
+  .pkg-speciality { display: inline-flex; align-items: center; background: var(--sage); color: #ffffff; font-size: 19px; font-weight: 800; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; flex: none; }
   .pkg-plain { grid-template-columns: 1fr; padding-top: clamp(16px, 1.8vw, 24px); padding-bottom: clamp(16px, 1.8vw, 24px); }
   .package-cta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
   .package-note { font-size: 14px; color: var(--ink-2); letter-spacing: 0.02em; }
@@ -2144,9 +2144,9 @@
   }
 
   @media (max-width: 960px) {
-    :root { --shell: min(100% - 40px, 1280px); --shell-narrow: min(100% - 40px, 920px); --header-h: 68px; }
-    .brand-en { font-size: 8px; }
-    .footer-brand .brand-en { font-size: 9.5px; }
+    :root { --shell: min(100% - 40px, 1280px); --shell-narrow: min(100% - 40px, 920px); --header-h: 72px; }
+    .brand-en { font-size: 9.5px; }
+    .footer-brand .brand-en { font-size: 11px; }
     .main-nav, .header-call { display: none; }
     .menu-toggle { display: inline-flex; }
     .editorial-split { grid-template-columns: 1fr; }
@@ -2252,14 +2252,14 @@
 
   #spaces .explorer-card:hover .explorer-media .media-frame img { transform: scale(1.03); }
   @media (max-width: 960px) {
-    .brand-logo img { height: 28px; }
-    .footer-brand .brand-logo img { height: 60px; }
+    .brand-logo img { height: 34px; }
+    .footer-brand .brand-logo img { height: 72px; }
   }
   @media (max-width: 620px) {
-    .brand-logo img { height: 24px; }
-    .brand-en { font-size: 7.5px; letter-spacing: 0.07em; margin-top: 5px; }
-    .footer-brand .brand-logo img { height: 46px; }
-    .footer-brand .brand-en { font-size: 9px; max-width: 175px; }
+    .brand-logo img { height: 28px; }
+    .brand-en { font-size: 8.5px; letter-spacing: 0.07em; margin-top: 6px; }
+    .footer-brand .brand-logo img { height: 56px; }
+    .footer-brand .brand-en { font-size: 10px; max-width: 195px; }
     .heading-mr { font-size: 16px; }
   }
 
