@@ -1111,6 +1111,20 @@
   }
   .facility-group li:last-child { border-bottom: 0; padding-bottom: 0; }
   .facility-group li .icon { width: 16px; height: 16px; color: var(--earth); margin-top: 4px; }
+  .facilities-layout { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+  .facilities-aside { position: sticky; top: calc(var(--header-h) + 20px); }
+  .facilities-aside-media { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); aspect-ratio: 4 / 5; background: var(--bone); }
+  .facilities-aside-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .facilities-aside-cap { position: absolute; inset: auto 0 0; padding: 44px 22px 22px; background: linear-gradient(transparent, rgba(30, 18, 14, 0.9)); color: var(--ivory); }
+  .facilities-aside-cap strong { display: block; font-family: var(--font-display); font-size: clamp(20px, 2vw, 26px); font-weight: 500; }
+  .facilities-aside-cap span { display: block; margin-top: 4px; font-size: 13px; color: var(--sand); }
+  .facilities-layout .facility-groups { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 960px) {
+    .facilities-layout { grid-template-columns: 1fr; }
+    .facilities-aside { position: static; }
+    .facilities-aside-media { aspect-ratio: 16 / 10; max-height: 300px; }
+    .facilities-layout .facility-groups { grid-template-columns: 1fr; }
+  }
 
   .setups-grid {
     display: grid;
@@ -1203,7 +1217,7 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(100deg, rgba(58, 14, 25, 0.94) 30%, rgba(58, 14, 25, 0.7) 100%),
+      linear-gradient(100deg, rgba(58, 14, 25, 0.96) 30%, rgba(58, 14, 25, 0.88) 100%),
       url("assets/venue-exterior.jpg") center / cover;
     opacity: 1;
   }
@@ -1216,25 +1230,26 @@
     gap: clamp(28px, 4vw, 64px);
     flex-wrap: wrap;
   }
-  .visit-cta h2 { color: var(--ivory); max-width: 16ch; }
+  .visit-cta h2 { color: var(--ivory); max-width: 16ch; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45); }
   .visit-cta p { margin-top: 16px; max-width: 52ch; font-size: 16.5px; line-height: 1.7; color: rgba(246, 241, 232, 0.8); }
   .visit-cta-actions { display: flex; flex-direction: column; gap: 13px; min-width: 250px; }
 
   .location-grid {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 0.85fr 1.15fr;
     gap: clamp(28px, 4vw, 56px);
-    align-items: stretch;
+    align-items: start;
   }
   .location-map {
     position: relative;
     border-radius: var(--radius);
     overflow: hidden;
     border: 1px solid var(--line);
-    min-height: 320px;
+    height: 300px;
+    align-self: center;
     background: var(--bone);
   }
-  .location-map img { width: 100%; height: 100%; object-fit: cover; min-height: 320px; }
+  .location-map img { width: 100%; height: 100%; object-fit: cover; }
   .location-map .map-overlay {
     position: absolute;
     inset: auto 0 0;
