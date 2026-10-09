@@ -2,6 +2,12 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-09 — Cap type scale and section padding for laptop screens
+
+- The type scale caps were calibrated for very wide screens, so every `clamp()` hit its max by ~1280px and the site felt "zoomed in" on laptops: h1 rendered at 84-96px, h2 at 52px, package numerals at 104px (featured 132px). Lowered the caps so 1280-1536px screens get a calmer scale: h1 `84->64`, h2 `52->40`, hero h1 `96->76`, hero-focus strong `46->36`, pkg-num `104->88` (per the brief's ~88px target), featured pkg-num `132->104` (per ~104px), featured h3 `38->32`, featured unit `27->22`. The "points as loud as h1" design is preserved — the featured numeral is still the biggest thing on the page.
+- Section vertical padding was also over-scaled: `.section` maxed at 118px (236px top+bottom per section), eating ~1/3 of a 720px screen per section. Capped `.section` `118->72` and `.section-tight` `72->52`, reclaiming ~92px of vertical space per section.
+- Verified at 1280x720: h1 76 (was 95), h2 40 (was 52), pkg-num 72 (was 90), featured 102 (was 122). Build green: `_check.py` 1380 refs, `node --check`, CSS braces 0. (The package section HEIGHT is unaffected by type scale — it is driven by the photo height, which the next group caps to the viewport.)
+
 ## 2026-10-09 — Non-hero photos no longer escape the viewport (aspect-ratio fix)
 
 - The package and gallery photos were rendering at their full **intrinsic height** (941 / 1024 px) instead of their CSS `aspect-ratio` height, so they spilled past the viewport. Root cause: the `<img>` tags carry `width`/`height` HTML attributes (kept for CLS), and the CSS rules set `width: 100%` + `aspect-ratio` but **no `height`** — so the `height` attribute became a "definite" height, which per spec makes CSS `aspect-ratio` ignored. Fix: added `height: auto` (so the height is no longer definite, letting `aspect-ratio` compute it) + `max-height: 90svh` (a viewport safety cap for very wide screens) to `.pkg-thumb img`, `.pkg-media img`, and `.gallery-tile img`. The gallery img rule was split from the `.reference-photo` rule so real imgs use their intrinsic ratio (preserving masonry variety) while the reference-photo span keeps `aspect-ratio`.

@@ -70,8 +70,8 @@
     letter-spacing: -0.015em;
   }
 
-  h1 { font-size: clamp(42px, 6.4vw, 84px); }
-  h2 { font-size: clamp(30px, 4.2vw, 52px); }
+  h1 { font-size: clamp(38px, 5vw, 64px); }
+  h2 { font-size: clamp(28px, 3.2vw, 40px); }
   h3 { font-size: clamp(20px, 2.2vw, 26px); }
   h4 { font-size: 18px; }
 
@@ -120,8 +120,8 @@
 @layer components {
   .shell { width: var(--shell); margin-inline: auto; }
   .shell-narrow { width: var(--shell-narrow); margin-inline: auto; }
-  .section { padding-block: clamp(64px, 9vw, 118px); }
-  .section-tight { padding-block: clamp(44px, 6vw, 72px); }
+  .section { padding-block: clamp(44px, 7vw, 72px); }
+  .section-tight { padding-block: clamp(34px, 5vw, 52px); }
   .band-sand { background: var(--sand-2); }
   .band-paper { background: var(--paper); }
   .band-wine { background: var(--wine-ink); color: rgba(246, 241, 232, 0.82); }
@@ -475,7 +475,7 @@
   }
   .hero h1 {
     color: var(--ivory);
-    font-size: clamp(46px, 7.4vw, 96px);
+    font-size: clamp(40px, 6vw, 76px);
     font-weight: 450;
     max-width: 12ch;
     letter-spacing: -0.02em;
@@ -495,7 +495,7 @@
   }
   .hero-focus-item { display: flex; align-items: center; gap: 16px; }
   .hero-focus-item .icon { width: clamp(28px, 2.8vw, 40px); height: clamp(28px, 2.8vw, 40px); color: #f2dcae; flex: none; filter: drop-shadow(0 3px 14px rgba(18, 10, 9, 0.6)); }
-  .hero-focus-item strong { font-size: clamp(26px, 3vw, 46px); line-height: 1.06; max-width: 14ch; text-shadow: 0 1px 2px rgba(18, 10, 9, 0.9), 0 5px 26px rgba(18, 10, 9, 0.6); }
+  .hero-focus-item strong { font-size: clamp(22px, 2.4vw, 36px); line-height: 1.06; max-width: 14ch; text-shadow: 0 1px 2px rgba(18, 10, 9, 0.9), 0 5px 26px rgba(18, 10, 9, 0.6); }
   .hero-scroll {
     position: absolute;
     right: max(24px, calc((100% - 1280px) / 2));
@@ -2114,14 +2114,14 @@
   .pkg-head h3 { margin: 0; font-family: var(--font-display); font-size: clamp(22px, 2.1vw, 30px); font-weight: 620; line-height: 1.15; letter-spacing: -0.01em; color: var(--ink); }
   .pkg-value { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 16px; font-family: var(--font-display); color: var(--wine); }
   .pkg-prefix { flex-basis: 100%; font-family: var(--font-body); font-size: clamp(15px, 1.3vw, 18px); font-weight: 750; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); }
-  .pkg-num { font-size: clamp(56px, 7vw, 104px); font-weight: 640; line-height: 1; letter-spacing: -0.02em; color: var(--wine); }
+  .pkg-num { font-size: clamp(48px, 5.6vw, 88px); font-weight: 640; line-height: 1; letter-spacing: -0.02em; color: var(--wine); }
   .pkg-unit { font-family: var(--font-body); font-size: clamp(16px, 1.5vw, 21px); font-weight: 700; color: var(--ink-2); }
   .pkg-thumb { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--bone); }
   .pkg-thumb img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; max-height: 90svh; }
   .pkg-featured { grid-template-columns: 1fr 1.15fr; }
-  .pkg-featured .pkg-head h3 { font-size: clamp(26px, 2.6vw, 38px); }
-  .pkg-featured .pkg-num { font-size: clamp(72px, 9.5vw, 132px); }
-  .pkg-featured .pkg-unit { font-size: clamp(19px, 1.9vw, 27px); }
+  .pkg-featured .pkg-head h3 { font-size: clamp(24px, 2.2vw, 32px); }
+  .pkg-featured .pkg-num { font-size: clamp(60px, 8vw, 104px); }
+  .pkg-featured .pkg-unit { font-size: clamp(17px, 1.6vw, 22px); }
   .pkg-media { position: relative; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--bone); }
   .pkg-media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; max-height: 90svh; }
   .package-badge { position: absolute; top: 14px; right: 14px; z-index: 1; padding: 7px 15px; border-radius: 999px; background: var(--sage); color: #ffffff; font-size: 19px; font-weight: 800; line-height: 1; letter-spacing: 0.1em; text-transform: uppercase; }
