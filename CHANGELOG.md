@@ -2,6 +2,13 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-09 — Footer logo 1.4x bigger (undistorted) + short-screen scoping fix
+
+- **Footer logo grown 1.4x** (user: "make it 1.4x bigger than now"). Desktop 156->218px (x1.4), <=960 72->101px, <=620 56->78px.
+- **Fixed a short-screen scoping bug** uncovered while testing: the `@media (max-height: 800px)` block's `.brand-logo img { height: 64px }` was too broad — it was shrinking the FOOTER logo too (it should only shrink the header on short viewports). Scoped it to `.site-header .brand-logo img` so the footer logo keeps its full size at every viewport height. (At 1280x800 the footer logo was rendering at 64px instead of 218px before this fix.)
+- **Fixed logo distortion** at the new size: at 218px tall the logo (natural 2.31:1 aspect = 952x413 source) needs 502px width, but the footer brand column was 411px -> `max-width: 100%` capped the width -> `object-fit: fill` stretched the logo to 267x218 (squished to 1.23:1). Widened the footer-grid brand column (`1.5fr repeat(3,1fr)` -> `2.5fr 1fr 1fr 1fr`) and added `max-width: none` to the footer logo so it displays at its natural 503x218 (undistorted).
+- Verified: footer logo 218x503 (ratio 2.31 = natural, undistorted) at 1280x800/900; 101x233 at 768; 78x180 at 360; zero overflow at 320/360/768/1280 across 6 pages; zero console errors; CSS braces 0.
+
 ## 2026-10-09 — Bigger logo; homepage facilities → bullet list; facilities.html → editorial layout
 
 - **Logo grown again** (user: "make the logo bigger"). `.brand-logo img` 72→80px desktop, footer 140→156px. `--header-h` 104→112px. The `@media (max-height: 800px)` short-screen block keeps it proportional: logo 56→64px, header 88→96px.
