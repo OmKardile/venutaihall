@@ -80,6 +80,8 @@ SEO = {
                             "How Late Venutai Chavan Multipurpose Hall collects and handles information submitted through this website."),
     "terms.html": ("Terms &amp; Conditions | Late Venutai Chavan Multipurpose Hall",
                    "Terms and conditions for using venutaihall.com. Enquiries are not bookings; dates are confirmed only after venue confirmation."),
+    "everything-included.html": ("Everything Included | Late Venutai Chavan Multipurpose Hall",
+                                 "Everything included with the Big Hall and Small Hall packages at Late Venutai Chavan Multipurpose Hall."),
 }
 
 
@@ -1381,13 +1383,13 @@ contact_main = f"""
             </div>
           </div>
           <div class="location-grid">
-            <a class="location-map reveal" href="https://www.google.com/maps/search/?api=1&amp;query=Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer" aria-label="Open venue location in Google Maps">
-              {pic("contact-map.jpg", "Map of Nigdi Pradhikaran showing the venue location")}
-              <span class="map-overlay">
+            <div class="location-map reveal">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.282966385947!2d73.77019107492065!3d18.651293965168612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b92ff63cd819%3A0x8714164503e985f9!2sLate%20Venutai%20Chavan%20Multipurpose%20Hall!5e0!3m2!1sen!2sin!4v1791555939716!5m2!1sen!2sin" title="Late Venutai Chavan Multipurpose Hall location map" style="border:0; width:100%; height:100%;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+              <a class="map-overlay" href="https://www.google.com/maps/search/?api=1&amp;query=Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">
                 <span><strong>{SITE_NAME}</strong><span>Sector 27A, Pradhikaran, Nigdi, Pune – 411044</span></span>
                 <span class="chip">Open in Google Maps {icon("i-arrow")}</span>
-              </span>
-            </a>
+              </a>
+            </div>
             <div class="location-panel reveal reveal-delay-1">
               <address class="address-block">
                 <strong>{SITE_NAME}</strong>
@@ -1454,13 +1456,13 @@ visit_main = f"""
       <section class="section band-paper" aria-labelledby="visit-location-title">
         <div class="shell">
           <div class="location-grid">
-            <a class="location-map reveal" href="https://www.google.com/maps/search/?api=1&amp;query=Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer" aria-label="Open venue location in Google Maps">
-              {pic("contact-map.jpg", "Map of Nigdi Pradhikaran showing the venue location")}
-              <span class="map-overlay">
+            <div class="location-map reveal">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.282966385947!2d73.77019107492065!3d18.651293965168612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b92ff63cd819%3A0x8714164503e985f9!2sLate%20Venutai%20Chavan%20Multipurpose%20Hall!5e0!3m2!1sen!2sin!4v1791555939716!5m2!1sen!2sin" title="Late Venutai Chavan Multipurpose Hall location map" style="border:0; width:100%; height:100%;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+              <a class="map-overlay" href="https://www.google.com/maps/search/?api=1&amp;query=Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">
                 <span><strong>{SITE_NAME}</strong><span>Sector 27A, Pradhikaran, Nigdi, Pune – 411044</span></span>
                 <span class="chip">Open in Google Maps {icon("i-arrow")}</span>
-              </span>
-            </a>
+              </a>
+            </div>
             <div class="location-panel reveal reveal-delay-1">
               <address class="address-block">
                 <strong>{SITE_NAME}</strong>
@@ -1851,31 +1853,97 @@ def details_main():
 """
 
 
+everything_included_main = f"""
+      <section class="page-hero" aria-labelledby="ei-title">
+        <div class="page-hero-media">{pic("hero-hall.jpg", "Main hall with chandeliers", priority=True)}</div>
+        <div class="page-hero-inner shell">
+          {breadcrumb("Everything Included")}
+          <p class="eyebrow">What's included</p>
+          <h1 id="ei-title">Everything <em>Included.</em><span class="heading-mr" lang="mr">(सर्व काही समाविष्ट)</span></h1>
+          <p class="lede">Every package comes fully equipped. Here is exactly what is included.</p>
+        </div>
+      </section>
+      <section class="section" aria-labelledby="ei-big">
+        <div class="shell">
+          <div class="section-head reveal"><div><p class="eyebrow">Package</p><h2 id="ei-big">Big <em>Hall</em></h2></div><a class="text-link" href="big-hall.html">Big Hall page {icon("i-arrow")}</a></div>
+          <div class="facility-bullets">
+            <div class="facility-bullet-group reveal"><h3>Specialities</h3><ul><li>Fully Air-Conditioned Hall</li><li>Seating Capacity: Up to 1,200 People</li><li>Catering Facility Available</li><li>Fully Equipped with an Acoustic System</li><li>8 A/C Guest Rooms Available for Guest Accommodation</li><li>The Entire Building is Equipped with a Fire-Fighting System</li><li>4-Wheeler &amp; 2-Wheeler Parking Available</li><li>LED Screen &amp; Projector Available</li><li>CCTV Surveillance — The Entire Building is Under CCTV Surveillance</li></ul></div>
+            <div class="facility-bullet-group reveal reveal-delay-1"><h3>Dining</h3><ul><li>Dining Hall — Seating Capacity: Up to 400 People at a Time</li><li>VIP A/C Dining Hall — Seating Capacity: Up to 50 People at a Time</li></ul></div>
+          </div>
+        </div>
+      </section>
+      <section class="section band-sand" aria-labelledby="ei-small">
+        <div class="shell">
+          <div class="section-head reveal"><div><p class="eyebrow">Package</p><h2 id="ei-small">Small <em>Hall</em></h2></div><a class="text-link" href="small-hall.html">Small Hall page {icon("i-arrow")}</a></div>
+          <div class="facility-bullets">
+            <div class="facility-bullet-group reveal"><h3>Specialities</h3><ul><li>Fully Air-Conditioned Hall</li><li>Seating Capacity: Up to 350 People</li><li>Catering Facility Available</li><li>Fully Equipped with an Acoustic System</li><li>The Entire Building is Equipped with a Fire-Fighting System</li><li>4-Wheeler &amp; 2-Wheeler Parking Available</li><li>LED Screen &amp; Projector Available</li><li>CCTV Surveillance — The Entire Building is Under CCTV Surveillance</li></ul></div>
+            <div class="facility-bullet-group reveal reveal-delay-1" data-placeholder="CONFIRM with client: small hall dining details"><h3>Dining</h3><ul><li>Dining — Seating Capacity: Up to 50 People at a Time</li></ul></div>
+          </div>
+        </div>
+      </section>
+      {cta_band("Ready to check <em>your date?</em>")}
+"""
+
+
+big_hall_main = f"""
+      <section class="page-hero" aria-labelledby="space-title">
+        <div class="page-hero-media">{pic("hero-hall.jpg", "Big Hall with chandeliers and rows of seats", priority=True)}</div>
+        <div class="page-hero-inner shell">
+          {breadcrumb("Big Hall")}
+          <p class="eyebrow">Late Venutai Chavan Multipurpose Hall</p>
+          <h1 id="space-title">Big Hall <span class="heading-mr" lang="mr">(बिग हॉल)</span></h1>
+          <p class="lede">Sector 27A, Pradhikaran, Nigdi, Pune – 411044</p>
+          <div class="hero-ctas"><a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a><a class="button button-ghost-light" href="gallery.html">View Gallery</a></div>
+        </div>
+      </section>
+      <section class="section" aria-labelledby="avail-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Events</p><h2 id="avail-title">Available <em>for</em></h2></div></div>
+        <div class="chip-row reveal"><span class="chip chip-wine">Reception Parties</span><span class="chip chip-wine">Weddings</span><span class="chip chip-wine">Engagement Ceremonies</span><span class="chip chip-wine">Birthday Parties</span><span class="chip chip-wine">Naming Ceremonies</span><span class="chip chip-wine">Family Functions</span><span class="chip chip-wine">Corporate &amp; Social Events</span></div>
+      </div></section>
+      <section class="section band-sand" aria-labelledby="spec-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Big Hall</p><h2 id="spec-title">Specialities</h2></div></div>
+        <ol class="spec-numbered reveal">
+          <li>{icon("i-ac")}<span>Fully Air-Conditioned Hall</span></li><li>{icon("i-people")}<span>Seating Capacity: Up to 1,200 People</span></li><li>{icon("i-tray")}<span>Catering Facility Available</span></li><li>{icon("i-sound")}<span>Fully Equipped with an Acoustic System</span></li><li>{icon("i-bed")}<span>8 A/C Guest Rooms Available for Guest Accommodation</span></li><li>{icon("i-shield")}<span>The Entire Building is Equipped with a Fire-Fighting System</span></li><li>{icon("i-car")}<span>4-Wheeler &amp; 2-Wheeler Parking Available</span></li><li>{icon("i-screen")}<span>LED Screen &amp; Projector Available</span></li><li>{icon("i-camera")}<span>CCTV Surveillance — The Entire Building is Under CCTV Surveillance</span></li>
+        </ol></div></section>
+      <section class="section" aria-labelledby="dining-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Dining</p><h2 id="dining-title">Dining <em>Capacities</em></h2></div></div>
+        <div class="package-specs">
+          <article class="pkg-row reveal"><div class="pkg-body"><div class="pkg-head">{icon("i-dining")}<h3>Dining Hall</h3></div><p class="pkg-value"><strong class="pkg-num">400</strong><span class="pkg-unit">at a time</span></p></div><div class="pkg-thumb">{pic("dining-hall.jpg", "Dining Hall with round tables")}</div></article>
+          <article class="pkg-row reveal"><div class="pkg-body"><div class="pkg-head">{icon("i-tray")}<h3>VIP A/C Dining Hall</h3></div><p class="pkg-value"><span class="pkg-prefix">max</span><strong class="pkg-num">50</strong><span class="pkg-unit">at a time</span></p></div><div class="pkg-thumb">{pic("vip-dining.jpg", "VIP A/C dining room")}</div></article>
+        </div></div></section>
+      {cta_band("Ready to check <em>your date?</em>")}
+"""
+
+
+small_hall_main = f"""
+      <section class="page-hero" aria-labelledby="space-title">
+        <div class="page-hero-media">{pic("small-hall.jpg", "Small Hall with seating and centre aisle", priority=True)}</div>
+        <div class="page-hero-inner shell">
+          {breadcrumb("Small Hall")}
+          <p class="eyebrow">Late Venutai Chavan Multipurpose Hall</p>
+          <h1 id="space-title">Small Hall <span class="heading-mr" lang="mr">(स्मॉल हॉल)</span></h1>
+          <p class="lede">Sector 27A, Pradhikaran, Nigdi, Pune – 411044</p>
+          <div class="hero-ctas"><a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a><a class="button button-ghost-light" href="gallery.html">View Gallery</a></div>
+        </div>
+      </section>
+      <section class="section" aria-labelledby="avail-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Events</p><h2 id="avail-title">Available <em>for</em></h2></div></div>
+        <div class="chip-row reveal"><span class="chip chip-wine">Reception Parties</span><span class="chip chip-wine">Weddings</span><span class="chip chip-wine">Engagement Ceremonies</span><span class="chip chip-wine">Birthday Parties</span><span class="chip chip-wine">Naming Ceremonies</span><span class="chip chip-wine">Family Functions</span><span class="chip chip-wine">Corporate &amp; Social Events</span></div>
+      </div></section>
+      <section class="section band-sand" aria-labelledby="spec-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Small Hall</p><h2 id="spec-title">Specialities</h2></div></div>
+        <ol class="spec-numbered reveal">
+          <li>{icon("i-ac")}<span>Fully Air-Conditioned Hall</span></li><li>{icon("i-people")}<span>Seating Capacity: Up to 350 People</span></li><li>{icon("i-tray")}<span>Catering Facility Available</span></li><li>{icon("i-sound")}<span>Fully Equipped with an Acoustic System</span></li><li>{icon("i-shield")}<span>The Entire Building is Equipped with a Fire-Fighting System</span></li><li>{icon("i-car")}<span>4-Wheeler &amp; 2-Wheeler Parking Available</span></li><li>{icon("i-screen")}<span>LED Screen &amp; Projector Available</span></li><li>{icon("i-camera")}<span>CCTV Surveillance — The Entire Building is Under CCTV Surveillance</span></li>
+        </ol></div></section>
+      <section class="section" aria-labelledby="dining-title" data-placeholder="CONFIRM with client: small hall dining details"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Dining</p><h2 id="dining-title">Dining</h2></div></div>
+        <div class="package-specs"><article class="pkg-row pkg-plain reveal"><div class="pkg-body"><div class="pkg-head">{icon("i-dining")}<h3>Dining</h3></div><p class="pkg-value"><strong class="pkg-num">50</strong><span class="pkg-unit">at a time</span></p></div></article></div></div></section>
+      {cta_band("Ready to check <em>your date?</em>")}
+"""
+
 SITEMAP_PAGES = [
     ("", "1.0"),
-    ("spaces.html", "0.9"),
     ("big-hall.html", "0.8"),
     ("small-hall.html", "0.8"),
-    ("dining-hall.html", "0.8"),
-    ("vip-dining.html", "0.7"),
-    ("guest-rooms.html", "0.7"),
-    ("events.html", "0.9"),
-    ("weddings.html", "0.8"),
-    ("engagements.html", "0.7"),
-    ("receptions.html", "0.7"),
-    ("birthdays.html", "0.7"),
-    ("naming-ceremonies.html", "0.7"),
-    ("family-functions.html", "0.7"),
-    ("corporate-events.html", "0.7"),
-    ("social-gatherings.html", "0.7"),
-    ("facilities.html", "0.8"),
     ("gallery.html", "0.8"),
-    ("about.html", "0.7"),
     ("contact.html", "0.8"),
     ("visit.html", "0.7"),
     ("check-availability.html", "0.9"),
-    ("details.html", "0.6"),
-    ("compare.html", "0.7"),
+    ("everything-included.html", "0.7"),
     ("privacy-policy.html", "0.3"),
     ("terms.html", "0.3"),
 ]
@@ -1941,6 +2009,9 @@ def build():
     for slug, _ in EVENT_SLUGS:
         page(slug, event_main(slug, EVENTS[slug]))
     page("facilities.html", facilities_main)
+    page("everything-included.html", everything_included_main)
+    page("big-hall.html", big_hall_main)
+    page("small-hall.html", small_hall_main)
     page("gallery.html", gallery_main)
     page("about.html", about_main)
     page("contact.html", contact_main)
