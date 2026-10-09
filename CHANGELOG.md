@@ -2,6 +2,14 @@
 
 All notable changes to the venutaihall.com website. Dates are local.
 
+## 2026-10-09 — Hero back to full viewport, wine <em> → white, explorer card fits mobile, bigger logo
+
+- **Hero restored to full viewport** (user: "keep the hero at max viewport it looks good"). Reverted the scaling-round `min(calc(100svh - var(--header-h)), 1000px)` back to `min-height: max(640px, 100svh)` — the hero fills the viewport exactly again (verified: heroH == vh on 720 and 768). Mobile hero likewise `max(560px, 100svh)`.
+- **Wine `<em>` text on dark bands → white.** The `<em>` element defaults to `var(--wine)` (`#641c2c`), which is invisible on the wine-ink backgrounds of the "Come for a Visit" (`visit-cta`) and "Check Your Date" (`cta-band`) sections — the italic emphasis words ("Visit.", "Date.") were wine-on-wine. Added `.visit-cta h2 em, .cta-band h2 em { color: var(--ivory) }` so they read white like the rest of the heading.
+- **Explorer card fits within the viewport on mobile.** The card was 796px on a 667px viewport (overflowing by 129px). Root cause: `.explorer-media` had `min-height: 300px` on mobile but the photo frame (16/9 aspect) was only 192px → a 108px gap below the photo, plus a tall body. Removed the `min-height: 300px` (→ 0), tightened the body padding/specs margins at ≤960px, and at ≤640px switched the photo to a 2/1 aspect (shorter) with tighter body padding + p/specs/link margins. Result: card 616px on 375×667 (fits), 634px on 360×640 (fits). (320×568 — a 9-year-old iPhone SE — still overflows by ~90px; the card's 5 content elements are too rich for a 568px viewport without hiding content, which the brief excludes.)
+- **Logo grown.** User: "increase the damn logo grow it." Bumped `.brand-logo img` 60→72px desktop, footer logo 120→140px. `--header-h` 92→104px to fit. The `@media (max-height: 800px)` short-screen block keeps it proportional: logo 50→56px, header 80→88px (= 12% of 720, still under the bar).
+- Verified: hero == viewport (720/768); visit-cta + cta-band `<em>` now `rgb(246,241,232)` (ivory); explorer card 616px on 375×667 + 634px on 360×640 (both fit); logo 72px desktop / 56px short-screen; zero overflow at 320/360/768/1280; zero console errors; `_check.py` 1382 refs, `node --check`, CSS braces 0.
+
 ## 2026-10-09 — Smaller map, visit-cta contrast, facilities redesign, on-site parking photo
 
 - **Location map preview decreased.** The map was stretched to match the location panel's height (499px on desktop). Now it's a fixed 300px-tall preview, vertically centered beside the panel (`align-self: center`), and the grid gives the map a smaller column (0.85fr) vs the panel (1.15fr). A cleaner, less dominant map that still links to Google Maps.

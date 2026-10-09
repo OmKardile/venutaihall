@@ -45,7 +45,7 @@
     --font-display: "Fraunces", Georgia, "Times New Roman", serif;
     --font-body: "Manrope", "Segoe UI", Arial, sans-serif;
     --font-deva: "Noto Serif Devanagari", "Fraunces", serif;
-    --header-h: 92px;
+    --header-h: 104px;
     --bottom-bar-h: 0px;
   }
 
@@ -436,7 +436,7 @@
 
   .hero {
     position: relative;
-    min-height: min(calc(100svh - var(--header-h)), 1000px);
+    min-height: max(640px, 100svh);
     display: flex;
     align-items: flex-end;
     color: var(--ivory);
@@ -1231,6 +1231,7 @@
     flex-wrap: wrap;
   }
   .visit-cta h2 { color: var(--ivory); max-width: 16ch; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45); }
+  .visit-cta h2 em, .cta-band h2 em { color: var(--ivory); font-style: italic; }
   .visit-cta p { margin-top: 16px; max-width: 52ch; font-size: 16.5px; line-height: 1.7; color: rgba(246, 241, 232, 0.8); }
   .visit-cta-actions { display: flex; flex-direction: column; gap: 13px; min-width: 250px; }
 
@@ -2116,10 +2117,10 @@
   .hl.hl { color: var(--wine); font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
   .hl-dark.hl-dark { color: #f2dcae; font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
   .brand-logo { display: block; line-height: 0; }
-  .brand-logo img { display: block; width: auto; height: 60px; }
+  .brand-logo img { display: block; width: auto; height: 72px; }
   .brand-en { margin-top: 6px; font-family: var(--font-body); font-size: 11px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); text-align: center; line-height: 1.25; }
   .site-header .brand-en { white-space: nowrap; }
-  .footer-brand .brand-logo img { height: 120px; }
+  .footer-brand .brand-logo img { height: 140px; }
   .footer-brand .brand-en { font-size: 13px; margin-top: 6px; max-width: 240px; }
   .package-specs { border-top: 1px solid var(--line); }
   .pkg-row { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(18px, 3vw, 44px); padding: clamp(22px, 2.8vw, 34px) 0; border-bottom: 1px solid var(--line); }
@@ -2155,8 +2156,11 @@
     .events-grid { grid-template-columns: repeat(2, 1fr); }
     .explorer-card, .explorer-card:nth-child(even) { grid-template-columns: 1fr; }
     .explorer-card:nth-child(even) .explorer-media { order: 0; }
-    .explorer-media { min-height: 300px; position: relative; }
+    .explorer-media { min-height: 0; position: relative; }
     .explorer-media .media-frame { position: relative; aspect-ratio: 16 / 9; }
+    .explorer-body { padding: 18px 18px 20px; }
+    .explorer-specs { margin-top: 16px; padding-top: 16px; }
+    .explorer-body .text-link { margin-top: 20px; }
     .space-layout { grid-template-columns: 1fr; }
     .space-aside { position: static; }
     .setups-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2230,10 +2234,15 @@
   @media (max-width: 640px) {
     :root { --shell: min(100% - 32px, 1280px); --shell-narrow: min(100% - 32px, 920px); }
     body { font-size: 16px; }
-    .hero { min-height: max(560px, calc(100svh - var(--header-h))); }
+    .hero { min-height: max(560px, 100svh); }
     .hero h1 { font-size: clamp(40px, 11vw, 56px); }
     .hero-ctas .button { flex: 1 1 100%; }
     .celebrate-grid { grid-template-columns: 1fr; }
+    .explorer-media .media-frame { aspect-ratio: 2 / 1; }
+    .explorer-body { padding: 14px 16px 16px; }
+    .explorer-body > p { margin-top: 8px; }
+    .explorer-specs { margin-top: 12px; padding-top: 12px; gap: 6px; }
+    .explorer-body .text-link { margin-top: 12px; }
     .facility-groups { grid-template-columns: 1fr; }
     .events-grid { grid-template-columns: 1fr; }
     .setups-grid { grid-template-columns: 1fr; }
@@ -2274,9 +2283,9 @@
     .section { padding-block: 22px; }
   }
   @media (max-height: 800px) {
-    :root { --header-h: 80px; }
+    :root { --header-h: 88px; }
     .brand { padding: 8px 18px 6px; }
-    .brand-logo img { height: 50px; }
+    .brand-logo img { height: 56px; }
     .brand-en { font-size: 10px; margin-top: 5px; }
     .hero h1 { font-size: clamp(34px, 5vw, 60px); }
     .hero-focus-item strong { font-size: clamp(20px, 2.2vw, 30px); }
