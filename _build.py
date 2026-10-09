@@ -1010,8 +1010,16 @@ facilities_main = f"""
             </div>
             <p class="lede">Our air-conditioned banquet halls in Nigdi Pradhikaran offer dining spaces, catering support and practical amenities to help you plan a comfortable event.</p>
           </div>
-          <div class="facility-groups">
+          <div class="facilities-layout">
+            <aside class="facilities-aside reveal">
+              <div class="facilities-aside-media">
+                {pic("facilities-reference.jpg", "Venue facilities at Late Venutai Chavan Multipurpose Hall")}
+                <span class="facilities-aside-cap"><strong>Everything for your event</strong><span>Under one roof, in one place</span></span>
+              </div>
+            </aside>
+            <div class="facility-groups">
 {"".join(facility_group(*g) for g in FACILITY_GROUPS)}
+            </div>
           </div>
         </div>
       </section>
