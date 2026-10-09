@@ -436,7 +436,7 @@
 
   .hero {
     position: relative;
-    min-height: max(640px, 94svh);
+    min-height: max(640px, 100svh);
     display: flex;
     align-items: flex-end;
     color: var(--ivory);
@@ -1072,9 +1072,9 @@
     padding: clamp(24px, 3vw, 34px);
     display: flex;
     flex-direction: column;
-    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
   }
-  .facility-group:hover { box-shadow: var(--shadow-2); transform: translateY(-3px); }
+  .facility-group:hover { box-shadow: var(--shadow-2); transform: translateY(-3px); border-color: var(--line-2); }
   .facility-group .group-icon {
     width: 52px; height: 52px;
     display: grid; place-items: center;
@@ -1118,10 +1118,10 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
   }
   .setup-card:nth-child(1), .setup-card:nth-child(2) { grid-column: span 3; }
-  .setup-card:hover { box-shadow: var(--shadow-2); transform: translateY(-3px); }
+  .setup-card:hover { box-shadow: var(--shadow-2); transform: translateY(-3px); border-color: var(--line-2); }
   .setup-card .media-frame { aspect-ratio: 16 / 10; }
   .setup-card-body { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
   .setup-card h3 {
@@ -2208,7 +2208,7 @@
   @media (max-width: 640px) {
     :root { --shell: min(100% - 32px, 1280px); --shell-narrow: min(100% - 32px, 920px); }
     body { font-size: 16px; }
-    .hero { min-height: max(560px, 92svh); }
+    .hero { min-height: max(560px, 100svh); }
     .hero h1 { font-size: clamp(40px, 11vw, 56px); }
     .hero-ctas .button { flex: 1 1 100%; }
     .celebrate-grid { grid-template-columns: 1fr; }
@@ -2252,7 +2252,10 @@
     .section { padding-block: 22px; }
   }
 
-  #spaces .explorer-card:hover .explorer-media .media-frame img { transform: scale(1.03); }
+  .explorer-card:hover .explorer-media .media-frame img { transform: scale(1.03); }
+  .celebrate-card:hover .media-frame img { transform: scale(1.03); }
+  .event-card:hover .media-frame img { transform: scale(1.03); }
+  .setup-card:hover .media-frame img { transform: scale(1.03); }
   @media (max-width: 960px) {
     .brand-logo img { height: 34px; }
     .footer-brand .brand-logo img { height: 72px; }
