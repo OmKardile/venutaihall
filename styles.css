@@ -660,6 +660,7 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   }
   .explorer-card:hover { box-shadow: var(--shadow-2); transform: translateY(-4px); border-color: var(--line-2); }
+  .explorer-card:nth-child(even) .explorer-media { order: -1; }
   .explorer-media { position: relative; min-height: 320px; }
   .explorer-media .media-frame { position: absolute; inset: 0; border-radius: 0; }
   .explorer-cap {
@@ -2135,6 +2136,7 @@
     .facility-groups { grid-template-columns: repeat(2, 1fr); }
     .events-grid { grid-template-columns: repeat(2, 1fr); }
     .explorer-card { grid-template-columns: 1fr; }
+    .explorer-card:nth-child(even) .explorer-media { order: 0; }
     .explorer-media { min-height: 0; position: relative; }
     .explorer-media .media-frame { position: relative; aspect-ratio: 16 / 9; }
     .explorer-body { padding: 18px 18px 20px; }
