@@ -1,0 +1,9 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/venutaihall/public_html
+    - /bin/mkdir -p $DEPLOYPATH/assets
+    - /bin/cp -r assets/* $DEPLOYPATH/assets/
+    - /bin/cp *.html styles.css script.js $DEPLOYPATH/
+    - /bin/cp booking.php popup.php $DEPLOYPATH/
+    - /bin/cp .htaccess robots.txt sitemap.xml $DEPLOYPATH/
