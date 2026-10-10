@@ -132,3 +132,32 @@ Next (user-driven, cPanel UI, no cmd):
 3. "PUSH NOW" -> GLM promotes wip to main on the mirror (fast-forward + plain push).
 4. cPanel: Update from Remote, then Deploy HEAD Commit.
 5. Test live site (phone, one booking, admin login).
+
+---
+Date: 2026-10-10
+Group: Deployment prep — delete _src clutter + verify deploy manifest
+Branch: wip
+Commit: (pending)
+Status: DONE, will push wip to both repos. main untouched.
+
+What changed:
+- Deleted _src/ folder (orphaned tracked clutter from commit 09c345b; no references in _build.py/_check.py/script.js/any HTML; would NOT have been deployed since *.html is root-only and cp -R assets only copies assets/). Repo root is now clean.
+- Confirmed (from prior commit 8950d47): design-lab.html gone + _build.py generation removed; .cpanel.yml present with exact frontend-only content.
+
+Deploy manifest (what .cpanel.yml copies):
+- *.html (28 files): about, big-hall, birthdays, check-availability, compare, contact, corporate-events, details, dining-hall, engagements, events, everything-included, facilities, family-functions, gallery, guest-rooms, index, naming-ceremonies, our-spaces, privacy-policy, receptions, small-hall, social-gatherings, spaces, terms, vip-dining, visit, weddings. No design-lab. No unexpected.
+- styles.css, script.js.
+- assets/ (37 files): all images (.jpg/.webp) + favicon.svg. Note: big-hall-primary.jpg/.webp and parking.jpg/.webp are unused (no HTML references) but harmless (copied to public_html/assets, just not displayed).
+- NOT copied (server stays untouched): booking.php, popup.php, .htaccess, robots.txt, sitemap.xml, .cpanel.yml, _build.py, _check.py, *.md, (design-lab gone, _src gone).
+
+Verification:
+- _build.py 28 pages, _check.py 1217 refs all resolve, braces 0, node --check OK, _build.py syntax OK.
+- Homepage @1280: 2 hall-cards (modified Option A intact), label 26px, featured ratio 1.40, 0 console/errors.
+- design-lab.html 404, no _src, no _src refs.
+
+Push:
+- wip -> wip on primary (OmKardile/venutaihall): plain push.
+- wip -> wip on mirror (megatechzy-boop/VCMhall): plain push.
+- main untouched on both (no "PUSH NOW").
+
+Next: user backs up public_html, confirms git status clean on server, says "PUSH NOW" to promote wip -> mirror main, then cPanel Update from Remote + Deploy HEAD Commit.
