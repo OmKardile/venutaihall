@@ -1,5 +1,7 @@
 # WORKLOG — venutaihall.com
 
+Read RULES.md and DEPLOY.md first after any reset.
+
 This is the in-repo worklog (survives sandbox resets). Append-only. Newest group at the bottom.
 
 ---
