@@ -44,3 +44,24 @@ What's next:
 
 Open questions:
 - Small Hall dining details still need client confirmation (placeholder kept).
+
+---
+Date: 2026-10-10
+Group: Restore design-lab.html (keep it) + push wip to mirror
+Branch: wip
+Commit: (pending)
+Status: DONE
+
+What changed:
+- Restored design-lab.html (deleted in ee016ab) and its generation in _build.py (SEO entry + design_lab_main f-string + page() call) from 7c90a17. The design lab page (Option A original + Option B) is kept as a reference. noindex intact, not linked from nav/footer/sitemap.
+- _labshots/ stays deleted (it was a temp screenshot-serving folder, not the design lab).
+- Homepage Spaces section unchanged from ee016ab (the modified Option A editorial split is still shipped on index.html).
+- Verified: design-lab.html HTTP 200 (2 Option A cards + 2 Option B bands); homepage Spaces = 2 hall-cards, wine panel, featured ratio 1.40; 0 console/errors; build 29 pages, refs resolve, braces 0, JS OK.
+
+Push:
+- wip pushed to primary (OmKardile/venutaihall) — plain push.
+- wip pushed to mirror (megatechzy-boop/VCMhall) — user-authorised override of the standing "not to the mirror" rule; plain push (new branch on the mirror, no force).
+- main + mirror main untouched (still 7c90a17) — no "PUSH NOW" given.
+
+What's next:
+- Awaiting user review. On "PUSH NOW", push wip -> main (fast-forward) + mirror main (plain push).
