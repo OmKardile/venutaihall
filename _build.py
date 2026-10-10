@@ -40,10 +40,10 @@ SEO = {
                       "Explore the Big Hall at Late Venutai Chavan Multipurpose Hall — a fully air-conditioned banquet hall in Nigdi seating up to 1200 guests for weddings and large events."),
     "small-hall.html": ("Small Hall — Up to 350 Guests | Nigdi",
                         "Explore the Small Hall in Nigdi, Pune — a fully air-conditioned hall for up to 350 guests, ideal for engagements, birthdays, naming ceremonies and family functions."),
-    "dining-hall.html": ("Dining Hall — Up to 400 Guests | Nigdi",
-                         "Explore the Dining Hall in Nigdi Pradhikaran — a fully air-conditioned dining room for up to 400 guests with catering support for your caterer."),
-    "vip-dining.html": ("VIP A/C Dining — Up to 50 Guests | Nigdi",
-                        "Explore VIP A/C Dining in Nigdi, Pune — a private air-conditioned dining room for up to 50 guests, ideal for close family and honoured guests."),
+    "dining-hall.html": ("Dining Hall — 400 at a Time | Nigdi",
+                         "Explore the Dining Hall in Nigdi Pradhikaran — a fully air-conditioned dining room for 400 at a time with catering support for your caterer."),
+    "vip-dining.html": ("VIP A/C Dining — 50 at a Time | Nigdi",
+                        "Explore VIP A/C Dining in Nigdi, Pune — a private air-conditioned dining room for 50 at a time guests, ideal for close family and honoured guests."),
     "guest-rooms.html": ("A/C Guest Rooms | Nigdi Pradhikaran, Pune",
                          "Explore up to 8 fully air-conditioned guest rooms at our venue in Nigdi, Pune — comfortable stay for family members and invitees."),
     "events.html": ("Events in Nigdi, Pune | Late Venutai Chavan Multipurpose Hall",
@@ -458,12 +458,12 @@ SPACES = {
         name="Dining Hall", crumb="Dining Hall", hero="dining-hall.jpg",
         hero_alt="Dining hall with round tables",
         eyebrow="Dining", h1="Dining Hall for<br /><em>shared meals</em>",
-        lede="A separate air-conditioned room for the meal — round-table seating for up to 400, with catering support so service stays out of the main programme.",
+        lede="A separate air-conditioned room for the meal — round-table seating for 400 at a time, with catering support so service stays out of the main programme.",
         specs=[("Capacity", "400 at a time"), ("Air-conditioning", "Fully air-conditioned"), ("Ideal for", "Meals · Receptions dining"), ("Pricing", "Enquire for pricing")],
         chips=[("400 at a time", "i-people"), ("Full AC", "i-ac"), ("Round tables", "i-dining"), ("Catering support", "i-tray")],
         overview_h2="Give the meal its own room",
         overview=[
-            "The Dining Hall is a dedicated air-conditioned space with round-table seating for up to 400 guests.",
+            "The Dining Hall is a dedicated air-conditioned space with round-table seating for 400 at a time.",
             "Keeping dining separate means the stage programme and the meal do not compete for the same room. Discuss service flow and timing with the venue team.",
         ],
         capacity=[("Capacity", "400 at a time"), ("Air-conditioning", "Fully air-conditioned"), ("Layout", "Round-table seating"), ("Pricing", "Enquire for pricing")],
@@ -475,9 +475,9 @@ SPACES = {
         stay=[
             "Guest rooms are available on site for family staying over — ask when you enquire.",
         ],
-        faqs=[("How many guests can the Dining Hall seat?", "The Dining Hall is listed for up to 400 guests."),
+        faqs=[("How many guests can the Dining Hall seat?", "The Dining Hall is listed for 400 at a time."),
               ("Do you provide catering?", "Catering support is listed. Menu and pricing are handled with your caterer — contact the venue team for current arrangements."),
-              ("Is VIP dining also available?", "Yes — VIP A/C Dining is listed for up to 50 guests for close family and honoured guests.")],
+              ("Is VIP dining also available?", "Yes — VIP A/C Dining is listed for 50 at a time guests for close family and honoured guests.")],
         gallery=[("dining", "dining-hall.jpg", "Dining Hall — round-table seating", "Dining Hall", "400 at a time")],
         related=[("vip-dining.html", "VIP Dining"), ("big-hall.html", "Big Hall"), ("small-hall.html", "Small Hall"), ("spaces.html", "All spaces")],
         final="Let’s plan dining for your event",
@@ -491,7 +491,7 @@ SPACES = {
         chips=[("50 at a time", "i-people"), ("Full AC", "i-ac"), ("Private room", "i-shield"), ("Near main hall", "i-building")],
         overview_h2="A quieter room for the people closest to the occasion",
         overview=[
-            "VIP A/C Dining is a private air-conditioned room for up to 50 guests — suited to close family, elders and honoured guests.",
+            "VIP A/C Dining is a private air-conditioned room for 50 at a time guests — suited to close family, elders and honoured guests.",
             "Ask the team how this room can work alongside the Dining Hall and main programme on your date.",
         ],
         capacity=[("Capacity", "50 at a time"), ("Air-conditioning", "Fully air-conditioned"), ("Layout", "Private dining room"), ("Pricing", "Enquire for pricing")],
@@ -503,7 +503,7 @@ SPACES = {
         stay=[
             "Guest rooms are available if family needs to rest between functions — ask when you enquire.",
         ],
-        faqs=[("How many guests can VIP Dining seat?", "VIP A/C Dining is listed for up to 50 guests."),
+        faqs=[("How many guests can VIP Dining seat?", "VIP A/C Dining is listed for 50 at a time guests."),
               ("Is it air-conditioned?", "Yes. The room is listed as fully air-conditioned."),
               ("Can we use it with the Big Hall?", "Discuss a combined arrangement with the team when you plan your event.")],
         gallery=[("dining", "vip-dining.jpg", "VIP A/C Dining — private dining room", "VIP Dining", "50 at a time")],
@@ -793,7 +793,7 @@ EXPLORERS = [
                   "small-hall.html", "small-hall.jpg", "Small Hall seating with centre aisle",
                   '<span class="chip chip-wine">Up to 350</span>'),
     explorer_card("03", "Dining", "Dining Hall",
-                  "A separate air-conditioned room for the meal — round-table seating for up to 400, with catering support so service stays out of the main programme.",
+                  "A separate air-conditioned room for the meal — round-table seating for 400 at a time, with catering support so service stays out of the main programme.",
                   [("Capacity", "400 at a time"), ("Air-conditioning", "Fully air-conditioned"), ("Ideal for", "Meals · Receptions dining"), ("Pricing", "Enquire for pricing")],
                   "dining-hall.html", "dining-hall.jpg", "Dining hall with round tables",
                   '<span class="chip chip-wine">400 at a time</span>'),
@@ -968,7 +968,7 @@ events_main = f"""
 
 FACILITY_GROUPS = [
     ("i-ac", "Comfort", ["Fully air-conditioned halls", "A/C guest rooms", "Clean washrooms", "Lobby &amp; waiting area", "Lift access"]),
-    ("i-dining", "Dining", ["Dining Hall — up to 400", "VIP A/C Dining — up to 50", "Catering support for your caterer"]),
+    ("i-dining", "Dining", ["Dining Hall — 400 at a time", "VIP A/C Dining — 50 at a time", "Catering support for your caterer"]),
     ("i-projector", "Event Technology", ["Acoustic system", "LED screen", "Projector", "Wi-Fi connectivity"]),
     ("i-shield", "Safety &amp; Access", ["CCTV surveillance", "Fire alarm system", "Easy access in Nigdi Pradhikaran"], "CONFIRM parking"),
 ]
@@ -1040,7 +1040,7 @@ facilities_main = f"""
               <div class="media-frame">{pic("hero-hall.jpg", "Big Hall arranged with banquet seating")}</div>
               <div class="setup-card-body">
                 <h3>Wedding Setup</h3>
-                <p>Stage, seating and procession flow in the Big Hall, with the Dining Hall handling the meal for up to 400.</p>
+                <p>Stage, seating and procession flow in the Big Hall, with the Dining Hall handling the meal for 400 at a time.</p>
                 <p class="setup-note">Ask our team about setup options.</p>
                 <a class="text-link" href="check-availability.html?event=Wedding">Plan my wedding {icon("i-arrow")}</a>
               </div>
@@ -1076,7 +1076,7 @@ facilities_main = f"""
               <div class="media-frame">{pic("dining-hall.jpg", "Dining hall arranged with round tables")}</div>
               <div class="setup-card-body">
                 <h3>Dining Setup</h3>
-                <p>Round-table seating for up to 400 in the Dining Hall, or private service in VIP A/C Dining for up to 50.</p>
+                <p>Round-table seating for 400 at a time in the Dining Hall, or private service in VIP A/C Dining for 50 at a time.</p>
                 <p class="setup-note">Ask about catering support for your caterer.</p>
                 <a class="text-link" href="dining-hall.html">Explore dining {icon("i-arrow")}</a>
               </div>
@@ -1289,8 +1289,8 @@ def hall_options():
     return """<option value="">No preference — suggest one</option>
                       <option value="big">Big Hall — up to 1200</option>
                       <option value="small">Small Hall — up to 350</option>
-                      <option value="dining">Dining Hall — up to 400</option>
-                      <option value="vip">VIP A/C Dining — up to 50</option>
+                      <option value="dining">Dining Hall — 400 at a time</option>
+                      <option value="vip">VIP A/C Dining — 50 at a time</option>
                       <option value="rooms">A/C Guest Rooms — 8 rooms</option>"""
 
 
@@ -1808,7 +1808,7 @@ def details_main():
             <p>Five connected spaces — pick by guest count first, then refine with the <a href="compare.html">space comparison</a>.</p>
             <p><strong>Big Hall</strong> — The largest space in the venue: a full-size banquet hall for weddings, receptions and large community events, with room for a stage, seating and procession flow.</p>
             <p><strong>Small Hall</strong> — A mid-sized hall that suits engagements, birthdays, naming ceremonies and family functions — big enough for a stage, close enough to feel personal.</p>
-            <p><strong>Dining Hall</strong> — A separate air-conditioned room for the meal — round-table seating for up to 400, with catering support so service stays out of the main programme.</p>
+            <p><strong>Dining Hall</strong> — A separate air-conditioned room for the meal — round-table seating for 400 at a time, with catering support so service stays out of the main programme.</p>
             <p><strong>VIP A/C Dining</strong> — A private dining room for close family, elders and honoured guests — quieter than the main hall, finished to the same standard.</p>
             <p><strong>A/C Guest Rooms</strong> — Up to 8 comfortable, air-conditioned bedrooms so out-of-town family can stay at the venue instead of travelling between function and hotel.</p>
 
@@ -1834,11 +1834,11 @@ def details_main():
 
             <h2 id="setups">Event setups</h2>
             <p>Each setup is arranged around your programme. Photos on the homepage are of the venue spaces themselves; real event photography will be added as it becomes available.</p>
-            <p><strong>Wedding Setup</strong> — Stage, seating and procession flow in the Big Hall, with the Dining Hall handling the meal for up to 400.</p>
+            <p><strong>Wedding Setup</strong> — Stage, seating and procession flow in the Big Hall, with the Dining Hall handling the meal for 400 at a time.</p>
             <p><strong>Reception Setup</strong> — Welcome seating, stage moments and a separate dining room so guests can move between programme and meal.</p>
             <p><strong>Corporate Setup</strong> — Rows or clusters with LED screen, projector and acoustic system for presentations and annual functions.</p>
             <p><strong>Family Function Setup</strong> — Flexible seating for anniversaries, naming ceremonies and get-togethers, scaled to your guest list.</p>
-            <p><strong>Dining Setup</strong> — Round-table seating for up to 400 in the Dining Hall, or private service in VIP A/C Dining for up to 50.</p>
+            <p><strong>Dining Setup</strong> — Round-table seating for 400 at a time in the Dining Hall, or private service in VIP A/C Dining for 50 at a time.</p>
 
             <h2 id="heritage">Our namesake</h2>
             <p>This multipurpose hall carries the name of Late Venutai Chavan — a life dedicated to the service of society, and to bringing people together.</p>
