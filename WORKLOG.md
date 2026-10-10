@@ -196,3 +196,25 @@ Push:
 Next:
 - To promote to main (so cPanel can deploy the alternation + the docs), user writes "PUSH NOW". Then wip (049a845) -> main on both (fast-forward, plain). Then cPanel Update from Remote + Deploy HEAD Commit.
 - Note on ghp_ self-match: whenever RULES.md (or any doc quoting rule #4) is staged, the literal "ghp_" grep will match the rule text. The durable interpretation: rule #4's "ghp_ grep = 0" means "no real token (ghp_+20+ chars) = 0".
+
+---
+Date: 2026-10-10
+Group: Drop wip workflow — work on main directly; rewrite RULES.md + DEPLOY.md
+Branch: main (wip workflow dropped; wip branches left on remotes, just unused)
+Status: DONE, will push main to both repos.
+
+What changed:
+- Fast-forwarded local main to wip (6e55403): main now has deploy-test.html, RULES.md, DEPLOY.md, WORKLOG.md pointer, the Spaces alternation flip (Big Hall detail-left/image-right, Small Hall image-left/detail-right), and the WORKLOG append.
+- Rewrote RULES.md rule 1: "Work on main. After each finished, verified group, commit and push main to BOTH repos... plain push, never --force, keep identical. Pushing to GitHub does NOT change the live site... GLM never deploys." (Removed wip + PUSH NOW as a requirement.)
+- Rewrote RULES.md rule 4: token check now uses the regex (ghp_ or github_pat_ followed by 20+ word chars), not the bare prefix. The bare string "ghp_" in docs is fine.
+- Rewrote DEPLOY.md: added prominent "Pushing to GitHub does NOT change the live site" principle at the top; rest unchanged.
+- wip branches on both remotes left intact (not deleted), just unused going forward.
+
+Verification:
+- Build 29 pages, _check.py 1217 refs all resolve, braces 0, JS OK.
+- Homepage alternation verified (Big Hall photo order 2 / panel order 0; Small Hall photo order 0 / panel order 0 default = alternate).
+
+Push:
+- main -> main on primary (OmKardile/venutaihall): plain push, fast-forward from 27b350e.
+- main -> main on mirror (megatechzy-boop/VCMhall): plain push, fast-forward from 27b350e.
+- No --force anywhere. wip branches untouched.
