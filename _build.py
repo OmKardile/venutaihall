@@ -82,8 +82,6 @@ SEO = {
                    "Terms and conditions for using venutaihall.com. Enquiries are not bookings; dates are confirmed only after venue confirmation."),
     "everything-included.html": ("Everything Included | Late Venutai Chavan Multipurpose Hall",
                                  "Everything included with the Big Hall and Small Hall packages at Late Venutai Chavan Multipurpose Hall."),
-    "design-lab.html": ("Design Lab | Late Venutai Chavan Multipurpose Hall",
-                        "Internal design lab comparing two layout options for the Spaces We Offer section. Not for public indexing."),
 }
 
 
@@ -1888,103 +1886,6 @@ everything_included_main = f"""
 """
 
 
-design_lab_main = f"""
-      <section class="section lab-intro" aria-labelledby="lab-title">
-        <div class="shell">
-          <div class="reveal">
-            <p class="eyebrow">Design lab</p>
-            <h1 id="lab-title">Spaces We Offer — <em>two options.</em></h1>
-            <p class="lede">A side-by-side study for the homepage Spaces section. Option A: editorial split. Option B: cinematic full-bleed. Both share the same palette, fonts, photos and numbers.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section lab-option" aria-labelledby="lab-a-title">
-        <div class="shell">
-          <div class="lab-option-head reveal">
-            <p class="lab-option-tag">Option A</p>
-            <h2 id="lab-a-title">Editorial <em>split.</em></h2>
-            <p class="lab-option-note">Photo on one half, numbers on the other, alternating sides. Ivory with a wine accent band behind the photo. Hairline dividers between numbers.</p>
-          </div>
-          <div class="lab-a-grid">
-            <article class="lab-a-card">
-              <div class="lab-a-media"><div class="lab-a-photo">{pic("hero-hall.jpg", "Big Hall with chandeliers and banquet seating")}</div></div>
-              <div class="lab-a-body">
-                <p class="lab-a-eyebrow">01 — Big Hall</p>
-                <h3 class="lab-a-name">Big Hall</h3>
-                <dl class="lab-a-numbers">
-                  <div class="lab-a-num"><dt class="lab-a-num-label">Guests</dt><dd class="lab-a-num-value">1200</dd></div>
-                  <div class="lab-a-num"><dt class="lab-a-num-label">Big Dining</dt><dd class="lab-a-num-value">400 <span class="lab-a-num-unit">at a time</span></dd></div>
-                  <div class="lab-a-num"><dt class="lab-a-num-label">VIP A/C Dining</dt><dd class="lab-a-num-value">50 <span class="lab-a-num-unit">at a time</span></dd></div>
-                  <div class="lab-a-num lab-a-num-featured"><dt class="lab-a-num-label">A/C Guest Rooms <span class="lab-a-speciality">Speciality</span></dt><dd class="lab-a-num-value">8 <span class="lab-a-num-unit">rooms</span></dd></div>
-                </dl>
-                <ul class="lab-a-chips">
-                  <li>{icon("i-tray")} <span>Catering</span></li>
-                  <li>{icon("i-mic")} <span>Acoustic</span></li>
-                  <li>{icon("i-car")} <span>Parking</span></li>
-                  <li>{icon("i-camera")} <span>CCTV</span></li>
-                </ul>
-                <a class="button button-wine lab-a-cta" href="big-hall.html">Full details {icon("i-arrow")}</a>
-              </div>
-            </article>
-            <article class="lab-a-card lab-a-alt">
-              <div class="lab-a-media"><div class="lab-a-photo">{pic("small-hall.jpg", "Small Hall with seating and centre aisle")}</div></div>
-              <div class="lab-a-body">
-                <p class="lab-a-eyebrow">02 — Small Hall</p>
-                <h3 class="lab-a-name">Small Hall</h3>
-                <dl class="lab-a-numbers">
-                  <div class="lab-a-num"><dt class="lab-a-num-label">Guests</dt><dd class="lab-a-num-value">350</dd></div>
-                  <div class="lab-a-num"><dt class="lab-a-num-label">A/C Dining</dt><dd class="lab-a-num-value">50 <span class="lab-a-num-unit">at a time</span></dd></div>
-                </dl>
-                <ul class="lab-a-chips">
-                  <li>{icon("i-tray")} <span>Catering</span></li>
-                  <li>{icon("i-mic")} <span>Acoustic</span></li>
-                  <li>{icon("i-car")} <span>Parking</span></li>
-                  <li>{icon("i-camera")} <span>CCTV</span></li>
-                </ul>
-                <a class="button button-wine lab-a-cta" href="small-hall.html">Full details {icon("i-arrow")}</a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section lab-option band-paper" aria-labelledby="lab-b-title">
-        <div class="shell">
-          <div class="lab-option-head reveal">
-            <p class="lab-option-tag">Option B</p>
-            <h2 id="lab-b-title">Cinematic <em>full-bleed.</em></h2>
-            <p class="lab-option-note">Full-width photo band with a calm dark gradient and a solid wine number bar anchored along the bottom edge.</p>
-          </div>
-          <div class="lab-b-stack">
-            <article class="lab-b-band">
-              <div class="lab-b-media">{pic("hero-hall.jpg", "Big Hall cinematic wide shot")}</div>
-              <div class="lab-b-head">
-                <p class="lab-b-eyebrow">01</p>
-                <h3 class="lab-b-name">Big Hall</h3>
-              </div>
-              <div class="lab-b-bar">
-                <div class="lab-b-num"><span class="lab-b-num-value">1200</span><span class="lab-b-num-label">Guests</span></div>
-                <div class="lab-b-num"><span class="lab-b-num-value">400</span><span class="lab-b-num-label">At a time</span></div>
-                <div class="lab-b-num"><span class="lab-b-num-value">50</span><span class="lab-b-num-label">VIP at a time</span></div>
-                <div class="lab-b-num lab-b-num-featured"><span class="lab-b-num-value">8</span><span class="lab-b-num-label">Guest Rooms</span><span class="lab-b-speciality">Speciality</span></div>
-              </div>
-            </article>
-            <article class="lab-b-band">
-              <div class="lab-b-media">{pic("small-hall.jpg", "Small Hall cinematic wide shot")}</div>
-              <div class="lab-b-head">
-                <p class="lab-b-eyebrow">02</p>
-                <h3 class="lab-b-name">Small Hall</h3>
-              </div>
-              <div class="lab-b-bar lab-b-bar-2">
-                <div class="lab-b-num"><span class="lab-b-num-value">350</span><span class="lab-b-num-label">Guests</span></div>
-                <div class="lab-b-num"><span class="lab-b-num-value">50</span><span class="lab-b-num-label">At a time</span></div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-"""
 
 
 big_hall_main = f"""
@@ -2112,7 +2013,6 @@ def build():
         page(slug, event_main(slug, EVENTS[slug]))
     page("facilities.html", facilities_main)
     page("everything-included.html", everything_included_main)
-    page("design-lab.html", design_lab_main, body_class="solid-header", extra_head='<meta name="robots" content="noindex">')
     page("big-hall.html", big_hall_main)
     page("small-hall.html", small_hall_main)
     page("gallery.html", gallery_main)

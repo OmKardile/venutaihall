@@ -90,3 +90,45 @@ Push:
 
 What's next:
 - If the user wants the mirror's main updated with this fix too, they can say so or "PUSH NOW".
+
+---
+Date: 2026-10-10
+Group: Prep for cPanel deploy — delete design-lab.html + add frontend-only .cpanel.yml
+Branch: wip
+Commit: (pending)
+Status: DONE, pushed to wip on BOTH repos. main untouched.
+
+Why:
+- cPanel GitDeployment (pulls from mirror megatechzy-boop/VCMhall main) cannot deploy: "The system cannot deploy" because no .cpanel.yml exists at the repo root.
+- The live public_html (/home/venutaihall/public_html/) contains SERVER-ONLY files NOT in the git repo: booking-config.php, booking-store.php, admin/, error_log. These must NOT be overwritten by a deploy.
+- design-lab.html is a design-study page, not for the public live site, so it should not ship.
+
+What changed:
+- _build.py: removed design-lab generation (SEO entry + design_lab_main f-string + page() call). design-lab.html no longer built.
+- design-lab.html: deleted.
+- .cpanel.yml: created at repo root, frontend-only (user-specified exact content):
+    ---
+    deployment:
+      tasks:
+        - export DEPLOYPATH=/home/venutaihall/public_html/
+        - /bin/cp *.html $DEPLOYPATH
+        - /bin/cp styles.css script.js $DEPLOYPATH
+        - /bin/cp -R assets $DEPLOYPATH
+  Copies ONLY pages + stylesheet + script + images. Leaves booking.php, popup.php, .htaccess, booking-config.php, booking-store.php, admin/ UNTOUCHED. DEPLOYPATH confirmed = /home/venutaihall/public_html/ via cPanel File Manager screenshot.
+
+Verification:
+- _build.py: 28 pages (design-lab gone). _check.py: 1217 refs all resolve. braces 0. node --check OK. _build.py syntax OK.
+- .cpanel.yml: valid YAML, 4 tasks.
+- Homepage @1280: 2 hall-cards intact (modified Option A), label 26px, featured ratio 1.40, no console/errors. design-lab.html 404.
+
+Push:
+- wip -> wip on primary (OmKardile/venutaihall): plain push.
+- wip -> wip on mirror (megatechzy-boop/VCMhall): plain push.
+- main untouched on both (no "PUSH NOW").
+
+Next (user-driven, cPanel UI, no cmd):
+1. Back up public_html in cPanel File Manager first.
+2. Confirm git status clean on server (cd /home/venutaihall/VCMhall && git status).
+3. "PUSH NOW" -> GLM promotes wip to main on the mirror (fast-forward + plain push).
+4. cPanel: Update from Remote, then Deploy HEAD Commit.
+5. Test live site (phone, one booking, admin login).
