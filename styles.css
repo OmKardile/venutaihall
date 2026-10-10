@@ -760,6 +760,7 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
   .hall-card:hover { box-shadow: var(--shadow-2); transform: translateY(-3px); }
+  .hall-flip .hall-photo { order: 2; }
   .hall-photo {
     position: relative;
     overflow: hidden;
