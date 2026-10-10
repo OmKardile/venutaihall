@@ -9,8 +9,8 @@ index = (ROOT / "index.html").read_text(encoding="utf-8")
 
 sprite_start = index.index('<svg class="icon-library"')
 sprite = index[sprite_start:index.index("</svg>", sprite_start) + 6]
-skip_start = index.index('<a class="skip-link"')
-skip_link = index[skip_start:index.index("</a>", skip_start) + 4]
+skip_start = index.find('<a class="skip-link"')
+skip_link = index[skip_start:index.index("</a>", skip_start) + 4] if skip_start >= 0 else ''
 header = index[index.index('<header class="site-header"'):index.index("</header>") + 9]
 drawer = index[index.index('<div class="nav-drawer"'):index.index('<main id="main-content">')].rstrip()
 footer = index[index.index('<footer class="site-footer"'):index.index("</footer>") + 9]
