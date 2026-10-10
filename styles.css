@@ -616,6 +616,26 @@
   .celebrate-more .icon { width: 15px; height: 15px; transition: transform 0.25s ease; }
   .celebrate-card[aria-expanded="true"] .celebrate-more .icon { transform: rotate(45deg); }
 
+  .celebrate-card.event-chip {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 6px;
+  }
+  .celebrate-card.event-chip[aria-expanded="true"] { border-color: var(--wine); background: var(--sand-2); box-shadow: var(--shadow-1); }
+  .event-chip-body { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0; }
+  .event-chip-icon { width: 30px; height: 30px; color: var(--wine); flex: none; transition: transform 0.25s ease; }
+  .celebrate-card.event-chip:hover .event-chip-icon { transform: scale(1.1); }
+  .event-chip-text { display: flex; flex-direction: column; min-width: 0; }
+  .event-chip-text h3 { font-family: var(--font-display); font-size: clamp(16px, 1.4vw, 19px); font-weight: 620; letter-spacing: -0.01em; color: var(--ink); line-height: 1.15; }
+  .event-chip-hall { display: block; margin-top: 4px; font-family: var(--font-body); font-size: 11px; font-weight: 750; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass-deep); }
+  .event-chip-plus { width: 18px; height: 18px; color: var(--ink-3); flex: none; transition: transform 0.25s ease, color 0.25s ease; }
+  .celebrate-card.event-chip[aria-expanded="true"] .event-chip-plus { transform: rotate(45deg); color: var(--wine); }
+  @media (max-width: 640px) {
+    .celebrate-grid { grid-template-columns: 1fr; }
+  }
+
   .celebrate-reveal {
     grid-column: 1 / -1;
     display: none;
