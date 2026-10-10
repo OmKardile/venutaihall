@@ -120,8 +120,8 @@
 @layer components {
   .shell { width: var(--shell); margin-inline: auto; }
   .shell-narrow { width: var(--shell-narrow); margin-inline: auto; }
-  .section { padding-block: clamp(44px, 7vw, 72px); }
-  .section-tight { padding-block: clamp(34px, 5vw, 52px); }
+  .section { padding-block: clamp(48px, 6vw, 72px); }
+  .section-tight { padding-block: clamp(32px, 4vw, 48px); }
   .band-sand { background: var(--sand-2); }
   .band-paper { background: var(--paper); }
   .band-wine { background: var(--wine-ink); color: rgba(246, 241, 232, 0.82); }
@@ -285,13 +285,21 @@
 
   .reveal {
     opacity: 0;
-    transform: translateY(26px);
-    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
   .reveal.is-visible { opacity: 1; transform: none; }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.16s; }
+  .reveal-delay-3 { transition-delay: 0.24s; }
+  .brass-rule {
+    width: 64px;
+    height: 1px;
+    margin-block: var(--s3, 24px);
+    border: 0;
+    background: linear-gradient(90deg, transparent, var(--brass), transparent);
+    opacity: 0.7;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
@@ -1306,15 +1314,15 @@
   .visit-cta {
     position: relative;
     overflow: hidden;
-    background: var(--wine-ink);
-    color: rgba(246, 241, 232, 0.85);
+    background: var(--sand-2);
+    color: var(--ink);
   }
   .visit-cta::before {
     content: "";
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(100deg, rgba(58, 14, 25, 0.96) 30%, rgba(58, 14, 25, 0.88) 100%),
+      linear-gradient(100deg, rgba(241, 232, 216, 0.94) 30%, rgba(241, 232, 216, 0.80) 100%),
       url("assets/venue-exterior.jpg") center / cover;
     opacity: 1;
   }
@@ -1327,9 +1335,10 @@
     gap: clamp(28px, 4vw, 64px);
     flex-wrap: wrap;
   }
-  .visit-cta h2 { color: var(--ivory); max-width: 22ch; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45); }
+  .visit-cta h2 { color: var(--wine); max-width: 22ch; text-shadow: none; }
   .visit-cta h2 em, .cta-band h2 em { color: var(--ivory); font-style: italic; }
-  .visit-cta p { margin-top: 16px; max-width: 52ch; font-size: 16.5px; line-height: 1.7; color: rgba(246, 241, 232, 0.8); }
+  .visit-cta h2 em { color: var(--brass-deep); }
+  .visit-cta p { margin-top: 16px; max-width: 52ch; font-size: 16.5px; line-height: 1.7; color: var(--ink-2); }
   .visit-cta-actions { display: flex; flex-direction: column; gap: 13px; min-width: 250px; }
 
   .location-grid {
