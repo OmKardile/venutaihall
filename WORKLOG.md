@@ -163,3 +163,36 @@ Push:
 - main untouched on both (no "PUSH NOW").
 
 Next: user backs up public_html, confirms git status clean on server, says "PUSH NOW" to promote wip -> mirror main, then cPanel Update from Remote + Deploy HEAD Commit.
+
+---
+Date: 2026-10-10
+Group: Spaces alternation flip + deploy-test/RULES/DEPLOY docs (committed + pushed to wip)
+Branch: wip
+Commits: e0904fb (Deploy test + RULES.md + DEPLOY.md), 049a845 (Spaces: alternate photo side)
+Status: DONE, pushed wip to wip on BOTH repos. main untouched (no PUSH NOW).
+
+What changed:
+- index.html: Big Hall article gets class "hall-flip" (was "hall-card reveal" -> "hall-card hall-flip reveal").
+- styles.css: added ".hall-flip .hall-photo { order: 2; }" so Big Hall photo goes RIGHT (detail panel LEFT). Small Hall stays default (photo LEFT, panel RIGHT = the alternate). Mobile (<=960): both photos on top (existing rule overrides order:2 with order:-1).
+- deploy-test.html: new standalone noindex page ("Deploy test OK" + 2026-10-10). NOT in _build.py/nav/footer/sitemap. _check.py now sees 29 pages, no complaint.
+- RULES.md + DEPLOY.md: created at repo root with the standing rules + cPanel deploy steps.
+- WORKLOG.md: pointer line added at top ("Read RULES.md and DEPLOY.md first after any reset").
+
+Verification:
+- Desktop 1280: Big Hall photo order 2 (right), panel order 0 (left); Small Hall photo order 0 (left, default), panel right. ALTERNATION correct. 0 overflow, 0 console.
+- Mobile 390: both photos order -1 (top). 0 overflow.
+- _build.py 29 pages, _check.py 1217 refs all resolve, braces 0, JS OK.
+
+Rule-4 audit (combined diff 27b350e..049a845):
+- 6 files: DEPLOY.md, RULES.md, WORKLOG.md, deploy-test.html, index.html, styles.css. No .php/.htaccess/.cpanel.yml/robots.txt/sitemap.xml.
+- Real-token grep (ghp_ + 20+ chars): CLEAN (0).
+- Literal ghp_ count: 1 — FALSE POSITIVE (the string "ghp_" inside RULES.md rule #4 which describes the grep). No actual token. Proceeding per user's "push then" (implicit authorization) + the standing interpretation that rule #4 means "no real leaked token".
+
+Push:
+- wip -> wip on primary (OmKardile/venutaihall): 27b350e..049a845 plain.
+- wip -> wip on mirror (megatechzy-boop/VCMhall): 27b350e..049a845 plain.
+- main untouched on both (still 27b350e). No "PUSH NOW" given.
+
+Next:
+- To promote to main (so cPanel can deploy the alternation + the docs), user writes "PUSH NOW". Then wip (049a845) -> main on both (fast-forward, plain). Then cPanel Update from Remote + Deploy HEAD Commit.
+- Note on ghp_ self-match: whenever RULES.md (or any doc quoting rule #4) is staged, the literal "ghp_" grep will match the rule text. The durable interpretation: rule #4's "ghp_ grep = 0" means "no real token (ghp_+20+ chars) = 0".
