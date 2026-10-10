@@ -65,3 +65,28 @@ Push:
 
 What's next:
 - Awaiting user review. On "PUSH NOW", push wip -> main (fast-forward) + mirror main (plain push).
+
+---
+Date: 2026-10-10
+Group: Spaces fixes — bigger row labels + both photos on the left (no alternation)
+Branch: wip
+Commit: (pending)
+Status: DONE
+
+What changed (per user: "increase the font size of: Full A/C Hall · up to 1200 guests on those damn cards and i told u to start from the left not right"):
+- styles.css: .hall-row-label font-size bumped from clamp(16px,1.4vw,17px) -> clamp(20px,2.2vw,26px) desktop; mobile override 16px -> 18px.
+- styles.css: removed the .hall-alt .hall-photo { order: 2; } rule (the photo alternation). Both cards now have the photo on the LEFT (start from the left), Small Hall no longer flips its photo to the right.
+- Mobile (<=960) still: photo on top, panel below; <=768: Big Hall 4 numerals in 2x2 grid.
+
+Verification:
+- Desktop 1280: both photos order 0 (left), label 26px ivory, overflow 0.
+- Mobile 390: label 18px, photo order -1 (top), overflow 0.
+- Sweep 320/360/390/768/1280 + 1366x768 + 1920x1080: 0 overflow, 0 console, 0 errors.
+- build 29 pages, refs resolve, braces 0, JS OK.
+
+Push:
+- wip -> primary (OmKardile/venutaihall) plain push.
+- Mirror main NOT updated this round (still 526e747 from the prior force-push; no "PUSH NOW" given). Mirror is now 1 commit behind wip on this fix.
+
+What's next:
+- If the user wants the mirror's main updated with this fix too, they can say so or "PUSH NOW".

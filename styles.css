@@ -760,7 +760,6 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
   .hall-card:hover { box-shadow: var(--shadow-2); transform: translateY(-3px); }
-  .hall-alt .hall-photo { order: 2; }
   .hall-photo {
     position: relative;
     overflow: hidden;
@@ -790,7 +789,7 @@
   .hall-row:last-of-type { border-bottom: 1px solid rgba(154, 123, 69, 0.45); }
   .hall-row-label {
     font-family: var(--font-body);
-    font-size: clamp(16px, 1.4vw, 17px);
+    font-size: clamp(20px, 2.2vw, 26px);
     font-weight: 600;
     font-variant: small-caps;
     letter-spacing: 0.03em;
@@ -864,7 +863,7 @@
       border-radius: 4px;
     }
     .hall-row:last-of-type { border-bottom: none; }
-    .hall-row-label { max-width: none; font-size: 16px; }
+    .hall-row-label { max-width: none; font-size: 18px; }
     .hall-row-num { font-size: clamp(56px, 12vw, 72px); text-align: left; }
     .hall-row-num-featured { font-size: clamp(78px, 16vw, 96px); }
     .hall-row-featured { padding-inline: 12px; margin-inline: 0; }
