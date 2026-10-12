@@ -1834,14 +1834,14 @@
   }
   .footer-grid {
     display: grid;
-    grid-template-columns: 2.5fr 1fr 1fr 1fr;
-    gap: clamp(30px, 4vw, 56px);
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: clamp(20px, 3vw, 40px);
     padding-bottom: clamp(40px, 5vw, 64px);
   }
   .footer-brand {
     background: var(--ivory);
-    border-radius: 14px;
-    padding: clamp(20px, 2.2vw, 28px);
+    border-radius: 10px;
+    padding: clamp(12px, 1.4vw, 18px);
     align-self: start;
     text-align: center;
   }
@@ -2297,7 +2297,7 @@
   .brand-logo img { display: block; width: auto; height: 80px; }
   .brand-en { margin-top: 6px; font-family: var(--font-body); font-size: 11px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); text-align: center; line-height: 1.25; }
   .site-header .brand-en { white-space: nowrap; }
-  .footer-brand .brand-logo img { height: 72px; max-width: none; }
+  .footer-brand .brand-logo img { height: 52px; max-width: none; }
   .footer-brand .brand-en { font-size: 13px; margin-top: 6px; max-width: 240px; }
   .package-specs { border-top: 1px solid var(--line); }
   .pkg-group-head { margin: 30px 0 6px; font-family: var(--font-display); font-size: clamp(28px, 3.4vw, 40px); font-weight: 600; color: var(--ink); letter-spacing: -0.02em; }
