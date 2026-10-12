@@ -325,3 +325,23 @@ What changed:
 Verification: build 29 pages, braces 0, JS OK. Desktop 1280: form inline (403px col, 38px fields, close hidden, 0 overflow). Mobile 390: form hidden (display:none, position:fixed) -> click "Check Availability" opens modal (is-open, display:flex, body overflow hidden, card transform none) -> Esc closes. Sweep 320/390/768/1280 = 0 overflow.
 
 Push: main -> both repos, plain.
+
+---
+Date: 2026-10-12
+Group: check-availability single-form rewrite + footer-brand address removed (item 1 + footer tweak)
+Branch: main
+Status: DONE (item 1 + footer tweak), pushing. Items 2 (big/small hall) + 3 (highlights) deferred.
+
+DONE:
+- Footer: removed <p class="footer-brand-address"> from .footer-brand in index.html. Brand box = logo + English name only.
+- check-availability: replaced wizard_main (multi-step, ~6800 chars) with a single-form version (~3700 chars) in _build.py. Form: class="enquiry-form check-form" id="check-form", action="/booking.php", content in .hero-form-card. Fields: Name, Mobile, Email, Space (Big/Small), Event (10 opts), Date, Call Back, Event Time + optional Message (field-full). Honeypot + form-status. Reuses the existing postForm submit handler (class enquiry-form, no data-custom-submit). Added #check-form ?event= prefill in script.js.
+- Removed wizard CSS: the .steps-bar/.step-tab/.wizard/.wizard-pane/.wizard-grid/.wizard-rec/.wizard-actions/.wizard-note/.wizard-success block (base + media-query rules) — ~3000 chars + 6 responsive rules. 0 wizard CSS refs remain.
+- Added .check-form to the compact field selectors (.form-grid-2, .field input/select, .field label, .button, .form-status) so the check-availability form matches the hero form's compact styling.
+
+NOTE: The wizard JS block in script.js (const wizard = qs('#wizard'); if (wizard) { ... }) is dead — #wizard no longer exists, so `wizard` is null, `if (wizard)` is skipped. It's harmless guarded dead code. Left in place to avoid breaking the interleaved loadWebsitePopup logic. Flagged for surgical removal in a focused cleanup (the block is ~200 lines interleaved with other modules; removing blind risks syntax errors).
+
+DEFERRED: item 2 (big-hall/small-hall latest design) + item 3 (highlights sitewide + events reveal).
+
+Verification: build 29 pages, _check.py all refs resolve, braces 0, JS OK. check-availability: #check-form present (9 fields incl message), #wizard gone, steps-bar gone, action=/booking.php, ?event=Wedding prefill works, title correct, overflow 0. Sweep 320/390/768/1280/1366x768/1920x1080 = 0 overflow.
+
+Push: main -> both repos, plain.

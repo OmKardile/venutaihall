@@ -768,4 +768,17 @@
     if (mqMobile.matches && location.hash === '#hero-form') open();
     mqMobile.addEventListener('change', () => { if (!mqMobile.matches) close(); });
   }
+
+  const checkForm = qs('#check-form');
+  if (checkForm) {
+    const params = new URLSearchParams(location.search);
+    const prefillEvent = params.get('event');
+    if (prefillEvent) {
+      const select = qs('[name="event"]', checkForm);
+      if (select) {
+        const option = [...select.options].find((o) => o.value === prefillEvent || o.text === prefillEvent);
+        if (option) select.value = option.value || option.text;
+      }
+    }
+  }
 })();

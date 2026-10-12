@@ -232,3 +232,8 @@ A 6-group homepage redesign to a warmer, more editorial luxury feel with an Indi
 - Desktop: form compacted (padding 13-18px, fields 38px, font 13px, labels 11px, title 15-18px) + the hero-inner column narrowed to 1.3fr/0.7fr (form is ~0.7 of the row, was 0.9). Form is inline (no modal) on desktop.
 - Mobile (<=899px): the form is hidden from the inline flow; the hero "Check Availability" button opens it as a bottom-sheet modal (fixed overlay + dark scrim + ivory sheet that slides up). Close button (top-right) + Esc + outside-click close. Body scroll locked while open. Reduced-motion: no slide transition. Desktop click still scrolls to the inline form (no modal).
 - HTML: form content wrapped in .hero-form-card; added .hero-form-head with a close button (.hero-form-close, mobile-only).
+
+## 2026-10-12 — check-availability single form + footer-brand address removed
+
+- check-availability page: replaced the multi-step wizard with the SAME shared compact booking form (Name, Mobile, Email, Space Big/Small, Event, Date, Call Back, Event Time) + an optional Message field. Posts to /booking.php. Keeps the ?event= query prefill (preselects Event Type). Page-hero + breadcrumb + SEO unchanged. Wizard markup + CSS removed. (The wizard JS block in script.js is guarded by `if (wizard)` → #wizard is gone → skipped, harmless dead code; flagged for surgical removal in a focused cleanup.)
+- Footer-brand: removed the address <p> from the .footer-brand box (it stays in the Find Us map section + the Contact column's row-label was already removed). The brand box is now just logo + English name (smaller).

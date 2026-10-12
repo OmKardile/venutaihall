@@ -1498,108 +1498,31 @@ wizard_main = f"""
           {breadcrumb("Check Availability")}
           <p class="eyebrow">Check availability</p>
           <h1 id="wizard-title">Check your <em>date.</em></h1>
-          <p class="lede">Tell us what you're planning — event type, guest count and preferred date. Our team will contact you with availability and next steps. This is an enquiry; your date is confirmed only after venue confirmation.</p>
+          <p class="lede">Tell us what you're planning and our team will contact you with availability and next steps. This is an enquiry; your date is confirmed only after venue confirmation.</p>
         </div>
       </section>
 
       <section class="section" aria-label="Availability enquiry">
         <div class="shell-narrow">
-          <div class="steps-bar" role="tablist" aria-label="Enquiry steps">
-            <button type="button" class="step-tab" role="tab" data-step="1" aria-selected="true">
-              <span class="step-num">1</span> Event details
-            </button>
-            <button type="button" class="step-tab" role="tab" data-step="2" aria-selected="false">
-              <span class="step-num">2</span> Your contact
-            </button>
-          </div>
-
-          <form class="wizard enquiry-form" id="wizard" action="booking.php" method="post" novalidate data-custom-submit>
-            <div class="wizard-pane is-active" data-pane="1">
-              <h2>What are you planning?</h2>
-              <p class="lede">Start with the basics — we'll suggest a space based on your guest count.</p>
-              <div class="wizard-grid">
-                <div class="wizard-fields">
-                  <div class="field field-full">
-                    <label for="w-event">Event type <span class="req">*</span></label>
-                    <select id="w-event" name="event" required>{event_options("Select event type")}</select>
-                  </div>
-                  <div class="field">
-                    <label for="w-guests">Guest count <span class="req">*</span></label>
-                    <input id="w-guests" name="guests" type="number" inputmode="numeric" min="1" max="10000" placeholder="e.g. 700" required />
-                  </div>
-                  <div class="field">
-                    <label for="w-date">Preferred date <span class="req">*</span></label>
-                    <input id="w-date" name="date" type="date" required />
-                  </div>
-                  <div class="field field-full">
-                    <label for="w-hall">Preferred space <span class="hint">(optional)</span></label>
-                    <select id="w-hall" name="hall">
-                      {hall_options()}
-                    </select>
-                  </div>
-                </div>
-                <div class="wizard-rec">{icon("i-sparkle")}<span>Enter your guest count and we will suggest the best-fitting <strong>space</strong>.</span></div>
-              </div>
-              <div class="wizard-actions">
-                <p class="wizard-note">Step 1 of 2 · This is an enquiry, not a booking.</p>
-                <button class="button button-wine" type="button" data-wizard-next>Continue {icon("i-arrow")}</button>
-              </div>
-            </div>
-
-            <div class="wizard-pane" data-pane="2">
-              <h2>How can we reach you?</h2>
-              <p class="lede">Our team will contact you with availability and next steps for your preferred date.</p>
-              <div class="wizard-grid">
-                <div class="wizard-fields">
-                  <div class="field">
-                    <label for="w-name">Your name <span class="req">*</span></label>
-                    <input id="w-name" name="name" autocomplete="name" required />
-                  </div>
-                  <div class="field">
-                    <label for="w-phone">Phone <span class="req">*</span></label>
-                    <input id="w-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() -]{{10,18}}" required />
-                  </div>
-                  <div class="field">
-                    <label for="w-email">Email <span class="hint">(optional)</span></label>
-                    <input id="w-email" name="email" type="email" autocomplete="email" />
-                  </div>
-                  <div class="field">
-                    <label for="w-callback">Preferred callback time <span class="hint">(optional)</span></label>
-                    <select id="w-callback" name="callback_time">
-                      <option value="">Any time</option>
-                      <option value="morning">Morning (9 AM – 12 PM)</option>
-                      <option value="afternoon">Afternoon (12 PM – 5 PM)</option>
-                      <option value="evening">Evening (5 PM – 10 PM)</option>
-                    </select>
-                  </div>
-                  <div class="field field-full">
-                    <label for="w-message">Message <span class="hint">(optional)</span></label>
-                    <textarea id="w-message" name="message" rows="4" maxlength="2000" placeholder="Questions, layout ideas, anything else…"></textarea>
-                  </div>
-                </div>
+          <form class="enquiry-form check-form" id="check-form" action="/booking.php" method="post" novalidate aria-labelledby="check-form-title">
+            <div class="hero-form-card">
+              <div class="hero-form-head"><p class="hero-form-title" id="check-form-title">Check your date</p></div>
+              <div class="form-grid form-grid-2">
+                <div class="field"><label for="cf-name">Name <span class="req">*</span></label><input id="cf-name" name="name" autocomplete="name" required /></div>
+                <div class="field"><label for="cf-phone">Mobile <span class="req">*</span></label><input id="cf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() -]{{10,18}}" required /></div>
+                <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" /></div>
+                <div class="field"><label for="cf-hall">Space <span class="req">*</span></label><select id="cf-hall" name="hall" required><option value="">Choose…</option><option value="big">Big Hall — up to 1200</option><option value="small">Small Hall — up to 350</option></select></div>
+                <div class="field"><label for="cf-event">Event <span class="req">*</span></label><select id="cf-event" name="event" required><option value="">Select…</option><option>Wedding</option><option>Engagement</option><option>Reception</option><option>Birthday</option><option>Naming Ceremony</option><option>Family Function</option><option>Corporate Event</option><option>Social Gathering</option><option>Venue Visit</option><option>Other Event</option></select></div>
+                <div class="field"><label for="cf-date">Date <span class="req">*</span></label><input id="cf-date" name="date" type="date" required /></div>
+                <div class="field"><label for="cf-cb">Call back</label><select id="cf-cb" name="call_back_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
+                <div class="field"><label for="cf-et">Event time</label><select id="cf-et" name="event_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Night</option></select></div>
+                <div class="field field-full"><label for="cf-message">Message <span class="hint">(optional)</span></label><textarea id="cf-message" name="message" rows="3" maxlength="2000" placeholder="Questions, layout ideas, anything else…"></textarea></div>
               </div>
               <label class="booking-trap" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label>
-              <div class="wizard-actions">
-                <button class="button button-ghost" type="button" data-wizard-back>{icon("i-arrow")} Back</button>
-                <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-                  <p class="wizard-note">Step 2 of 2 · Your date is confirmed only after venue confirmation.</p>
-                  <button class="button button-wine" type="submit">Send Enquiry {icon("i-arrow")}</button>
-                </div>
-              </div>
+              <button class="button button-wine" type="submit">Send Enquiry {icon("i-arrow")}</button>
               <p class="form-status" role="status" aria-live="polite"></p>
             </div>
           </form>
-
-          <div class="wizard-success" id="wizard-success" hidden>
-            <span class="success-icon">{icon("i-check")}</span>
-            <h2>Thank you — your enquiry is in.</h2>
-            <p class="success-sub">Our team will contact you shortly with availability and next steps. This is an enquiry; your date is confirmed only after venue confirmation.</p>
-            <div class="success-actions">
-              <a class="button button-wine" href="spaces">Explore the Spaces {icon("i-arrow")}</a>
-              <a class="button button-ghost" href="visit">Schedule a Visit</a>
-            </div>
-            <p class="success-note">Need us sooner? Call <a href="tel:+919359567494" style="text-decoration:underline;text-underline-offset:3px">9359567494</a>.</p>
-          </div>
         </div>
       </section>
 """
