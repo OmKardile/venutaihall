@@ -743,12 +743,14 @@
     const open = () => {
       lastFocused = document.activeElement;
       heroForm.classList.add('is-open');
+      document.body.classList.add('hero-form-open');
       document.body.style.overflow = 'hidden';
       const first = qs('input, select', heroForm);
       setTimeout(() => first?.focus(), reduce ? 0 : 320);
     };
     const close = () => {
       heroForm.classList.remove('is-open');
+      document.body.classList.remove('hero-form-open');
       document.body.style.overflow = '';
       if (lastFocused && lastFocused.focus) lastFocused.focus();
     };
@@ -757,6 +759,14 @@
         if (mqMobile.matches) { e.preventDefault(); open(); }
       });
     }
+    qsa('[data-open-hero-form]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        if (!heroForm) return;
+        e.preventDefault();
+        if (mqMobile.matches) open();
+        else heroForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
     closeBtn?.addEventListener('click', close);
     heroForm.addEventListener('click', (e) => {
       if (mqMobile.matches && e.target === heroForm) close();

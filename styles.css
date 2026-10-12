@@ -515,6 +515,7 @@
   }
   @media (max-width: 560px) { .form-grid-2 { grid-template-columns: 1fr; } }
   @media (prefers-reduced-motion: reduce) { .hero-form-card { transition: none; transform: none; } .hero-form::before { transition: none; } }
+  body.hero-form-open .bottom-bar, body.hero-form-open .float-actions { display: none !important; }
   .hero h1 {
     color: var(--ivory);
     font-size: clamp(40px, 6vw, 76px);
