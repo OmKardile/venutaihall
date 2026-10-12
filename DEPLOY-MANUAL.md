@@ -42,3 +42,28 @@ A deploy only adds/overwrites; it never deletes. If any of these were ever deplo
 ## After the hand steps
 1. cPanel Git Version Control → **Update from Remote**, then **Deploy HEAD Commit** (copies the updated pages/CSS/JS/assets to `public_html`).
 2. Test: hard-refresh venutaihall.com on a phone; open `/big-hall` (extensionless); submit one booking enquiry and confirm `enquiries.log` records `callback_time` + `event_time`.
+
+## (d) Call picker (front-end only — no server step)
+The call picker is pure front-end (HTML/CSS/JS already in the repo, deployed by `.cpanel.yml` with the other `*.html` + `script.js` + `styles.css`). No hand step needed — a normal cPanel "Update from Remote" + "Deploy HEAD Commit" ships it. Every Call button (header "Call us", hero, drawer, "Call the venue", mobile sticky bar, floating phone) opens the 3-contact dialog. No-JS fallback: each trigger is still a `tel:+919359567494` link.
+
+## (e) Backend patches — `server-patch/booking.php` and `server-patch/booking-store.php`
+These are PATCHED COPIES of the server's current files (not the repo's stub). They are NOT deployed by cPanel — you upload them by hand to `/home/venutaihall/public_html/`, replacing the existing `booking.php` and `booking-store.php`. **Back up the existing files first.**
+
+What they change (minimum, backwards-compatible):
+- `booking.php`: reads `call_back_time` (also accepts the old `callback_time` name) and `event_time` from POST; whitelists values (call_back_time ∈ Morning/Afternoon/Evening; event_time ∈ Morning/Afternoon/Evening/Night — invalid values blanked, not rejected). `guests` was already optional (no change). The 201 `{message, reference}` response is unchanged.
+- `booking-store.php`: `booking_send_email()` adds "Call back:" and "Event time:" lines to the email body (after Message) when present.
+- Storage: the new fields are appended to the **message** column (`"Call back: X. Event time: Y."`) on INSERT — NO schema change, NO ALTER TABLE. They are recoverable from the bookings table's message field. (If you later want them as separate DB columns, run: `ALTER TABLE bookings ADD COLUMN call_back_time TEXT, ADD COLUMN event_time TEXT;` — optional, not required for the patched PHP to work.)
+- Backwards compatible: the OLD form (with `guests`, without `call_back_time`/`event_time`) still works — guests stays optional, the new fields default to empty.
+
+### ORDER (important)
+1. **Upload the patched PHP first** (`server-patch/booking.php` → `public_html/booking.php`, `server-patch/booking-store.php` → `public_html/booking-store.php`). Back up the originals first.
+2. **Then deploy the front-end** (cPanel Update from Remote + Deploy HEAD Commit) — so the new form posts `call_back_time` + `event_time` to a backend that already accepts them.
+
+Exact diff of the patched booking.php vs the server's current booking.php:
+- In the `$row = [...]` array, after `'message' => ...`: add `'call_back_time' => trim((string) ($_POST['call_back_time'] ?? $_POST['callback_time'] ?? '')),` and `'event_time' => trim((string) ($_POST['event_time'] ?? '')),`.
+- After the `$row` array, before the `$events = [...]` line: add the whitelist block (`$cb_ok = ['Morning','Afternoon','Evening']; $et_ok = ['Morning','Afternoon','Evening','Night'];` + the two `if (...!in_array...) $row[...] = '';` guards).
+- Before the `$db->beginTransaction()` call: add the `$extras`/`$stored_message` block (append "Call back: X. Event time: Y." to the message).
+- In the `$insert->execute([...])` call: use `$stored_message` instead of `$row['message']` for the message parameter.
+
+Exact diff of the patched booking-store.php vs the server's current booking-store.php:
+- In `booking_send_email()`, replace the `$body = "..." . implode("\n", [ ... ])` static array with a `$lines = [...];` array, then conditionally append `'Call back: ' . $row['call_back_time']` and `'Event time: ' . $row['event_time']` if non-empty, then `$body = "..." . implode("\n", $lines) . ...`. Everything else unchanged.

@@ -162,7 +162,7 @@ def cta_band(title_html):
         </div>
         <div class="cta-band-actions reveal reveal-delay-1">
           <a class="button button-light button-lg" href="check-availability.html">Check Availability <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a>
-          <a class="button button-ghost-light" href="tel:+919359567494"><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg> Talk to the Team</a>
+          <a class="button button-ghost-light" href="tel:+919359567494" data-call-picker><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg> Talk to the Team</a>
         </div>
       </div>
     </section>"""
@@ -583,7 +583,7 @@ def event_main(slug, e):
           <p class="lede">{e["lead"]}</p>
           <div class="hero-ctas">
             <a class="button button-light button-lg" href="check-availability.html?event={e["query"]}">{e["cta"]} {icon("i-arrow")}</a>
-            <a class="button button-ghost-light" href="tel:+919359567494">{icon("i-phone")} Talk to the Team</a>
+            <a class="button button-ghost-light" href="tel:+919359567494" data-call-picker>{icon("i-phone")} Talk to the Team</a>
           </div>
         </div>
       </section>
@@ -686,7 +686,7 @@ def space_main(slug, s):
           <div class="space-hero-specs">{hero_specs}</div>
           <div class="hero-ctas">
             <a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a>
-            <a class="button button-ghost-light" href="tel:+919359567494">{icon("i-phone")} Talk to the Team</a>
+            <a class="button button-ghost-light" href="tel:+919359567494" data-call-picker>{icon("i-phone")} Talk to the Team</a>
           </div>
         </div>
       </section>
@@ -1355,7 +1355,7 @@ contact_main = f"""
           <h1 id="contact-title">Let’s plan your <em>special event</em></h1>
           <p class="lede">We're here to help you create memorable moments. Get in touch for bookings, queries or a venue visit.</p>
           <div class="hero-ctas">
-            <a class="button button-light button-lg" href="tel:+919359567494">{icon("i-phone")} Call the Venue</a>
+            <a class="button button-light button-lg" href="tel:+919359567494" data-call-picker>{icon("i-phone")} Call the Venue</a>
             <a class="button button-ghost-light" href="https://wa.me/919359567494" target="_blank" rel="noopener noreferrer">{icon("i-whatsapp")} WhatsApp</a>
             <a class="button button-ghost-light" href="#enquire">Send an Enquiry</a>
           </div>
@@ -1407,7 +1407,7 @@ contact_main = f"""
               </ul>
               <div class="location-actions">
                 <a class="button button-wine" href="https://www.google.com/maps/search/?api=1&amp;query=Yashwantrao+Chavan+Smarak+Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">Get Directions {icon("i-arrow")}</a>
-                <a class="button button-ghost" href="tel:+919359567494">{icon("i-phone")} Call the Venue</a>
+                <a class="button button-ghost" href="tel:+919359567494" data-call-picker>{icon("i-phone")} Call the Venue</a>
                 <a class="button button-ghost" href="visit.html">Schedule a Visit</a>
               </div>
             </div>
@@ -1428,7 +1428,7 @@ visit_main = f"""
           <p class="lede">Visit the venue, explore the spaces and talk through your requirements with our team. Working hours: Mon – Sun, 9:00 AM – 10:00 PM.</p>
           <div class="hero-ctas">
             <a class="button button-light button-lg" href="check-availability.html">Request a Visit {icon("i-arrow")}</a>
-            <a class="button button-ghost-light" href="tel:+919359567494">{icon("i-phone")} Call the Venue</a>
+            <a class="button button-ghost-light" href="tel:+919359567494" data-call-picker>{icon("i-phone")} Call the Venue</a>
           </div>
         </div>
       </section>
@@ -1480,7 +1480,7 @@ visit_main = f"""
               </ul>
               <div class="location-actions">
                 <a class="button button-wine" href="https://www.google.com/maps/search/?api=1&amp;query=Yashwantrao+Chavan+Smarak+Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">Get Directions {icon("i-arrow")}</a>
-                <a class="button button-ghost" href="tel:+919359567494">{icon("i-phone")} Call the Venue</a>
+                <a class="button button-ghost" href="tel:+919359567494" data-call-picker>{icon("i-phone")} Call the Venue</a>
               </div>
             </div>
           </div>

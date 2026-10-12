@@ -23,7 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Serif+Devanagari:wght@500;600&display=swap" rel="stylesheet" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="script.js?v=724486d8" defer></script>
+  <script src="script.js?v=690aed87" defer></script>
 </head>
 <body>
   
@@ -90,7 +90,7 @@
         <a href="index.html#footer-map">Location</a>
       </nav>
       <div class="header-actions">
-        <a class="header-call" href="tel:+919359567494"><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg><span>9359567494</span></a>
+        <a class="header-call" href="tel:+919359567494" data-call-picker><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg><span>Call us</span></a>
         <a class="button button-wine header-cta" href="check-availability.html">Check Availability</a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open menu">
           <svg class="icon icon-lg" aria-hidden="true"><use href="#i-menu" /></svg>
@@ -116,7 +116,7 @@
       </nav>
       <div class="nav-drawer-actions">
         <a class="button button-wine button-block" href="check-availability.html">Check Availability</a>
-        <a class="button button-ghost button-block" href="tel:+919359567494"><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg> Call the Venue</a>
+        <a class="button button-ghost button-block" href="tel:+919359567494" data-call-picker><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg> Call the Venue</a>
         <a class="button button-ghost button-block" href="https://wa.me/919359567494" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp" /></svg> WhatsApp</a>
       </div>
       <p class="nav-drawer-meta">Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran, Nigdi, Pune – 411044<br />Mon – Sun: 9:00 AM – 10:00 PM</p>
@@ -319,7 +319,7 @@
     </div>
   </footer>
   <div class="float-actions" aria-label="Quick contact">
-    <a href="tel:+919359567494" data-label="Call the venue" aria-label="Call the venue"><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg></a>
+    <a href="tel:+919359567494" data-call-picker data-label="Call the venue" aria-label="Call the venue"><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg></a>
     <a href="https://wa.me/919359567494" target="_blank" rel="noopener noreferrer" data-label="WhatsApp" aria-label="WhatsApp the venue"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp" /></svg></a>
     <a href="check-availability.html" data-label="Check availability" aria-label="Check availability"><svg class="icon" aria-hidden="true"><use href="#i-calendar" /></svg></a>
   </div>
@@ -331,7 +331,7 @@
       <svg class="icon" aria-hidden="true"><use href="#i-whatsapp" /></svg>
       WhatsApp
     </a>
-    <a href="tel:+919359567494">
+    <a href="tel:+919359567494" data-call-picker>
       <svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg>
       Call
     </a>
@@ -355,6 +355,19 @@
       <button type="button" id="lightbox-prev" aria-label="Previous photo">‹</button>
       <span class="lightbox-count" id="lightbox-count" aria-live="polite"></span>
       <button type="button" id="lightbox-next" aria-label="Next photo">›</button>
+    </div>
+  </div>
+  <div class="call-picker" id="call-picker" role="dialog" aria-modal="true" aria-labelledby="call-picker-title" hidden>
+    <div class="call-picker-card">
+      <div class="call-picker-head">
+        <h2 id="call-picker-title" class="call-picker-title">Call the venue</h2>
+        <button type="button" class="call-picker-close" data-call-picker-close aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-close" /></svg></button>
+      </div>
+      <ul class="call-picker-list">
+        <li><a href="tel:+919359567494" class="call-picker-item"><span class="call-picker-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg></span><span class="call-picker-text"><span class="call-picker-name">Jadhav Kedar</span><span class="call-picker-number">9359567494</span></span></a></li>
+        <li><a href="tel:+919834005348" class="call-picker-item"><span class="call-picker-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg></span><span class="call-picker-text"><span class="call-picker-name">Jadhav Prashant</span><span class="call-picker-number">9834005348</span></span></a></li>
+        <li><a href="tel:+919527926303" class="call-picker-item"><span class="call-picker-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg></span><span class="call-picker-text"><span class="call-picker-name">Shinde Vikas</span><span class="call-picker-number">9527926303</span></span></a></li>
+      </ul>
     </div>
   </div>
 </body>

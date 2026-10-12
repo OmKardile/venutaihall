@@ -245,3 +245,32 @@ DEFERRED (substantial sub-systems, need focused follow-up turns):
 Verification: build 29 pages, _check.py 1214 refs all resolve, braces 0, JS OK. Overflow 0 at 320/390/768/1280. Footer map + iframe present, logo 72px, label nowrap, visit-cta + cta-band removed, Location links -> #footer-map.
 
 Push: main -> both repos (primary + mirror), plain, no force.
+
+---
+Date: 2026-10-12
+Group: Hero — stop bg Ken Burns movement, add one-time entrance reveal
+Branch: main
+Status: DONE, pushing to both repos.
+
+What changed:
+- styles.css: removed .hero-media img { animation: hero-kenburns ... } + the @keyframes hero-kenburns. Image is now static (transform: scale(1.04), no animation).
+- Added @keyframes hero-enter (opacity 0 -> 1, translateY 18px -> none) over 0.8s cubic-bezier(.2,.7,.2,1). Applied staggered to .hero h1 (0s), .hero-ctas (0.15s), .hero-place (0.3s), fill both.
+- prefers-reduced-motion: .hero h1/ctas/place animation: none, opacity 1, transform none (entrance disabled, copy visible immediately).
+
+Verification: braces 0. Ken Burns gone (0 refs). hero-enter present (4). Desktop 1280: h1/ctas anim = hero-enter, img anim = none, img transform = scale(1.04) static, overflow 0. Sweep 320/390/768/1280 = 0 overflow. Reduced-motion: h1 animationName = none. Rule-4: only styles.css changed, no forbidden files, token regex CLEAN.
+
+---
+Date: 2026-10-12
+Group: Call picker + backend patches (call_back_time/event_time)
+Branch: main
+Status: DONE (call picker + backend), committing + pushing. Shared booking form (item 2) is the next group.
+
+DONE:
+- Call picker: dialog HTML (3 contacts) in index.html (extracted as shared chrome by _build.py via the lightbox-range extraction). CSS (.call-picker bottom-sheet mobile / centered desktop, reduced-motion). JS module in script.js (open on [data-call-picker] click, Esc + outside-click close, focus trap, body scroll lock, restore focus). Wired 4 call buttons in index.html (header-call, drawer, float-actions, bottom-bar) + 7 in _build.py templates. Header phone -> icon + "Call us". CONTACT_DETAILS footer links untouched (direct tel:).
+- Backend: server-patch/booking.php (server's booking.php + call_back_time/event_time read + whitelist + append-to-message storage) + server-patch/booking-store.php (email body gets Call back/Event time lines). Not deployed by cPanel (user uploads by hand). DEPLOY-MANUAL.md updated with the diff + order (upload PHP first, then deploy front-end).
+
+Verification: build 29 pages, braces 0, JS OK. Call picker QA @1280: 4 triggers, header "Call us", opens on click (is-open, 3 contacts, body overflow hidden), Esc closes. CONTACT_DETAILS untouched.
+
+DEFERRED (next group): shared booking form (hero right-side + check-availability, the new field set, compact 2-col, 100svh fit).
+
+Push: main -> both repos, plain.

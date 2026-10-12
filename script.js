@@ -696,4 +696,40 @@
       if (touring && ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', ' ', 'Home', 'End', 'Escape'].includes(e.key)) stopTour();
     });
   }
+
+  const callPicker = qs('#call-picker');
+  if (callPicker) {
+    const triggers = qsa('[data-call-picker]');
+    let lastFocused = null;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const focusable = () => qsa('a[href], button:not([disabled])', callPicker).filter((el) => el.offsetParent !== null);
+    const open = (trigger) => {
+      lastFocused = trigger;
+      callPicker.hidden = false;
+      requestAnimationFrame(() => callPicker.classList.add('is-open'));
+      document.body.style.overflow = 'hidden';
+      const f = focusable();
+      if (f.length) f[0].focus();
+    };
+    const close = () => {
+      callPicker.classList.remove('is-open');
+      document.body.style.overflow = '';
+      const restore = () => { callPicker.hidden = true; if (lastFocused && lastFocused.focus) lastFocused.focus(); };
+      if (reduce) restore(); else setTimeout(restore, 260);
+    };
+    triggers.forEach((t) => t.addEventListener('click', (e) => { e.preventDefault(); open(t); }));
+    qsa('[data-call-picker-close]', callPicker).forEach((b) => b.addEventListener('click', close));
+    callPicker.addEventListener('click', (e) => { if (e.target === callPicker) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!callPicker.classList.contains('is-open')) return;
+      if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+      if (e.key === 'Tab') {
+        const f = focusable();
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
 })();
