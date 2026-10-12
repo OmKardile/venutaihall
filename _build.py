@@ -391,7 +391,7 @@ EVENTS = {
         items=["Number of guests and seating style", "Program or speaker schedule", "Refreshments and dining", "Parking and accessibility needs"],
         faq_h2="Planning a <em>social gathering</em>?",
         faqs=[("Can the space fit different group sizes?", "The venue lists a Big Hall and Small Hall. Share your guest count to discuss a suitable space."),
-              ("Where is the venue?", "It is listed at Sector 27A, Pradhikaran, Nigdi, Pune 411044. The Contact page has directions.")],
+              ("Where is the venue?", "It is listed at Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran, Nigdi, Pune 411044. The Contact page has directions.")],
         final="Let’s plan your social gathering",
     ),
 }
@@ -1105,7 +1105,7 @@ GALLERY_TILES = [
     plain_tile("dining", "dining-hall.jpg", "Dining Hall — round-table seating", "Dining Hall", "400 at a time", "Dining hall with round tables"),
     plain_tile("dining", "vip-dining.jpg", "VIP A/C Dining — private dining room", "VIP Dining", "50 at a time", "VIP dining room with gold tablecloths"),
     plain_tile("guest-rooms", "guest-room.jpg", "A/C Guest Room", "Guest Rooms", "Up to 8 rooms", "Guest bedroom with large bed"),
-    plain_tile("facilities", "venue-exterior.jpg", "Venue exterior — Sector 27A, Pradhikaran", "Exterior", "Nigdi, Pune", "Venue exterior"),
+    plain_tile("facilities", "venue-exterior.jpg", "Venue exterior — Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran", "Exterior", "Nigdi, Pune", "Venue exterior"),
     crop_tile("facilities", "Lobby & Reception", "34.328%", "54.721%", "427.362%", "744.720%", "Lobby"),
     crop_tile("event-setups", "Stage Setup", "66.071%", "54.721%", "431.579%", "744.720%", "Stage Setup"),
     crop_tile("event-setups", "Catering Setup", "97.815%", "54.721%", "430.164%", "744.720%", "Catering Setup"),
@@ -1242,13 +1242,15 @@ about_main = f"""
         </div>
       </section>
 
+      <p class="about-credit shell reveal" style="text-align:center;font-size:13px;color:var(--ink-3);margin-top:8px;margin-bottom:0">Designed &amp; developed by <a href="https://omkardile.is-a.dev/" rel="author" style="color:var(--brass-deep);font-weight:600">Omkar Kardile</a></p>
+
       {cta_band("Let’s make your <em>next event special</em>")}
 """
 
 CONTACT_DETAILS = [
     ("i-phone", "Call", '<a href="tel:+919359567494">Jadhav Kedar — 9359567494</a><br /><a href="tel:+919834005348">Jadhav Prashant — 9834005348</a><br /><a href="tel:+919527926303">Shinde Vikas — 9527926303</a>'),
     ("i-mail", "Online", "venutaihall.com"),
-    ("i-pin", "Address", "Sector 27A, Pradhikaran,<br />Nigdi, Pune – 411044"),
+    ("i-pin", "Address", "Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran,<br />Nigdi, Pune – 411044"),
     ("i-clock", "Working hours", "Mon – Sun: 9:00 AM – 10:00 PM<br /><small>(Open for bookings &amp; venue visits)</small>"),
     ("i-whatsapp", "WhatsApp", '<a href="https://wa.me/919359567494" target="_blank" rel="noopener noreferrer">Message the venue</a>'),
 ]
@@ -1386,15 +1388,15 @@ contact_main = f"""
           <div class="location-grid">
             <div class="location-map reveal">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.282966385947!2d73.77019107492065!3d18.651293965168612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b92ff63cd819%3A0x8714164503e985f9!2sLate%20Venutai%20Chavan%20Multipurpose%20Hall!5e0!3m2!1sen!2sin!4v1791555939716!5m2!1sen!2sin" title="Late Venutai Chavan Multipurpose Hall location map" style="border:0; width:100%; height:100%;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-              <a class="map-overlay" href="https://www.google.com/maps/search/?api=1&amp;query=Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">
-                <span><strong>{SITE_NAME}</strong><span>Sector 27A, Pradhikaran, Nigdi, Pune – 411044</span></span>
+              <a class="map-overlay" href="https://www.google.com/maps/search/?api=1&amp;query=Yashwantrao+Chavan+Smarak+Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">
+                <span><strong>{SITE_NAME}</strong><span>Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran, Nigdi, Pune – 411044</span></span>
                 <span class="chip">Open in Google Maps {icon("i-arrow")}</span>
               </a>
             </div>
             <div class="location-panel reveal reveal-delay-1">
               <address class="address-block">
                 <strong>{SITE_NAME}</strong>
-                Sector 27A, Pradhikaran,<br />
+                Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran,<br />
                 Nigdi, Pune – 411044
               </address>
               <ul class="nearby-list">
@@ -1404,7 +1406,7 @@ contact_main = f"""
                 <li>{icon("i-car")} On-site parking available</li>
               </ul>
               <div class="location-actions">
-                <a class="button button-wine" href="https://www.google.com/maps/search/?api=1&amp;query=Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">Get Directions {icon("i-arrow")}</a>
+                <a class="button button-wine" href="https://www.google.com/maps/search/?api=1&amp;query=Yashwantrao+Chavan+Smarak+Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">Get Directions {icon("i-arrow")}</a>
                 <a class="button button-ghost" href="tel:+919359567494">{icon("i-phone")} Call the Venue</a>
                 <a class="button button-ghost" href="visit.html">Schedule a Visit</a>
               </div>
@@ -1446,7 +1448,7 @@ visit_main = f"""
             </ul>
             <div class="detail-stack" style="margin-top:36px">
               {detail_item("i-clock", "Working hours", "Mon – Sun: 9:00 AM – 10:00 PM")}
-              {detail_item("i-pin", "Address", "Sector 27A, Pradhikaran,<br />Nigdi, Pune – 411044")}
+              {detail_item("i-pin", "Address", "Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran,<br />Nigdi, Pune – 411044")}
               {detail_item("i-phone", "Call to schedule", '<a href="tel:+919359567494">Jadhav Kedar — 9359567494</a><br /><a href="tel:+919834005348">Jadhav Prashant — 9834005348</a>')}
             </div>
           </div>
@@ -1459,15 +1461,15 @@ visit_main = f"""
           <div class="location-grid">
             <div class="location-map reveal">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.282966385947!2d73.77019107492065!3d18.651293965168612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b92ff63cd819%3A0x8714164503e985f9!2sLate%20Venutai%20Chavan%20Multipurpose%20Hall!5e0!3m2!1sen!2sin!4v1791555939716!5m2!1sen!2sin" title="Late Venutai Chavan Multipurpose Hall location map" style="border:0; width:100%; height:100%;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-              <a class="map-overlay" href="https://www.google.com/maps/search/?api=1&amp;query=Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">
-                <span><strong>{SITE_NAME}</strong><span>Sector 27A, Pradhikaran, Nigdi, Pune – 411044</span></span>
+              <a class="map-overlay" href="https://www.google.com/maps/search/?api=1&amp;query=Yashwantrao+Chavan+Smarak+Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">
+                <span><strong>{SITE_NAME}</strong><span>Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran, Nigdi, Pune – 411044</span></span>
                 <span class="chip">Open in Google Maps {icon("i-arrow")}</span>
               </a>
             </div>
             <div class="location-panel reveal reveal-delay-1">
               <address class="address-block">
                 <strong>{SITE_NAME}</strong>
-                Sector 27A, Pradhikaran,<br />
+                Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran,<br />
                 Nigdi, Pune – 411044
               </address>
               <ul class="nearby-list">
@@ -1477,7 +1479,7 @@ visit_main = f"""
                 <li>{icon("i-car")} On-site parking available</li>
               </ul>
               <div class="location-actions">
-                <a class="button button-wine" href="https://www.google.com/maps/search/?api=1&amp;query=Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">Get Directions {icon("i-arrow")}</a>
+                <a class="button button-wine" href="https://www.google.com/maps/search/?api=1&amp;query=Yashwantrao+Chavan+Smarak+Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">Get Directions {icon("i-arrow")}</a>
                 <a class="button button-ghost" href="tel:+919359567494">{icon("i-phone")} Call the Venue</a>
               </div>
             </div>
@@ -1641,7 +1643,7 @@ privacy_body = """
             <h2>Your choices</h2>
             <p>You can choose not to provide certain details, though that may limit how we can respond. To ask what information we hold about your enquiry, or to request a correction, contact the venue team on 9359567494.</p>
             <h2>Contact</h2>
-            <p>Late Venutai Chavan Multipurpose Hall, Sector 27A, Pradhikaran, Nigdi, Pune – 411044. Phone: 9359567494.</p>
+            <p>Late Venutai Chavan Multipurpose Hall, Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran, Nigdi, Pune – 411044. Phone: 9359567494.</p>
             <p class="hint" style="margin-top:28px;color:var(--ink-3);font-size:14px">Last updated: September 2025.</p>
 """
 
@@ -1665,7 +1667,7 @@ terms_body = """
             <h2>Changes</h2>
             <p>We may update these terms. Continued use of the site after changes means you accept the updated terms.</p>
             <h2>Contact</h2>
-            <p>Late Venutai Chavan Multipurpose Hall, Sector 27A, Pradhikaran, Nigdi, Pune – 411044. Phone: 9359567494.</p>
+            <p>Late Venutai Chavan Multipurpose Hall, Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran, Nigdi, Pune – 411044. Phone: 9359567494.</p>
             <p class="hint" style="margin-top:28px;color:var(--ink-3);font-size:14px">Last updated: September 2025.</p>
 """
 our_spaces_redirect = """<!doctype html>
@@ -1717,13 +1719,21 @@ if ($name === '' || $phone === '' || !preg_match('/[0-9]{10}/', $phone)) {
     out(422, ['error' => 'Please provide your name and a valid phone number.']);
 }
 
-$allowed = ['event', 'guests', 'date', 'hall', 'email', 'message', 'callback_time', 'website'];
+$allowed = ['event', 'guests', 'date', 'hall', 'email', 'message', 'callback_time', 'event_time', 'website'];
 $data = ['name' => $name, 'phone' => $phone, 'received' => gmdate('c')];
 foreach ($allowed as $key) {
     if ($key === 'website') continue;
     $data[$key] = $field($key, $key === 'message' ? 4000 : 200);
 }
 
+$cb_ok = ['Morning', 'Afternoon', 'Evening'];
+$et_ok = ['Morning', 'Afternoon', 'Evening', 'Night'];
+if (isset($data['callback_time']) && $data['callback_time'] !== '' && !in_array($data['callback_time'], $cb_ok, true)) {
+    $data['callback_time'] = '';
+}
+if (isset($data['event_time']) && $data['event_time'] !== '' && !in_array($data['event_time'], $et_ok, true)) {
+    $data['event_time'] = '';
+}
 $line = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . PHP_EOL;
 $ok = @file_put_contents(__DIR__ . '/enquiries.log', $line, FILE_APPEND | LOCK_EX);
 
@@ -1895,7 +1905,7 @@ big_hall_main = f"""
           {breadcrumb("Big Hall")}
           <p class="eyebrow">Late Venutai Chavan Multipurpose Hall</p>
           <h1 id="space-title">Big Hall <span class="heading-mr" lang="mr">(बिग हॉल)</span></h1>
-          <p class="lede">Sector 27A, Pradhikaran, Nigdi, Pune – 411044</p>
+          <p class="lede">Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran, Nigdi, Pune – 411044</p>
           <div class="hero-ctas"><a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a><a class="button button-ghost-light" href="gallery.html">View Gallery</a></div>
         </div>
       </section>
@@ -1922,7 +1932,7 @@ small_hall_main = f"""
           {breadcrumb("Small Hall")}
           <p class="eyebrow">Late Venutai Chavan Multipurpose Hall</p>
           <h1 id="space-title">Small Hall <span class="heading-mr" lang="mr">(स्मॉल हॉल)</span></h1>
-          <p class="lede">Sector 27A, Pradhikaran, Nigdi, Pune – 411044</p>
+          <p class="lede">Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran, Nigdi, Pune – 411044</p>
           <div class="hero-ctas"><a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a><a class="button button-ghost-light" href="gallery.html">View Gallery</a></div>
         </div>
       </section>

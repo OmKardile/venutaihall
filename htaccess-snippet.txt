@@ -1,0 +1,26 @@
+# Clean URLs (extensionless) — paste this block at the TOP of the server's existing .htaccess.
+# Back up .htaccess first (cPanel File Manager -> right-click -> Compress, or download a copy).
+#
+# What this does:
+#   (a) 301 redirect  /index.html  ->  /
+#   (b) 301 redirect  /page.html  ->  /page   (for any real .html file; skips directories and /admin/)
+#   (c) internal rewrite  /page  ->  /page.html  (only when page.html exists and /page is not itself a dir or file)
+# booking.php and all other .php files are unaffected (they are real files; the rewrite only appends .html).
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # (a) /index.html -> /
+  RewriteRule ^index\.html$ / [R=301,L]
+
+  # (b) /page.html -> /page  (only for existing .html files; skip directories and /admin/)
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteCond %{REQUEST_URI} !^/admin/ [NC]
+  RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+  # (c) /page -> /page.html  (only when not a real dir/file and page.html exists)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+</IfModule>

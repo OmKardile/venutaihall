@@ -218,3 +218,30 @@ Push:
 - main -> main on primary (OmKardile/venutaihall): plain push, fast-forward from 27b350e.
 - main -> main on mirror (megatechzy-boop/VCMhall): plain push, fast-forward from 27b350e.
 - No --force anywhere. wip branches untouched.
+
+---
+Date: 2026-10-12
+Group: Address rename + signature move + booking.php + footer map + homepage trims + htaccess snippet (partial mega-task)
+Branch: main
+Status: DONE, committing + pushing. Note: ba6f171 (prior Spaces rows de-dup) was lost to a sandbox reset (never pushed); re-applied here.
+
+DONE this round (items 1, 4, 5, 6, 7, 8-htaccess, 11 + row de-dup re-apply):
+- 6 Address: "Yashwantrao Chavan Smarak, " prepended everywhere (110 occurrences across 28 files via _build.py + index.html). 0 remaining without the prefix.
+- 7 Signature: removed from shared footer (index.html); kept on about.html body only.
+- 5 booking.php: event_time added to $allowed; callback_time + event_time whitelisted; guests already optional; 201 unchanged. (See DEPLOY-MANUAL.md for the server-side hand edit — .cpanel.yml does NOT copy booking.php.)
+- 1 Homepage removals: visit-cta, location section, cta-band all removed.
+- 4 Footer: logo box shrunk to 72px plate (logo+name+address row); full-width footer-map section (iframe + directions + bullets); Location nav/drawer links -> #footer-map.
+- 8 htaccess-snippet.txt: clean-URL rewrite block (301 .html->extensionless + internal rewrite). NOT applied to server .htaccess (DEPLOY-MANUAL.md tells the owner to paste it).
+- 11 DEPLOY-MANUAL.md: lists (a) .htaccess paste, (b) booking.php diff + note that .cpanel.yml won't deploy it, (c) design-lab.html to delete from public_html if present.
+- Row de-dup re-applied (label left nowrap, numeral+caption right) — replaces lost ba6f171.
+
+DEFERRED (substantial sub-systems, need focused follow-up turns):
+- 2 Call picker (3-contact dialog on every Call button) — substantial JS/HTML/CSS + a11y.
+- 3 Hero booking form + check-availability shared form — substantial shared component + the specific field set.
+- 8 Extensionless URLs in the site itself (links/canonical/og:url/JSON-LD/sitemap + _check.py) — only the htaccess-snippet.txt was created; the in-site link rewrites + _check.py update are not done.
+- 9 big-hall.html + small-hall.html update to the latest numbers-block design.
+- 10 Highlights styling for capacity numbers + events-reveal space highlights.
+
+Verification: build 29 pages, _check.py 1214 refs all resolve, braces 0, JS OK. Overflow 0 at 320/390/768/1280. Footer map + iframe present, logo 72px, label nowrap, visit-cta + cta-band removed, Location links -> #footer-map.
+
+Push: main -> both repos (primary + mirror), plain, no force.
