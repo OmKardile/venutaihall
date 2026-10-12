@@ -226,3 +226,9 @@ A 6-group homepage redesign to a warmer, more editorial luxury feel with an Indi
 - Clean URLs: all internal links now extensionless (/big-hall, not /big-hall.html; home = /). Canonical, og:url, sitemap.xml all extensionless. Assets root-relative (/assets/..., /styles.css, /script.js). _build.py (canon + sitemap + pic() + page head), index.html, _check.py (now resolves extensionless + root-relative paths), script.js (currentFile home = /) all updated. Files stay as .html on disk; the htaccess does the rewrite server-side.
 - Footer tidy: removed the address from the CONTACT column (it stays beside the logo box + in the Find Us section). Made the footer-map band dark (--wine-ink) to match the footer; the media container is --wine-deep so the Google iframe's loading flash is dark (no white box). Map text is ivory/sand on the dark band.
 - CRITICAL DEPLOY ORDER: the htaccess-snippet MUST be pasted into the server's .htaccess BEFORE the extensionless site is deployed, or every internal link 404s on the live site. See DEPLOY-MANUAL.md (f).
+
+## 2026-10-12 — Hero form: compact (half) + mobile popup modal
+
+- Desktop: form compacted (padding 13-18px, fields 38px, font 13px, labels 11px, title 15-18px) + the hero-inner column narrowed to 1.3fr/0.7fr (form is ~0.7 of the row, was 0.9). Form is inline (no modal) on desktop.
+- Mobile (<=899px): the form is hidden from the inline flow; the hero "Check Availability" button opens it as a bottom-sheet modal (fixed overlay + dark scrim + ivory sheet that slides up). Close button (top-right) + Esc + outside-click close. Body scroll locked while open. Reduced-motion: no slide transition. Desktop click still scrolls to the inline form (no modal).
+- HTML: form content wrapped in .hero-form-card; added .hero-form-head with a close button (.hero-form-close, mobile-only).

@@ -310,3 +310,18 @@ Verification: build 29 pages, _check.py all refs resolve, braces 0, JS OK. Exten
 DEPLOY ORDER (critical): htaccess MUST be applied to the server BEFORE deploying the extensionless site (DEPLOY-MANUAL.md (f)).
 
 Push: main -> both repos, plain.
+
+---
+Date: 2026-10-12
+Group: Hero form compact (half) + mobile popup modal
+Branch: main
+Status: DONE, pushing.
+
+What changed:
+- index.html: hero form content wrapped in <div class="hero-form-card">; added <div class="hero-form-head"> with title + a close button (.hero-form-close, data-hero-form-close).
+- styles.css: .hero-form is now a neutral container (scroll-margin-top, display:none base). .hero-form-card holds the ivory card styling (compact padding 13-18px). Compact fields (38px min-height, 13px font, 11px labels). Desktop: .hero-inner 1.3fr/0.7fr (narrower form), .hero-form display:block (inline). Mobile (<=899px): .hero-form is position:fixed inset:0 z-index:210 display:none; .is-open -> display:flex (bottom-sheet); ::before scrim; .hero-form-card slides up (translateY 100%->0); close button shown. Reduced-motion: no transitions.
+- script.js: heroForm module — on mobile (matchMedia max-width:899px) the "Check Availability" button (a[href="#hero-form"]) opens the modal (preventDefault + is-open + body lock + focus first field); close button + outside-click + Esc close. Desktop: default hash-scroll to the inline form (no preventDefault). Also opens on load if mobile + hash is #hero-form.
+
+Verification: build 29 pages, braces 0, JS OK. Desktop 1280: form inline (403px col, 38px fields, close hidden, 0 overflow). Mobile 390: form hidden (display:none, position:fixed) -> click "Check Availability" opens modal (is-open, display:flex, body overflow hidden, card transform none) -> Esc closes. Sweep 320/390/768/1280 = 0 overflow.
+
+Push: main -> both repos, plain.

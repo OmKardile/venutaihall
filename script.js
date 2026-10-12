@@ -732,4 +732,40 @@
       }
     });
   }
+
+  const heroForm = qs('#hero-form');
+  if (heroForm) {
+    const openBtn = qs('a[href="#hero-form"]');
+    const closeBtn = qs('[data-hero-form-close]', heroForm);
+    const mqMobile = window.matchMedia('(max-width: 899px)');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let lastFocused = null;
+    const open = () => {
+      lastFocused = document.activeElement;
+      heroForm.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      const first = qs('input, select', heroForm);
+      setTimeout(() => first?.focus(), reduce ? 0 : 320);
+    };
+    const close = () => {
+      heroForm.classList.remove('is-open');
+      document.body.style.overflow = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    };
+    if (openBtn) {
+      openBtn.addEventListener('click', (e) => {
+        if (mqMobile.matches) { e.preventDefault(); open(); }
+      });
+    }
+    closeBtn?.addEventListener('click', close);
+    heroForm.addEventListener('click', (e) => {
+      if (mqMobile.matches && e.target === heroForm) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!heroForm.classList.contains('is-open')) return;
+      if (e.key === 'Escape') { e.preventDefault(); close(); }
+    });
+    if (mqMobile.matches && location.hash === '#hero-form') open();
+    mqMobile.addEventListener('change', () => { if (!mqMobile.matches) close(); });
+  }
 })();
