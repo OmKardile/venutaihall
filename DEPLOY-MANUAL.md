@@ -67,3 +67,17 @@ Exact diff of the patched booking.php vs the server's current booking.php:
 
 Exact diff of the patched booking-store.php vs the server's current booking-store.php:
 - In `booking_send_email()`, replace the `$body = "..." . implode("\n", [ ... ])` static array with a `$lines = [...];` array, then conditionally append `'Call back: ' . $row['call_back_time']` and `'Event time: ' . $row['event_time']` if non-empty, then `$body = "..." . implode("\n", $lines) . ...`. Everything else unchanged.
+
+## (f) Clean URLs — CRITICAL ORDER
+The site now uses **extensionless URLs** internally (`/big-hall`, not `/big-hall.html`; home = `/`). Assets are root-relative (`/assets/...`, `/styles.css`, `/script.js`).
+
+**You MUST paste `htaccess-snippet.txt` at the top of the server's `.htaccess` BEFORE deploying the front-end.** The htaccess does the rewrite `/big-hall` → `big-hall.html` internally + 301-redirects `/big-hall.html` → `/big-hall`. Without it, every internal link on the live site returns 404.
+
+Order:
+1. **Back up + paste `htaccess-snippet.txt`** at the TOP of `/home/venutaihall/public_html/.htaccess`. Test: visit `https://venutaihall.com/big-hall` — should load the page (200). Visit `https://venutaihall.com/big-hall.html` — should 301 to `/big-hall`.
+2. **Then** cPanel Update from Remote + Deploy HEAD Commit (ships the extensionless links).
+
+If you skip step 1, the live site breaks (every nav link 404s). The htaccess + the extensionless site go together.
+
+## (g) Google Maps loading card (footer map)
+The footer map's media container has a dark background (`--wine-deep`) so the iframe's loading flash is dark, not white. The Google embed's place-card popover (the venue name at top-left of the map) cannot be removed via the standard embed URL — that requires the paid Maps Embed API with `attribution_display=false` or the JS API. The dark container is the no-cost fix for the white-box flash.

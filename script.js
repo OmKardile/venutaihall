@@ -15,7 +15,7 @@
     if (!input.min) input.min = todayStr;
   });
 
-  const currentFile = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  const currentFile = (location.pathname.split('/').pop() || '/').toLowerCase();
   qsa('.main-nav a, .nav-drawer-links a, .footer-links a').forEach((link) => {
     const href = (link.getAttribute('href') || '').split('#')[0].toLowerCase();
     if (href && href === currentFile) link.setAttribute('aria-current', 'page');

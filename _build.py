@@ -87,7 +87,8 @@ SEO = {
 
 def page(name, main, body_class="", extra_head=""):
     title, desc = SEO[name]
-    canon = f"https://venutaihall.com/{'' if name == 'index.html' else name}"
+    slug = "" if name == "index.html" else name.removesuffix(".html")
+    canon = f"https://venutaihall.com/{slug}"
     og_title = title
     cls = f' class="{body_class}"' if body_class else ""
     head_extra = f"  {extra_head}\n" if extra_head else ""
@@ -112,9 +113,9 @@ def page(name, main, body_class="", extra_head=""):
   <meta name="twitter:image" content="{OG_IMAGE}" />
   <title>{title}</title>
   {FONT_LINK}
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="script.js?v={SCRIPT_V}" defer></script>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/script.js?v={SCRIPT_V}" defer></script>
 {head_extra}</head>
 <body{cls}>
   {skip_link}
@@ -136,7 +137,7 @@ def page(name, main, body_class="", extra_head=""):
 
 
 def breadcrumb(*parts, in_hero=True):
-    segs = ['<nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="sep" aria-hidden="true">/</span>']
+    segs = ['<nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep" aria-hidden="true">/</span>']
     for part in parts:
         label, href = part if isinstance(part, tuple) else (part, None)
         if href:
@@ -161,7 +162,7 @@ def cta_band(title_html):
           <p class="cta-note">This is an enquiry. Your date is confirmed only after venue confirmation.</p>
         </div>
         <div class="cta-band-actions reveal reveal-delay-1">
-          <a class="button button-light button-lg" href="check-availability.html">Check Availability <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+          <a class="button button-light button-lg" href="check-availability">Check Availability <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a>
           <a class="button button-ghost-light" href="tel:+919359567494" data-call-picker><svg class="icon" aria-hidden="true"><use href="#i-phone" /></svg> Talk to the Team</a>
         </div>
       </div>
@@ -202,8 +203,8 @@ def pic(img, alt, *, lazy=True, priority=False):
     base = img.rsplit(".", 1)[0]
     load = ' fetchpriority="high"' if priority else (' loading="lazy"' if lazy else "")
     return (
-        f'<picture><source srcset="assets/{base}.webp" type="image/webp" />'
-        f'<img src="assets/{img}" alt="{alt}" width="{w}" height="{h}"{load} /></picture>'
+        f'<picture><source srcset="/assets/{base}.webp" type="image/webp" />'
+        f'<img src="/assets/{img}" alt="{alt}" width="{w}" height="{h}"{load} /></picture>'
     )
 
 
@@ -239,14 +240,14 @@ EVENT_SLUGS = [
 ]
 
 EVENT_CARDS = [
-    ("weddings.html", "Weddings", "hero-hall.jpg", "Banquet seating in the Big Hall for weddings", "A welcoming setting for a wedding day shared with family and friends."),
-    ("engagements.html", "Engagements", "small-hall.jpg", "Seating in the Small Hall for engagement ceremonies", "Bring both families together for a ring ceremony and celebration."),
-    ("receptions.html", "Receptions", "hero-hall.jpg", "Main hall ready for a reception evening", "Room for a reception welcome, stage moments and a comfortable guest flow."),
-    ("birthdays.html", "Birthdays", "small-hall.jpg", "Flexible hall space for birthday parties", "Celebrate a birthday in a hall that fits your guest list and plans."),
-    ("naming-ceremonies.html", "Naming Ceremonies", "vip-dining.jpg", "VIP dining room for close family gatherings", "A calm, comfortable place to gather close family for a special milestone."),
-    ("family-functions.html", "Family Functions", "dining-hall.jpg", "Dining hall set with round tables for family functions", "Flexible spaces for family milestones, gatherings and shared meals."),
-    ("corporate-events.html", "Corporate Events", "hero-hall.jpg", "Spacious hall for corporate events and annual functions", "A practical setting for presentations, meetings and company gatherings."),
-    ("social-gatherings.html", "Social Gatherings", "dining-hall.jpg", "Dining hall for community and social gatherings", "A place to reconnect with your community, friends and guests."),
+    ("weddings", "Weddings", "hero-hall.jpg", "Banquet seating in the Big Hall for weddings", "A welcoming setting for a wedding day shared with family and friends."),
+    ("engagements", "Engagements", "small-hall.jpg", "Seating in the Small Hall for engagement ceremonies", "Bring both families together for a ring ceremony and celebration."),
+    ("receptions", "Receptions", "hero-hall.jpg", "Main hall ready for a reception evening", "Room for a reception welcome, stage moments and a comfortable guest flow."),
+    ("birthdays", "Birthdays", "small-hall.jpg", "Flexible hall space for birthday parties", "Celebrate a birthday in a hall that fits your guest list and plans."),
+    ("naming-ceremonies", "Naming Ceremonies", "vip-dining.jpg", "VIP dining room for close family gatherings", "A calm, comfortable place to gather close family for a special milestone."),
+    ("family-functions", "Family Functions", "dining-hall.jpg", "Dining hall set with round tables for family functions", "Flexible spaces for family milestones, gatherings and shared meals."),
+    ("corporate-events", "Corporate Events", "hero-hall.jpg", "Spacious hall for corporate events and annual functions", "A practical setting for presentations, meetings and company gatherings."),
+    ("social-gatherings", "Social Gatherings", "dining-hall.jpg", "Dining hall for community and social gatherings", "A place to reconnect with your community, friends and guests."),
 ]
 
 EVENTS = {
@@ -258,9 +259,9 @@ EVENTS = {
         intro_h2="Plan the ceremony, guest seating and meal service around one connected venue.",
         intro_body="Explore our wedding venue in Nigdi Pradhikaran for a celebration with family and friends. The air-conditioned Big Hall suits larger groups, while the dining hall, VIP dining area and guest rooms give you options to discuss with the team.",
         fit_id="weddings-spaces", fit_h2="Plan your wedding <em>around your guests</em>",
-        cards=[("big-hall.html", "hero-hall.jpg", "Big Hall at the venue", "Big Hall", "Use the larger hall for your guest seating and main celebration."),
-               ("dining-hall.html", "dining-hall.jpg", "Dining spaces at the venue", "Dining spaces", "Discuss meal service in the Dining Hall or VIP A/C Dining area."),
-               ("guest-rooms.html", "guest-room.jpg", "Guest rooms at the venue", "Guest rooms", "Ask about the air-conditioned rooms for family members or guests.")],
+        cards=[("big-hall", "hero-hall.jpg", "Big Hall at the venue", "Big Hall", "Use the larger hall for your guest seating and main celebration."),
+               ("dining-hall", "dining-hall.jpg", "Dining spaces at the venue", "Dining spaces", "Discuss meal service in the Dining Hall or VIP A/C Dining area."),
+               ("guest-rooms", "guest-room.jpg", "Guest rooms at the venue", "Guest rooms", "Ask about the air-conditioned rooms for family members or guests.")],
         plan="A few details help the team discuss a suitable arrangement for your wedding.",
         items=["Estimated guest count and seating layout", "Ceremony and reception timing", "Dining needs for guests and family", "Guest-room availability"],
         faq_h2="Planning a <em>wedding</em>?",
@@ -276,9 +277,9 @@ EVENTS = {
         intro_h2="Plan the ring ceremony, family photos and a shared meal in spaces that suit your guests.",
         intro_body="The air-conditioned Small Hall is listed for engagements and mid-sized gatherings, while the Big Hall can suit a larger guest list. Discuss your ceremony setup, seating and dining schedule with the venue team before booking.",
         fit_id="engagements-spaces", fit_h2="Plan your engagement <em>around your guests</em>",
-        cards=[("small-hall.html", "small-hall.jpg", "Small Hall at the venue", "Small Hall", "Gather family and friends for the ceremony in the mid-sized hall."),
-               ("big-hall.html", "hero-hall.jpg", "Big Hall at the venue", "Big Hall", "Explore a larger seating arrangement if more guests will attend."),
-               ("dining-hall.html", "dining-hall.jpg", "Dining spaces at the venue", "Dining spaces", "Ask about a separate dining arrangement after the ring ceremony.")],
+        cards=[("small-hall", "small-hall.jpg", "Small Hall at the venue", "Small Hall", "Gather family and friends for the ceremony in the mid-sized hall."),
+               ("big-hall", "hero-hall.jpg", "Big Hall at the venue", "Big Hall", "Explore a larger seating arrangement if more guests will attend."),
+               ("dining-hall", "dining-hall.jpg", "Dining spaces at the venue", "Dining spaces", "Ask about a separate dining arrangement after the ring ceremony.")],
         plan="A few details help the team discuss a suitable arrangement for your engagement.",
         items=["Ceremony timing and guest count", "Ring exchange and photo area", "Seating for both families", "Refreshment or meal schedule"],
         faq_h2="Planning an <em>engagement</em>?",
@@ -294,9 +295,9 @@ EVENTS = {
         intro_h2="Bring guests together for an evening reception with space to meet, celebrate and dine.",
         intro_body="The main hall offers generous seating beneath chandeliers. The site also lists a projector and LED screen, acoustic system and catering support. Tell the team which stage, sound and dining arrangements you need before booking.",
         fit_id="receptions-spaces", fit_h2="Plan your reception <em>around your guests</em>",
-        cards=[("big-hall.html", "hero-hall.jpg", "Main hall at the venue", "Main hall", "Plan the seating and welcome flow around the spacious Big Hall."),
-               ("facilities.html", "hero-hall.jpg", "Stage and visuals at the venue", "Stage and visuals", "Discuss the available screen, projector and sound setup for your program."),
-               ("dining-hall.html", "dining-hall.jpg", "Dining hall at the venue", "Dining hall", "Arrange a separate meal flow for guests with the venue team.")],
+        cards=[("big-hall", "hero-hall.jpg", "Main hall at the venue", "Main hall", "Plan the seating and welcome flow around the spacious Big Hall."),
+               ("facilities", "hero-hall.jpg", "Stage and visuals at the venue", "Stage and visuals", "Discuss the available screen, projector and sound setup for your program."),
+               ("dining-hall", "dining-hall.jpg", "Dining hall at the venue", "Dining hall", "Arrange a separate meal flow for guests with the venue team.")],
         plan="A few details help the team discuss a suitable arrangement for your reception.",
         items=["Arrival and welcome sequence", "Stage program and presentation needs", "Guest seating and movement", "Dinner timing and catering needs"],
         faq_h2="Planning a <em>reception</em>?",
@@ -312,9 +313,9 @@ EVENTS = {
         intro_h2="A birthday may be a close family gathering or a larger celebration with friends.",
         intro_body="The Small Hall is presented for mid-sized functions, while the Big Hall serves larger groups. Discuss your guest count, decoration setup, music needs and meal plan with the venue team to choose the right space.",
         fit_id="birthdays-spaces", fit_h2="Plan your birthday party <em>around your guests</em>",
-        cards=[("small-hall.html", "small-hall.jpg", "Small Hall at the venue", "Small Hall", "A comfortable option for a mid-sized birthday gathering."),
-               ("big-hall.html", "hero-hall.jpg", "Big Hall at the venue", "Big Hall", "Consider the larger hall when your guest list grows."),
-               ("dining-hall.html", "dining-hall.jpg", "Dining spaces at the venue", "Dining spaces", "Plan how refreshments or a meal will fit the celebration.")],
+        cards=[("small-hall", "small-hall.jpg", "Small Hall at the venue", "Small Hall", "A comfortable option for a mid-sized birthday gathering."),
+               ("big-hall", "hero-hall.jpg", "Big Hall at the venue", "Big Hall", "Consider the larger hall when your guest list grows."),
+               ("dining-hall", "dining-hall.jpg", "Dining spaces at the venue", "Dining spaces", "Plan how refreshments or a meal will fit the celebration.")],
         plan="A few details help the team discuss a suitable arrangement for your birthday party.",
         items=["Guest count and hall size", "Cake and decoration setup", "Music or presentation needs", "Refreshment or meal timing"],
         faq_h2="Planning a <em>birthday party</em>?",
@@ -330,9 +331,9 @@ EVENTS = {
         intro_h2="Plan a welcoming celebration for the child, family and invited guests.",
         intro_body="The Small Hall provides a mid-sized, air-conditioned setting. The venue also lists dining areas, guest rooms, lifts and parking. Discuss a quiet family area and a comfortable program flow with the team.",
         fit_id="naming-ceremonies-spaces", fit_h2="Plan your naming ceremony <em>around your guests</em>",
-        cards=[("small-hall.html", "small-hall.jpg", "Small Hall at the venue", "Small Hall", "Bring family together in a hall sized for a more intimate function."),
-               ("guest-rooms.html", "guest-room.jpg", "Guest rooms at the venue", "Guest rooms", "Ask about a room if family members need a separate place during the visit."),
-               ("vip-dining.html", "vip-dining.jpg", "Dining at the venue", "Dining", "Plan a convenient meal after the ceremony.")],
+        cards=[("small-hall", "small-hall.jpg", "Small Hall at the venue", "Small Hall", "Bring family together in a hall sized for a more intimate function."),
+               ("guest-rooms", "guest-room.jpg", "Guest rooms at the venue", "Guest rooms", "Ask about a room if family members need a separate place during the visit."),
+               ("vip-dining", "vip-dining.jpg", "Dining at the venue", "Dining", "Plan a convenient meal after the ceremony.")],
         plan="A few details help the team discuss a suitable arrangement for your naming ceremony.",
         items=["Ceremony timing and family seating", "Space for the child and close family", "Guest access and lift use", "Meal arrangements after the ceremony"],
         faq_h2="Planning a <em>naming ceremony</em>?",
@@ -348,9 +349,9 @@ EVENTS = {
         intro_h2="Every family gathering has a different size and pace.",
         intro_body="Choose between the Big Hall and Small Hall based on your guest list, then discuss dining, accessibility and the schedule with the venue team. The site lists lifts, parking and air-conditioned spaces for guest comfort.",
         fit_id="family-functions-spaces", fit_h2="Plan your family function <em>around your guests</em>",
-        cards=[("big-hall.html", "hero-hall.jpg", "Two hall sizes at the venue", "Two hall sizes", "Compare the Big Hall and Small Hall for your expected group."),
-               ("dining-hall.html", "dining-hall.jpg", "Dining areas at the venue", "Dining areas", "Keep the meal flow convenient for guests of different ages."),
-               ("facilities.html", "venue-exterior.jpg", "Guest access at the venue", "Guest access", "Ask about lift access, parking and arrival arrangements.")],
+        cards=[("big-hall", "hero-hall.jpg", "Two hall sizes at the venue", "Two hall sizes", "Compare the Big Hall and Small Hall for your expected group."),
+               ("dining-hall", "dining-hall.jpg", "Dining areas at the venue", "Dining areas", "Keep the meal flow convenient for guests of different ages."),
+               ("facilities", "venue-exterior.jpg", "Guest access at the venue", "Guest access", "Ask about lift access, parking and arrival arrangements.")],
         plan="A few details help the team discuss a suitable arrangement for your family function.",
         items=["Type of family occasion and program", "Guest count across age groups", "Seating and accessibility needs", "Meal service and visit timing"],
         faq_h2="Planning a <em>family function</em>?",
@@ -366,9 +367,9 @@ EVENTS = {
         intro_h2="Plan your program around the audience, presentation setup and breaks.",
         intro_body="The venue lists two air-conditioned halls, LED screen and projector, an acoustic system, Wi-Fi, dining areas and parking. Confirm technical specifications and availability with the team before finalizing a company event.",
         fit_id="corporate-events-spaces", fit_h2="Plan your corporate event <em>around your guests</em>",
-        cards=[("small-hall.html", "small-hall.jpg", "Hall choice at the venue", "Hall choice", "Match the audience size to the Big Hall or Small Hall."),
-               ("facilities.html", "hero-hall.jpg", "Presentations at the venue", "Presentations", "Discuss projector, screen, audio and Wi-Fi needs in advance."),
-               ("dining-hall.html", "dining-hall.jpg", "Breaks and dining at the venue", "Breaks and dining", "Plan refreshments and meals around the event agenda.")],
+        cards=[("small-hall", "small-hall.jpg", "Hall choice at the venue", "Hall choice", "Match the audience size to the Big Hall or Small Hall."),
+               ("facilities", "hero-hall.jpg", "Presentations at the venue", "Presentations", "Discuss projector, screen, audio and Wi-Fi needs in advance."),
+               ("dining-hall", "dining-hall.jpg", "Breaks and dining at the venue", "Breaks and dining", "Plan refreshments and meals around the event agenda.")],
         plan="A few details help the team discuss a suitable arrangement for your corporate event.",
         items=["Audience count and seating format", "Presentation and microphone requirements", "Wi-Fi and equipment requirements", "Registration, breaks and dining schedule"],
         faq_h2="Planning a <em>corporate event</em>?",
@@ -384,9 +385,9 @@ EVENTS = {
         intro_h2="Make room for conversation, a shared program and an easy meal flow.",
         intro_body="The venue has a Big Hall, Small Hall and dining spaces, along with parking and air-conditioned interiors. Tell the team whether your gathering is formal, seated or more flexible so they can discuss a suitable arrangement.",
         fit_id="social-gatherings-spaces", fit_h2="Plan your social gathering <em>around your guests</em>",
-        cards=[("big-hall.html", "hero-hall.jpg", "Gathering space at the venue", "Gathering space", "Select a hall that gives your guests room to meet and take part."),
-               ("dining-hall.html", "dining-hall.jpg", "Shared meal at the venue", "Shared meal", "Discuss dining options that suit the timing of your gathering."),
-               ("facilities.html", "venue-exterior.jpg", "Easy arrival at the venue", "Easy arrival", "Use the listed parking and lift access when planning guest arrival.")],
+        cards=[("big-hall", "hero-hall.jpg", "Gathering space at the venue", "Gathering space", "Select a hall that gives your guests room to meet and take part."),
+               ("dining-hall", "dining-hall.jpg", "Shared meal at the venue", "Shared meal", "Discuss dining options that suit the timing of your gathering."),
+               ("facilities", "venue-exterior.jpg", "Easy arrival at the venue", "Easy arrival", "Use the listed parking and lift access when planning guest arrival.")],
         plan="A few details help the team discuss a suitable arrangement for your social gathering.",
         items=["Number of guests and seating style", "Program or speaker schedule", "Refreshments and dining", "Parking and accessibility needs"],
         faq_h2="Planning a <em>social gathering</em>?",
@@ -423,7 +424,7 @@ SPACES = {
               ("Is there a stage area?", "The hall is listed as suitable for stage setups. Confirm your stage and AV requirements with the team."),
               ("Is parking available?", "On-site parking is listed. Ask the team about vehicle arrangements for your date.")],
         gallery=[("big-hall", "hero-hall.jpg", "Big Hall — banquet seating", "Big Hall", "Up to 1200 guests")],
-        related=[("small-hall.html", "Small Hall"), ("dining-hall.html", "Dining Hall"), ("guest-rooms.html", "Guest Rooms"), ("spaces.html", "All spaces")],
+        related=[("small-hall", "Small Hall"), ("dining-hall", "Dining Hall"), ("guest-rooms", "Guest Rooms"), ("spaces", "All spaces")],
         final="Let’s plan your event in the Big Hall",
     ),
     "small-hall.html": dict(
@@ -452,7 +453,7 @@ SPACES = {
               ("Can we have a stage?", "The hall is listed as suitable for mid-sized programmes with stage needs. Confirm requirements with the team."),
               ("Is the hall air-conditioned?", "Yes. The Small Hall is listed as fully air-conditioned.")],
         gallery=[("small-hall", "small-hall.jpg", "Small Hall — celebration seating", "Small Hall", "Up to 350 guests")],
-        related=[("big-hall.html", "Big Hall"), ("dining-hall.html", "Dining Hall"), ("vip-dining.html", "VIP Dining"), ("spaces.html", "All spaces")],
+        related=[("big-hall", "Big Hall"), ("dining-hall", "Dining Hall"), ("vip-dining", "VIP Dining"), ("spaces", "All spaces")],
         final="Let’s plan your event in the Small Hall",
     ),
     "dining-hall.html": dict(
@@ -480,7 +481,7 @@ SPACES = {
               ("Do you provide catering?", "Catering support is listed. Menu and pricing are handled with your caterer — contact the venue team for current arrangements."),
               ("Is VIP dining also available?", "Yes — VIP A/C Dining is listed for 50 at a time guests for close family and honoured guests.")],
         gallery=[("dining", "dining-hall.jpg", "Dining Hall — round-table seating", "Dining Hall", "400 at a time")],
-        related=[("vip-dining.html", "VIP Dining"), ("big-hall.html", "Big Hall"), ("small-hall.html", "Small Hall"), ("spaces.html", "All spaces")],
+        related=[("vip-dining", "VIP Dining"), ("big-hall", "Big Hall"), ("small-hall", "Small Hall"), ("spaces", "All spaces")],
         final="Let’s plan dining for your event",
     ),
     "vip-dining.html": dict(
@@ -508,7 +509,7 @@ SPACES = {
               ("Is it air-conditioned?", "Yes. The room is listed as fully air-conditioned."),
               ("Can we use it with the Big Hall?", "Discuss a combined arrangement with the team when you plan your event.")],
         gallery=[("dining", "vip-dining.jpg", "VIP A/C Dining — private dining room", "VIP Dining", "50 at a time")],
-        related=[("dining-hall.html", "Dining Hall"), ("big-hall.html", "Big Hall"), ("guest-rooms.html", "Guest Rooms"), ("spaces.html", "All spaces")],
+        related=[("dining-hall", "Dining Hall"), ("big-hall", "Big Hall"), ("guest-rooms", "Guest Rooms"), ("spaces", "All spaces")],
         final="Let’s plan dining for your guests",
     ),
     "guest-rooms.html": dict(
@@ -536,7 +537,7 @@ SPACES = {
               ("Are the rooms air-conditioned?", "Yes. The guest rooms are listed as fully air-conditioned."),
               ("How do I book a room with the hall?", "Mention room needs in your enquiry. The team will confirm availability for your dates.")],
         gallery=[("guest-rooms", "guest-room.jpg", "A/C Guest Room", "Guest Rooms", "Up to 8 rooms")],
-        related=[("big-hall.html", "Big Hall"), ("small-hall.html", "Small Hall"), ("vip-dining.html", "VIP Dining"), ("spaces.html", "All spaces")],
+        related=[("big-hall", "Big Hall"), ("small-hall", "Small Hall"), ("vip-dining", "VIP Dining"), ("spaces", "All spaces")],
         final="Let’s plan a stay for your guests",
     ),
 }
@@ -582,7 +583,7 @@ def event_main(slug, e):
           <h1 id="event-title">{e["h1"]}</h1>
           <p class="lede">{e["lead"]}</p>
           <div class="hero-ctas">
-            <a class="button button-light button-lg" href="check-availability.html?event={e["query"]}">{e["cta"]} {icon("i-arrow")}</a>
+            <a class="button button-light button-lg" href="check-availability?event={e["query"]}">{e["cta"]} {icon("i-arrow")}</a>
             <a class="button button-ghost-light" href="tel:+919359567494" data-call-picker>{icon("i-phone")} Talk to the Team</a>
           </div>
         </div>
@@ -636,7 +637,7 @@ def event_main(slug, e):
           <div class="faq-list reveal">
             {faqs}
           </div>
-          <p class="reveal" style="text-align:center">Still deciding? <a class="text-link" href="contact.html#enquire">Send an enquiry</a> and our team will help you plan.</p>
+          <p class="reveal" style="text-align:center">Still deciding? <a class="text-link" href="contact#enquire">Send an enquiry</a> and our team will help you plan.</p>
         </div>
       </section>
 
@@ -685,7 +686,7 @@ def space_main(slug, s):
           <p class="lede">{s["lede"]}</p>
           <div class="space-hero-specs">{hero_specs}</div>
           <div class="hero-ctas">
-            <a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a>
+            <a class="button button-light button-lg" href="check-availability">Check Availability {icon("i-arrow")}</a>
             <a class="button button-ghost-light" href="tel:+919359567494" data-call-picker>{icon("i-phone")} Talk to the Team</a>
           </div>
         </div>
@@ -744,7 +745,7 @@ def space_main(slug, s):
             <ul class="aside-points">
               {aside_points}
             </ul>
-            <a class="button button-wine button-block" href="check-availability.html">Check Availability {icon("i-arrow")}</a>
+            <a class="button button-wine button-block" href="check-availability">Check Availability {icon("i-arrow")}</a>
             <p class="aside-note">This is an enquiry. Your date is confirmed only after venue confirmation. Enquire for pricing.</p>
           </aside>
         </div>
@@ -811,19 +812,19 @@ EXPLORERS = [
 ]
 
 COMPARE_ROWS = [
-    ("big-hall.html", "Big Hall", "1200 guests",
+    ("big-hall", "Big Hall", "1200 guests",
      "<em>The scale</em> — room for a stage, seating and procession flow in one hall",
      "Weddings / Large events"),
-    ("small-hall.html", "Small Hall", "350 guests",
+    ("small-hall", "Small Hall", "350 guests",
      "<em>Mid-sized with a stage</em> — big enough to programme, close enough to feel personal",
      "Engagements / Birthdays"),
-    ("dining-hall.html", "Dining Hall", "400 at a time",
+    ("dining-hall", "Dining Hall", "400 at a time",
      "<em>Keeps the meal separate</em> — dining never competes with the programme",
      "Meals / Receptions"),
-    ("vip-dining.html", "VIP Dining", "50 at a time",
+    ("vip-dining", "VIP Dining", "50 at a time",
      "<em>Privacy</em> — a quieter room for close family and honoured guests",
      "Close family / VIP dining"),
-    ("guest-rooms.html", "Guest Rooms", "8 rooms",
+    ("guest-rooms", "Guest Rooms", "8 rooms",
      "<em>Stay on site</em> — family rests at the venue instead of travelling",
      "Guest stay"),
 ]
@@ -884,9 +885,9 @@ spaces_main = f"""
           {breadcrumb("Spaces")}
           <p class="eyebrow">Our spaces</p>
           <h1 id="spaces-title">Spaces for<br /><em>every occasion</em></h1>
-          <p class="lede">Five connected spaces — pick by guest count first, then refine with the <a href="compare.html">space comparison</a>. All spaces are fully air-conditioned.</p>
+          <p class="lede">Five connected spaces — pick by guest count first, then refine with the <a href="compare">space comparison</a>. All spaces are fully air-conditioned.</p>
           <div class="hero-ctas">
-            <a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a>
+            <a class="button button-light button-lg" href="check-availability">Check Availability {icon("i-arrow")}</a>
           </div>
         </div>
       </section>
@@ -899,7 +900,7 @@ spaces_main = f"""
               <h2 id="explorer-title">Find Your <em>Space.</em></h2>
               <p class="lede">Five connected spaces — halls, dining and stay under one address.</p>
             </div>
-            <a class="text-link" href="check-availability.html">Check availability {icon("i-arrow")}</a>
+            <a class="text-link" href="check-availability">Check availability {icon("i-arrow")}</a>
           </div>
           <div class="explorer-grid">
 {"".join(EXPLORERS)}
@@ -931,8 +932,8 @@ events_main = f"""
           <h1 id="events-title">Events for<br /><em>every occasion</em></h1>
           <p class="lede">From family milestones to company gatherings, explore how our spaces can support your plans in Nigdi, Pune.</p>
           <div class="hero-ctas">
-            <a class="button button-light button-lg" href="check-availability.html">Plan Your Event {icon("i-arrow")}</a>
-            <a class="button button-ghost-light" href="spaces.html">Explore the Spaces</a>
+            <a class="button button-light button-lg" href="check-availability">Plan Your Event {icon("i-arrow")}</a>
+            <a class="button button-ghost-light" href="spaces">Explore the Spaces</a>
           </div>
         </div>
       </section>
@@ -959,7 +960,7 @@ events_main = f"""
               <h2>One venue. Different ways to gather.</h2>
               <p class="lede">The venue lists two air-conditioned halls, dining spaces, guest rooms, parking and other facilities. Share your guest count and program with the team to discuss the right setup for your event.</p>
             </div>
-            <a class="button button-wine" href="spaces.html">View Our Spaces {icon("i-arrow")}</a>
+            <a class="button button-wine" href="spaces">View Our Spaces {icon("i-arrow")}</a>
           </div>
         </div>
       </section>
@@ -998,8 +999,8 @@ facilities_main = f"""
           <h1 id="facilities-title">Everything the day <em>needs.</em></h1>
           <p class="lede">Modern amenities. Thoughtful details. A seamless experience for every occasion — grouped by what you'll actually look for when planning an event.</p>
           <div class="hero-ctas">
-            <a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a>
-            <a class="button button-ghost-light" href="gallery.html">View Gallery</a>
+            <a class="button button-light button-lg" href="check-availability">Check Availability {icon("i-arrow")}</a>
+            <a class="button button-ghost-light" href="gallery">View Gallery</a>
           </div>
         </div>
       </section>
@@ -1043,7 +1044,7 @@ facilities_main = f"""
                 <h3>Wedding Setup</h3>
                 <p>Stage, seating and procession flow in the Big Hall, with the Dining Hall handling the meal for 400 at a time.</p>
                 <p class="setup-note">Ask our team about setup options.</p>
-                <a class="text-link" href="check-availability.html?event=Wedding">Plan my wedding {icon("i-arrow")}</a>
+                <a class="text-link" href="check-availability?event=Wedding">Plan my wedding {icon("i-arrow")}</a>
               </div>
             </article>
             <article class="setup-card reveal reveal-delay-1">
@@ -1052,7 +1053,7 @@ facilities_main = f"""
                 <h3>Reception Setup</h3>
                 <p>Welcome seating, stage moments and a separate dining room so guests can move between programme and meal.</p>
                 <p class="setup-note">Ask our team about setup options.</p>
-                <a class="text-link" href="check-availability.html?event=Reception">Plan my reception {icon("i-arrow")}</a>
+                <a class="text-link" href="check-availability?event=Reception">Plan my reception {icon("i-arrow")}</a>
               </div>
             </article>
             <article class="setup-card reveal">
@@ -1061,7 +1062,7 @@ facilities_main = f"""
                 <h3>Corporate Setup</h3>
                 <p>Rows or clusters with LED screen, projector and acoustic system for presentations and annual functions.</p>
                 <p class="setup-note">Ask our team about setup options.</p>
-                <a class="text-link" href="check-availability.html?event=Corporate%20Event">Plan a corporate event {icon("i-arrow")}</a>
+                <a class="text-link" href="check-availability?event=Corporate%20Event">Plan a corporate event {icon("i-arrow")}</a>
               </div>
             </article>
             <article class="setup-card reveal reveal-delay-1">
@@ -1070,7 +1071,7 @@ facilities_main = f"""
                 <h3>Family Function Setup</h3>
                 <p>Flexible seating for anniversaries, naming ceremonies and get-togethers, scaled to your guest list.</p>
                 <p class="setup-note">Ask our team about setup options.</p>
-                <a class="text-link" href="check-availability.html?event=Family%20Function">Plan a family function {icon("i-arrow")}</a>
+                <a class="text-link" href="check-availability?event=Family%20Function">Plan a family function {icon("i-arrow")}</a>
               </div>
             </article>
             <article class="setup-card reveal reveal-delay-2">
@@ -1079,7 +1080,7 @@ facilities_main = f"""
                 <h3>Dining Setup</h3>
                 <p>Round-table seating for 400 at a time in the Dining Hall, or private service in VIP A/C Dining for 50 at a time.</p>
                 <p class="setup-note">Ask about catering support for your caterer.</p>
-                <a class="text-link" href="dining-hall.html">Explore dining {icon("i-arrow")}</a>
+                <a class="text-link" href="dining-hall">Explore dining {icon("i-arrow")}</a>
               </div>
             </article>
           </div>
@@ -1131,8 +1132,8 @@ gallery_main = f"""
           <h1 id="gallery-title">See the space before you <em>visit.</em></h1>
           <p class="lede">Real photographs of the halls, dining rooms and guest spaces — no stock imagery.</p>
           <div class="hero-ctas">
-            <a class="button button-light button-lg" href="visit.html">Schedule a Venue Visit {icon("i-arrow")}</a>
-            <a class="button button-ghost-light" href="spaces.html">Explore the Spaces</a>
+            <a class="button button-light button-lg" href="visit">Schedule a Venue Visit {icon("i-arrow")}</a>
+            <a class="button button-ghost-light" href="spaces">Explore the Spaces</a>
           </div>
         </div>
       </section>
@@ -1161,8 +1162,8 @@ about_main = f"""
           <h1 id="about-title">A venue with a <em>purpose</em></h1>
           <p class="lede">A place where your special moments find the perfect setting — more than just a hall, a part of our community.</p>
           <div class="hero-ctas">
-            <a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a>
-            <a class="button button-ghost-light" href="visit.html">Schedule a Visit</a>
+            <a class="button button-light button-lg" href="check-availability">Check Availability {icon("i-arrow")}</a>
+            <a class="button button-ghost-light" href="visit">Schedule a Visit</a>
           </div>
         </div>
       </section>
@@ -1408,7 +1409,7 @@ contact_main = f"""
               <div class="location-actions">
                 <a class="button button-wine" href="https://www.google.com/maps/search/?api=1&amp;query=Yashwantrao+Chavan+Smarak+Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">Get Directions {icon("i-arrow")}</a>
                 <a class="button button-ghost" href="tel:+919359567494" data-call-picker>{icon("i-phone")} Call the Venue</a>
-                <a class="button button-ghost" href="visit.html">Schedule a Visit</a>
+                <a class="button button-ghost" href="visit">Schedule a Visit</a>
               </div>
             </div>
           </div>
@@ -1427,7 +1428,7 @@ visit_main = f"""
           <h1 id="visit-title">See it before you <em>celebrate here.</em></h1>
           <p class="lede">Visit the venue, explore the spaces and talk through your requirements with our team. Working hours: Mon – Sun, 9:00 AM – 10:00 PM.</p>
           <div class="hero-ctas">
-            <a class="button button-light button-lg" href="check-availability.html">Request a Visit {icon("i-arrow")}</a>
+            <a class="button button-light button-lg" href="check-availability">Request a Visit {icon("i-arrow")}</a>
             <a class="button button-ghost-light" href="tel:+919359567494" data-call-picker>{icon("i-phone")} Call the Venue</a>
           </div>
         </div>
@@ -1594,8 +1595,8 @@ wizard_main = f"""
             <h2>Thank you — your enquiry is in.</h2>
             <p class="success-sub">Our team will contact you shortly with availability and next steps. This is an enquiry; your date is confirmed only after venue confirmation.</p>
             <div class="success-actions">
-              <a class="button button-wine" href="spaces.html">Explore the Spaces {icon("i-arrow")}</a>
-              <a class="button button-ghost" href="visit.html">Schedule a Visit</a>
+              <a class="button button-wine" href="spaces">Explore the Spaces {icon("i-arrow")}</a>
+              <a class="button button-ghost" href="visit">Schedule a Visit</a>
             </div>
             <p class="success-note">Need us sooner? Call <a href="tel:+919359567494" style="text-decoration:underline;text-underline-offset:3px">9359567494</a>.</p>
           </div>
@@ -1676,12 +1677,12 @@ our_spaces_redirect = """<!doctype html>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="refresh" content="0; url=spaces.html" />
-  <link rel="canonical" href="https://venutaihall.com/spaces.html" />
+  <link rel="canonical" href="https://venutaihall.com/spaces" />
   <meta name="robots" content="noindex" />
   <title>Spaces | Late Venutai Chavan Multipurpose Hall</title>
 </head>
 <body>
-  <p>This page has moved to <a href="spaces.html">spaces.html</a>.</p>
+  <p>This page has moved to <a href="spaces">spaces.html</a>.</p>
 </body>
 </html>
 """
@@ -1816,7 +1817,7 @@ def details_main():
             <p>The Big Hall package includes everything: hall, dining, VIP dining and stay.</p>
 
             <h2 id="spaces">The five spaces</h2>
-            <p>Five connected spaces — pick by guest count first, then refine with the <a href="compare.html">space comparison</a>.</p>
+            <p>Five connected spaces — pick by guest count first, then refine with the <a href="compare">space comparison</a>.</p>
             <p><strong>Big Hall</strong> — The largest space in the venue: a full-size banquet hall for weddings, receptions and large community events, with room for a stage, seating and procession flow.</p>
             <p><strong>Small Hall</strong> — A mid-sized hall that suits engagements, birthdays, naming ceremonies and family functions — big enough for a stage, close enough to feel personal.</p>
             <p><strong>Dining Hall</strong> — A separate air-conditioned room for the meal — round-table seating for 400 at a time, with catering support so service stays out of the main programme.</p>
@@ -1835,7 +1836,7 @@ def details_main():
             <p><strong>Social Gatherings</strong> — Community meetings, festivals and neighbourhood events with space to gather and eat.</p>
 
             <h2 id="compare">Compare the spaces</h2>
-            <p>Capacities as listed by the venue. All spaces are fully air-conditioned. The full <a href="compare.html">differences table</a> is on its own page.</p>
+            <p>Capacities as listed by the venue. All spaces are fully air-conditioned. The full <a href="compare">differences table</a> is on its own page.</p>
 
             <h2 id="gallery">Photographs of the venue</h2>
             <p>Real photographs of the halls, dining rooms and guest spaces — no stock imagery.</p>
@@ -1876,7 +1877,7 @@ everything_included_main = f"""
       </section>
       <section class="section" aria-labelledby="ei-big">
         <div class="shell">
-          <div class="section-head reveal"><div><p class="eyebrow">Package</p><h2 id="ei-big">Big <em>Hall</em></h2></div><a class="text-link" href="big-hall.html">Big Hall page {icon("i-arrow")}</a></div>
+          <div class="section-head reveal"><div><p class="eyebrow">Package</p><h2 id="ei-big">Big <em>Hall</em></h2></div><a class="text-link" href="big-hall">Big Hall page {icon("i-arrow")}</a></div>
           <div class="facility-bullets">
             <div class="facility-bullet-group reveal"><h3>Specialities</h3><ul><li>Fully Air-Conditioned Hall</li><li>Seating Capacity: Up to 1,200 People</li><li>Catering Facility Available</li><li>Fully Equipped with an Acoustic System</li><li>8 A/C Guest Rooms Available for Guest Accommodation</li><li>The Entire Building is Equipped with a Fire-Fighting System</li><li>4-Wheeler &amp; 2-Wheeler Parking Available</li><li>LED Screen &amp; Projector Available</li><li>CCTV Surveillance — The Entire Building is Under CCTV Surveillance</li></ul></div>
             <div class="facility-bullet-group reveal reveal-delay-1"><h3>Dining</h3><ul><li>Dining Hall — Seating Capacity: Up to 400 People at a Time</li><li>VIP A/C Dining Hall — Seating Capacity: Up to 50 People at a Time</li></ul></div>
@@ -1885,7 +1886,7 @@ everything_included_main = f"""
       </section>
       <section class="section band-sand" aria-labelledby="ei-small">
         <div class="shell">
-          <div class="section-head reveal"><div><p class="eyebrow">Package</p><h2 id="ei-small">Small <em>Hall</em></h2></div><a class="text-link" href="small-hall.html">Small Hall page {icon("i-arrow")}</a></div>
+          <div class="section-head reveal"><div><p class="eyebrow">Package</p><h2 id="ei-small">Small <em>Hall</em></h2></div><a class="text-link" href="small-hall">Small Hall page {icon("i-arrow")}</a></div>
           <div class="facility-bullets">
             <div class="facility-bullet-group reveal"><h3>Specialities</h3><ul><li>Fully Air-Conditioned Hall</li><li>Seating Capacity: Up to 350 People</li><li>Catering Facility Available</li><li>Fully Equipped with an Acoustic System</li><li>The Entire Building is Equipped with a Fire-Fighting System</li><li>4-Wheeler &amp; 2-Wheeler Parking Available</li><li>LED Screen &amp; Projector Available</li><li>CCTV Surveillance — The Entire Building is Under CCTV Surveillance</li></ul></div>
             <div class="facility-bullet-group reveal reveal-delay-1" data-placeholder="CONFIRM with client: small hall dining details"><h3>Dining</h3><ul><li>Dining — Seating Capacity: Up to 50 People at a Time</li></ul></div>
@@ -1906,7 +1907,7 @@ big_hall_main = f"""
           <p class="eyebrow">Late Venutai Chavan Multipurpose Hall</p>
           <h1 id="space-title">Big Hall <span class="heading-mr" lang="mr">(बिग हॉल)</span></h1>
           <p class="lede">Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran, Nigdi, Pune – 411044</p>
-          <div class="hero-ctas"><a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a><a class="button button-ghost-light" href="gallery.html">View Gallery</a></div>
+          <div class="hero-ctas"><a class="button button-light button-lg" href="check-availability">Check Availability {icon("i-arrow")}</a><a class="button button-ghost-light" href="gallery">View Gallery</a></div>
         </div>
       </section>
       <section class="section" aria-labelledby="avail-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Events</p><h2 id="avail-title">Available <em>for</em></h2></div></div>
@@ -1933,7 +1934,7 @@ small_hall_main = f"""
           <p class="eyebrow">Late Venutai Chavan Multipurpose Hall</p>
           <h1 id="space-title">Small Hall <span class="heading-mr" lang="mr">(स्मॉल हॉल)</span></h1>
           <p class="lede">Yashwantrao Chavan Smarak, Sector 27A, Pradhikaran, Nigdi, Pune – 411044</p>
-          <div class="hero-ctas"><a class="button button-light button-lg" href="check-availability.html">Check Availability {icon("i-arrow")}</a><a class="button button-ghost-light" href="gallery.html">View Gallery</a></div>
+          <div class="hero-ctas"><a class="button button-light button-lg" href="check-availability">Check Availability {icon("i-arrow")}</a><a class="button button-ghost-light" href="gallery">View Gallery</a></div>
         </div>
       </section>
       <section class="section" aria-labelledby="avail-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Events</p><h2 id="avail-title">Available <em>for</em></h2></div></div>
@@ -1950,15 +1951,15 @@ small_hall_main = f"""
 
 SITEMAP_PAGES = [
     ("", "1.0"),
-    ("big-hall.html", "0.8"),
-    ("small-hall.html", "0.8"),
-    ("gallery.html", "0.8"),
-    ("contact.html", "0.8"),
-    ("visit.html", "0.7"),
-    ("check-availability.html", "0.9"),
-    ("everything-included.html", "0.7"),
-    ("privacy-policy.html", "0.3"),
-    ("terms.html", "0.3"),
+    ("big-hall", "0.8"),
+    ("small-hall", "0.8"),
+    ("gallery", "0.8"),
+    ("contact", "0.8"),
+    ("visit", "0.7"),
+    ("check-availability", "0.9"),
+    ("everything-included", "0.7"),
+    ("privacy-policy", "0.3"),
+    ("terms", "0.3"),
 ]
 
 
@@ -2008,7 +2009,7 @@ def build():
     itxt = ip.read_bytes().decode("utf-8")
     itxt2 = re.sub(
         r'<script src="script\.js(?:\?[^"]*)?" defer></script>',
-        f'<script src="script.js?v={SCRIPT_V}" defer></script>',
+        f'<script src="/script.js?v={SCRIPT_V}" defer></script>',
         itxt,
         count=1,
     )

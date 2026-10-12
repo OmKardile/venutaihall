@@ -274,3 +274,39 @@ Verification: build 29 pages, braces 0, JS OK. Call picker QA @1280: 4 triggers,
 DEFERRED (next group): shared booking form (hero right-side + check-availability, the new field set, compact 2-col, 100svh fit).
 
 Push: main -> both repos, plain.
+
+---
+Date: 2026-10-12
+Group: Shared booking form on the hero (compact, no guests)
+Branch: main
+Status: DONE, pushing.
+
+DONE:
+- index.html: added the booking form to .hero-inner (sibling to .hero-copy). Fields: Name, Mobile, Email, Space (Big Hall/Small Hall only), Event (10 options), Date, Call Back Time, Event Time. No guests. Honeypot + form-status. class="enquiry-form hero-form" (reuses the existing postForm submit/success handler). Hero "Check Availability" button -> href="#hero-form" (scrolls to it).
+- styles.css: .hero-inner 2-col desktop (1.1fr/0.9fr) / stacked mobile. .hero-form ivory card (rgba 0.97, border, shadow, scroll-margin-top). .form-grid-2 2-col with 1-col at <=560. Compact field sizing. Hero padding reduced (calc(header+40px), clamp(32,4vh,48px) bottom) to fit 100svh at 1366x768.
+
+DEFERRED (next group): rewrite check-availability.html (wizard_main) to use the SAME shared single form (+ optional message field) instead of the multi-step wizard. The wizard still works as-is (posts the old fields, patched backend accepts them) — it's a layout/UX follow-up, not a correctness issue.
+
+Verification: build 29 pages, braces 0, JS OK. Desktop 1280: hero-inner 2-col (633+518px), 8 fields, hall=3 options (Big/Small only), Check Availability -> #hero-form, overflow 0. 1366x768: heroH=768=viewport (fits 100svh). Mobile 390: stacked 1-col, form visible, overflow 0. Sweep 320/390/768/1280 = 0 overflow. Rule-4: index.html + styles.css only, no backend files, token CLEAN.
+
+Push: main -> both repos, plain.
+
+---
+Date: 2026-10-12
+Group: Clean URLs (extensionless) + footer tidy (items 1 + 4 of the 4-item task)
+Branch: main
+Status: DONE (items 1 + 4), pushing. Items 2 (big/small hall page rewrites) + 3 (highlights) deferred — substantial, need focused turns.
+
+DONE:
+- 1 Clean URLs: _build.py (canon via name.removesuffix(".html"); SITEMAP_PAGES extensionless; pic() assets root-relative /assets/; page head link/script root-relative), index.html (all hrefs extensionless + assets root-relative), _check.py (resolves root-relative by stripping leading / + tries path + ".html" for extensionless), script.js (currentFile home = "/"). Also updated the sandbox [...slug]/route.ts to resolve extensionless (try path + ".html") so the preview works. 0 .html hrefs remain (verified). All extensionless URLs serve 200 in preview. Nav works (/ -> /big-hall). Sweep 320/390/768/1280/1366x768/1920x1080 = 0 overflow.
+- 4 Footer tidy: removed the Address row from the CONTACT column (Call + Hours remain; address stays in footer-brand + Find Us). .footer-map band dark (--wine-ink) + media container --wine-deep (hides white Google loading flash) + ivory/sand text. Verified mapBg=wine-ink, mediaBg=wine-deep, h3 ivory, overflow 0.
+
+DEFERRED (substantial, next turns):
+- 2 big-hall.html + small-hall.html rewrite to the latest numbers-block design + shared form + verbatim lists.
+- 3 Highlights: capacity-number stand-out typography sitewide + events-reveal space highlights.
+
+Verification: build 29 pages, _check.py all refs resolve, braces 0, JS OK. Extensionless URLs 200. Sweep 0 overflow. Dark footer-map verified.
+
+DEPLOY ORDER (critical): htaccess MUST be applied to the server BEFORE deploying the extensionless site (DEPLOY-MANUAL.md (f)).
+
+Push: main -> both repos, plain.

@@ -1940,15 +1940,15 @@
   .footer-brand { display: flex; align-items: center; justify-content: flex-start; gap: 18px; }
   .footer-brand .brand { flex-shrink: 0; padding: 6px 0; }
   .footer-brand-address { font-size: 13px; line-height: 1.55; color: var(--ink-2); margin: 0; }
-  .footer-map { background: var(--paper); border-top: 1px solid var(--line); padding: clamp(28px, 4vw, 44px) 0; scroll-margin-top: 120px; }
+  .footer-map { background: var(--wine-ink); border-top: 1px solid rgba(154, 123, 69, 0.3); padding: clamp(32px, 4vw, 52px) 0; scroll-margin-top: 120px; color: rgba(246, 241, 232, 0.8); }
   .footer-map-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(24px, 4vw, 48px); align-items: center; }
-  .footer-map-media { border-radius: 6px; overflow: hidden; border: 1px solid var(--line); height: clamp(220px, 30vw, 320px); background: var(--bone); }
-  .footer-map-media iframe { display: block; }
-  .footer-map-side h3 { font-family: var(--font-display); font-size: 22px; font-weight: 550; color: var(--wine); margin: 0 0 10px; }
-  .footer-map-side p { font-size: 15px; line-height: 1.6; color: var(--ink-2); margin: 0 0 14px; }
+  .footer-map-media { border-radius: 6px; overflow: hidden; border: 1px solid rgba(154, 123, 69, 0.35); height: clamp(220px, 30vw, 320px); background: var(--wine-deep); }
+  .footer-map-media iframe { display: block; filter: grayscale(0.15); }
+  .footer-map-side h3 { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ivory); margin: 0 0 10px; }
+  .footer-map-side p { font-size: 15px; line-height: 1.6; color: rgba(246, 241, 232, 0.75); margin: 0 0 14px; }
   .footer-map-bullets { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 8px; }
-  .footer-map-bullets li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ink-2); }
-  .footer-map-bullets .icon { width: 17px; height: 17px; color: var(--brass-deep); flex: none; }
+  .footer-map-bullets li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(246, 241, 232, 0.7); }
+  .footer-map-bullets .icon { width: 17px; height: 17px; color: var(--brass); flex: none; }
   @media (max-width: 768px) { .footer-map-inner { grid-template-columns: 1fr; } .footer-brand { flex-direction: column; align-items: flex-start; } }
   .footer-col h3 {
     font-family: var(--font-body);

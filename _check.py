@@ -12,11 +12,18 @@ for f in pages:
         if r.startswith(("http://", "https://", "mailto:", "tel:", "#", "javascript:")):
             continue
         path = urlparse(r).path
+        if not path or path == "/":
+            continue
+        if path.startswith("/"):
+            path = path[1:]
         if not path:
             continue
         checked += 1
-        if not os.path.exists(path):
-            missing.append(f"{f} -> {r}")
+        if os.path.exists(path):
+            continue
+        if os.path.exists(path + ".html"):
+            continue
+        missing.append(f"{f} -> {r}")
 
 print(f"checked {checked} local refs across {len(pages)} pages")
 if missing:
