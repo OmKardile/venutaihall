@@ -4,11 +4,24 @@
   const todayStr = new Date().toISOString().slice(0, 10);
 
   const SPACE_INFO = {
-    big: { name: 'Big Hall', cap: 'Up to 1200 guests', ideal: 'Weddings & large events', page: 'big-hall.html' },
-    small: { name: 'Small Hall', cap: 'Up to 350 guests', ideal: 'Engagements & birthdays', page: 'small-hall.html' },
-    dining: { name: 'Dining Hall', cap: 'Up to 400 guests', ideal: 'Meals & reception dining', page: 'dining-hall.html' },
-    vip: { name: 'VIP A/C Dining', cap: 'Up to 50 guests', ideal: 'Close family & VIP dining', page: 'vip-dining.html' },
-    rooms: { name: 'A/C Guest Rooms', cap: 'Up to 8 rooms', ideal: 'Family & invitee stay', page: 'guest-rooms.html' },
+    big: { name: 'Big Hall', cap: 'Up to 1200 guests', ideal: 'Weddings & large events', page: 'big-hall' },
+    small: { name: 'Small Hall', cap: 'Up to 350 guests', ideal: 'Engagements & birthdays', page: 'small-hall' },
+    dining: { name: 'Dining Hall', cap: 'Up to 400 guests', ideal: 'Meals & reception dining', page: 'dining-hall' },
+    vip: { name: 'VIP A/C Dining', cap: 'Up to 50 guests', ideal: 'Close family & VIP dining', page: 'vip-dining' },
+    rooms: { name: 'A/C Guest Rooms', cap: 'Up to 8 rooms', ideal: 'Family & invitee stay', page: 'guest-rooms' },
+  };
+
+  const HALL_HIGHLIGHTS = {
+    big: [
+      { label: 'Full A/C Hall', num: '1200', cap: 'up to · guests' },
+      { label: 'Big Dining', num: '400', cap: 'at a time' },
+      { label: 'VIP A/C Dining', num: '50', cap: 'max · at a time' },
+      { label: 'A/C Guest Rooms', num: '8', cap: 'rooms' },
+    ],
+    small: [
+      { label: 'Full A/C Hall', num: '350', cap: 'up to · guests' },
+      { label: 'A/C Dining', num: '50', cap: 'at a time' },
+    ],
   };
 
   qsa('input[type="date"]').forEach((input) => {
@@ -181,8 +194,39 @@
             revealSpaces.append(chip);
           });
         }
-        if (revealPage) revealPage.href = card.dataset.page || 'events.html';
-        if (revealCta) revealCta.href = `check-availability.html?event=${encodeURIComponent(eventName)}`;
+        const revealHl = qs('#reveal-highlights');
+        if (revealHl) {
+          revealHl.replaceChildren();
+          const halls = [];
+          if (keys.includes('big')) halls.push('big');
+          if (keys.includes('small')) halls.push('small');
+          halls.forEach((h) => {
+            const group = document.createElement('div');
+            group.className = 'reveal-hl-group';
+            const title = document.createElement('p');
+            title.className = 'reveal-hl-title';
+            title.textContent = h === 'big' ? 'Big Hall highlights' : 'Small Hall highlights';
+            group.append(title);
+            (HALL_HIGHLIGHTS[h] || []).forEach((pt) => {
+              const row = document.createElement('div');
+              row.className = 'reveal-hl-row';
+              const lbl = document.createElement('span');
+              lbl.className = 'hl-label';
+              lbl.textContent = pt.label;
+              const num = document.createElement('span');
+              num.className = 'hl-num';
+              num.textContent = pt.num;
+              const cap = document.createElement('span');
+              cap.className = 'hl-cap';
+              cap.textContent = pt.cap;
+              row.append(lbl, num, cap);
+              group.append(row);
+            });
+            revealHl.append(group);
+          });
+        }
+        if (revealPage) revealPage.href = card.dataset.page || 'events';
+        if (revealCta) revealCta.href = `check-availability?event=${encodeURIComponent(eventName)}`;
         revealPanel.hidden = false;
         void revealPanel.offsetHeight;
         revealPanel.classList.add('is-open');

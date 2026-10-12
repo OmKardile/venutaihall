@@ -345,3 +345,20 @@ DEFERRED: item 2 (big-hall/small-hall latest design) + item 3 (highlights sitewi
 Verification: build 29 pages, _check.py all refs resolve, braces 0, JS OK. check-availability: #check-form present (9 fields incl message), #wizard gone, steps-bar gone, action=/booking.php, ?event=Wedding prefill works, title correct, overflow 0. Sweep 320/390/768/1280/1366x768/1920x1080 = 0 overflow.
 
 Push: main -> both repos, plain.
+
+---
+Date: 2026-10-12
+Group: big-hall/small-hall latest design + highlights (items 2 + 3)
+Branch: main
+Status: DONE, pushing.
+
+DONE:
+- _build.py: added booking_form(form_id, with_message) helper (shared compact form). Replaced big_hall_main + small_hall_main with: page-hero + numbers block (.hall-panel wine panel with .hall-numbers rows) + Available for (verbatim chips) + Specialities (verbatim list, #i-mic fixed) + booking_form("bh-form"/"sh-form") + cta_band. Big Hall: 4 number rows (1200/400/50/8-featured). Small Hall: 2 rows (350/50-CONFIRM).
+- script.js: added HALL_HIGHLIGHTS data (big: 4 points, small: 2 points). In the events reveal, after building reveal-spaces, builds #reveal-highlights: if keys includes big -> Big Hall group (4 rows); if small -> Small Hall group (2 rows). Each row: .hl-label + .hl-num + .hl-cap. SPACE_INFO page links -> extensionless. reveal-cta href -> check-availability?event= (extensionless).
+- index.html: added <div id="reveal-highlights"> to the celebrate-reveal panel.
+- styles.css: .hl-num (display, 1.2em, semibold, wine; gold on dark via .band-wine/.celebrate-reveal/.hall-panel/.hero). .reveal-highlights/.reveal-hl-group/.reveal-hl-title/.reveal-hl-row + .hl-label/.hl-cap styling (dark-panel variant).
+- Applied .hl-num to Specialities capacity numbers: Big Hall "1,200" + "8"; Small Hall "350".
+
+Verification: build 29 pages, _check.py all refs resolve, braces 0, JS OK. big-hall: 4 number rows, featured, 9 specialities, #bh-form (action=/booking.php), 7 chips, CTA, address, overflow 0. small-hall: 2 rows, CONFIRM marker, 8 specialities, #sh-form, overflow 0. Events reveal: Big Hall event -> 4 highlight rows (gold #f2dcae on dark); Small Hall event -> 2 rows. .hl-num in Specialities verified (1,200/8/350). Sweep 320/390/768/1280/1366x768/1920x1080 = 0 overflow.
+
+Push: main -> both repos, plain.

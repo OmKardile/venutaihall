@@ -1822,6 +1822,40 @@ everything_included_main = f"""
 
 
 
+def booking_form(form_id, with_message=True):
+    msg = ""
+    if with_message:
+        msg = f'''
+              <div class="field field-full">
+                <label for="{form_id}-message">Message <span class="hint">(optional)</span></label>
+                <textarea id="{form_id}-message" name="message" rows="3" maxlength="2000" placeholder="Questions, layout ideas, anything else…"></textarea>
+              </div>'''
+    return f"""
+        <section class="section" aria-label="Booking enquiry">
+          <div class="shell-narrow">
+            <form class="enquiry-form check-form" id="{form_id}" action="/booking.php" method="post" novalidate aria-labelledby="{form_id}-title">
+              <div class="hero-form-card">
+                <div class="hero-form-head"><p class="hero-form-title" id="{form_id}-title">Check your date</p></div>
+                <div class="form-grid form-grid-2">
+                  <div class="field"><label for="{form_id}-name">Name <span class="req">*</span></label><input id="{form_id}-name" name="name" autocomplete="name" required /></div>
+                  <div class="field"><label for="{form_id}-phone">Mobile <span class="req">*</span></label><input id="{form_id}-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() -]{{10,18}}" required /></div>
+                  <div class="field"><label for="{form_id}-email">Email</label><input id="{form_id}-email" name="email" type="email" autocomplete="email" /></div>
+                  <div class="field"><label for="{form_id}-hall">Space <span class="req">*</span></label><select id="{form_id}-hall" name="hall" required><option value="">Choose…</option><option value="big">Big Hall — up to 1200</option><option value="small">Small Hall — up to 350</option></select></div>
+                  <div class="field"><label for="{form_id}-event">Event <span class="req">*</span></label><select id="{form_id}-event" name="event" required><option value="">Select…</option><option>Wedding</option><option>Engagement</option><option>Reception</option><option>Birthday</option><option>Naming Ceremony</option><option>Family Function</option><option>Corporate Event</option><option>Social Gathering</option><option>Venue Visit</option><option>Other Event</option></select></div>
+                  <div class="field"><label for="{form_id}-date">Date <span class="req">*</span></label><input id="{form_id}-date" name="date" type="date" required /></div>
+                  <div class="field"><label for="{form_id}-cb">Call back</label><select id="{form_id}-cb" name="call_back_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
+                  <div class="field"><label for="{form_id}-et">Event time</label><select id="{form_id}-et" name="event_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Night</option></select></div>
+                  {msg}
+                </div>
+                <label class="booking-trap" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label>
+                <button class="button button-wine" type="submit">Send Enquiry {icon("i-arrow")}</button>
+                <p class="form-status" role="status" aria-live="polite"></p>
+              </div>
+            </form>
+          </div>
+        </section>"""
+
+
 big_hall_main = f"""
       <section class="page-hero" aria-labelledby="space-title">
         <div class="page-hero-media">{pic("hero-hall.jpg", "Big Hall with chandeliers and rows of seats", priority=True)}</div>
@@ -1833,21 +1867,30 @@ big_hall_main = f"""
           <div class="hero-ctas"><a class="button button-light button-lg" href="check-availability">Check Availability {icon("i-arrow")}</a><a class="button button-ghost-light" href="gallery">View Gallery</a></div>
         </div>
       </section>
-      <section class="section" aria-labelledby="avail-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Events</p><h2 id="avail-title">Available <em>for</em></h2></div></div>
+      <section class="section" aria-labelledby="nums-title">
+        <div class="shell">
+          <div class="hall-panel reveal" style="border-radius:10px">
+            <p class="hall-eyebrow">01 — Big Hall</p>
+            <h3 class="hall-name" id="nums-title">Big Hall numbers</h3>
+            <dl class="hall-numbers">
+              <div class="hall-row"><dt class="hall-row-label">Full A/C Hall</dt><dd class="hall-row-num"><span class="hall-num-val">1200</span><span class="hall-num-cap">up to · guests</span></dd></div>
+              <div class="hall-row"><dt class="hall-row-label">Big Dining</dt><dd class="hall-row-num"><span class="hall-num-val">400</span><span class="hall-num-cap">at a time</span></dd></div>
+              <div class="hall-row"><dt class="hall-row-label">VIP A/C Dining</dt><dd class="hall-row-num"><span class="hall-num-val">50</span><span class="hall-num-cap">max · at a time</span></dd></div>
+              <div class="hall-row hall-row-featured"><dt class="hall-row-label">A/C Guest Rooms <span class="hall-speciality">Speciality</span></dt><dd class="hall-row-num hall-row-num-featured"><span class="hall-num-val">8</span><span class="hall-num-cap">rooms</span></dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section class="section band-sand" aria-labelledby="avail-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Events</p><h2 id="avail-title">Available <em>for</em></h2></div></div>
         <div class="chip-row reveal"><span class="chip chip-wine">Reception Parties</span><span class="chip chip-wine">Weddings</span><span class="chip chip-wine">Engagement Ceremonies</span><span class="chip chip-wine">Birthday Parties</span><span class="chip chip-wine">Naming Ceremonies</span><span class="chip chip-wine">Family Functions</span><span class="chip chip-wine">Corporate &amp; Social Events</span></div>
       </div></section>
-      <section class="section band-sand" aria-labelledby="spec-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Big Hall</p><h2 id="spec-title">Specialities</h2></div></div>
+      <section class="section" aria-labelledby="spec-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Big Hall</p><h2 id="spec-title">Specialities</h2></div></div>
         <ol class="spec-numbered reveal">
-          <li>{icon("i-ac")}<span>Fully Air-Conditioned Hall</span></li><li>{icon("i-people")}<span>Seating Capacity: Up to 1,200 People</span></li><li>{icon("i-tray")}<span>Catering Facility Available</span></li><li>{icon("i-sound")}<span>Fully Equipped with an Acoustic System</span></li><li>{icon("i-bed")}<span>8 A/C Guest Rooms Available for Guest Accommodation</span></li><li>{icon("i-shield")}<span>The Entire Building is Equipped with a Fire-Fighting System</span></li><li>{icon("i-car")}<span>4-Wheeler &amp; 2-Wheeler Parking Available</span></li><li>{icon("i-screen")}<span>LED Screen &amp; Projector Available</span></li><li>{icon("i-camera")}<span>CCTV Surveillance — The Entire Building is Under CCTV Surveillance</span></li>
+          <li>{icon("i-ac")}<span>Fully Air-Conditioned Hall</span></li><li>{icon("i-people")}<span>Seating Capacity: Up to <span class="hl-num">1,200</span> People</span></li><li>{icon("i-tray")}<span>Catering Facility Available</span></li><li>{icon("i-mic")}<span>Fully Equipped with an Acoustic System</span></li><li>{icon("i-bed")}<span><span class="hl-num">8</span> A/C Guest Rooms Available for Guest Accommodation</span></li><li>{icon("i-shield")}<span>The Entire Building is Equipped with a Fire-Fighting System</span></li><li>{icon("i-car")}<span>4-Wheeler &amp; 2-Wheeler Parking Available</span></li><li>{icon("i-screen")}<span>LED Screen &amp; Projector Available</span></li><li>{icon("i-camera")}<span>CCTV Surveillance — The Entire Building is Under CCTV Surveillance</span></li>
         </ol></div></section>
-      <section class="section" aria-labelledby="dining-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Dining</p><h2 id="dining-title">Dining <em>Capacities</em></h2></div></div>
-        <div class="package-specs">
-          <article class="pkg-row reveal"><div class="pkg-body"><div class="pkg-head">{icon("i-dining")}<h3>Dining Hall</h3></div><p class="pkg-value"><strong class="pkg-num">400</strong><span class="pkg-unit">at a time</span></p></div><div class="pkg-thumb">{pic("dining-hall.jpg", "Dining Hall with round tables")}</div></article>
-          <article class="pkg-row reveal"><div class="pkg-body"><div class="pkg-head">{icon("i-tray")}<h3>VIP A/C Dining Hall</h3></div><p class="pkg-value"><span class="pkg-prefix">max</span><strong class="pkg-num">50</strong><span class="pkg-unit">at a time</span></p></div><div class="pkg-thumb">{pic("vip-dining.jpg", "VIP A/C dining room")}</div></article>
-        </div></div></section>
+      {booking_form("bh-form")}
       {cta_band("Ready to check <em>your date?</em>")}
 """
-
 
 small_hall_main = f"""
       <section class="page-hero" aria-labelledby="space-title">
@@ -1860,18 +1903,28 @@ small_hall_main = f"""
           <div class="hero-ctas"><a class="button button-light button-lg" href="check-availability">Check Availability {icon("i-arrow")}</a><a class="button button-ghost-light" href="gallery">View Gallery</a></div>
         </div>
       </section>
-      <section class="section" aria-labelledby="avail-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Events</p><h2 id="avail-title">Available <em>for</em></h2></div></div>
+      <section class="section" aria-labelledby="nums-title">
+        <div class="shell">
+          <div class="hall-panel reveal" style="border-radius:10px">
+            <p class="hall-eyebrow">02 — Small Hall</p>
+            <h3 class="hall-name" id="nums-title">Small Hall numbers</h3>
+            <dl class="hall-numbers">
+              <div class="hall-row"><dt class="hall-row-label">Full A/C Hall</dt><dd class="hall-row-num"><span class="hall-num-val">350</span><span class="hall-num-cap">up to · guests</span></dd></div>
+              <div class="hall-row" data-placeholder="CONFIRM with client: small hall dining details"><dt class="hall-row-label">A/C Dining</dt><dd class="hall-row-num"><span class="hall-num-val">50</span><span class="hall-num-cap">at a time</span></dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section class="section band-sand" aria-labelledby="avail-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Events</p><h2 id="avail-title">Available <em>for</em></h2></div></div>
         <div class="chip-row reveal"><span class="chip chip-wine">Reception Parties</span><span class="chip chip-wine">Weddings</span><span class="chip chip-wine">Engagement Ceremonies</span><span class="chip chip-wine">Birthday Parties</span><span class="chip chip-wine">Naming Ceremonies</span><span class="chip chip-wine">Family Functions</span><span class="chip chip-wine">Corporate &amp; Social Events</span></div>
       </div></section>
-      <section class="section band-sand" aria-labelledby="spec-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Small Hall</p><h2 id="spec-title">Specialities</h2></div></div>
+      <section class="section" aria-labelledby="spec-title"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Small Hall</p><h2 id="spec-title">Specialities</h2></div></div>
         <ol class="spec-numbered reveal">
-          <li>{icon("i-ac")}<span>Fully Air-Conditioned Hall</span></li><li>{icon("i-people")}<span>Seating Capacity: Up to 350 People</span></li><li>{icon("i-tray")}<span>Catering Facility Available</span></li><li>{icon("i-sound")}<span>Fully Equipped with an Acoustic System</span></li><li>{icon("i-shield")}<span>The Entire Building is Equipped with a Fire-Fighting System</span></li><li>{icon("i-car")}<span>4-Wheeler &amp; 2-Wheeler Parking Available</span></li><li>{icon("i-screen")}<span>LED Screen &amp; Projector Available</span></li><li>{icon("i-camera")}<span>CCTV Surveillance — The Entire Building is Under CCTV Surveillance</span></li>
+          <li>{icon("i-ac")}<span>Fully Air-Conditioned Hall</span></li><li>{icon("i-people")}<span>Seating Capacity: Up to <span class="hl-num">350</span> People</span></li><li>{icon("i-tray")}<span>Catering Facility Available</span></li><li>{icon("i-mic")}<span>Fully Equipped with an Acoustic System</span></li><li>{icon("i-shield")}<span>The Entire Building is Equipped with a Fire-Fighting System</span></li><li>{icon("i-car")}<span>4-Wheeler &amp; 2-Wheeler Parking Available</span></li><li>{icon("i-screen")}<span>LED Screen &amp; Projector Available</span></li><li>{icon("i-camera")}<span>CCTV Surveillance — The Entire Building is Under CCTV Surveillance</span></li>
         </ol></div></section>
-      <section class="section" aria-labelledby="dining-title" data-placeholder="CONFIRM with client: small hall dining details"><div class="shell"><div class="section-head reveal"><div><p class="eyebrow">Dining</p><h2 id="dining-title">Dining</h2></div></div>
-        <div class="package-specs"><article class="pkg-row pkg-plain reveal"><div class="pkg-body"><div class="pkg-head">{icon("i-dining")}<h3>Dining</h3></div><p class="pkg-value"><strong class="pkg-num">50</strong><span class="pkg-unit">at a time</span></p></div></article></div></div></section>
+      {booking_form("sh-form")}
       {cta_band("Ready to check <em>your date?</em>")}
 """
-
 SITEMAP_PAGES = [
     ("", "1.0"),
     ("big-hall", "0.8"),
