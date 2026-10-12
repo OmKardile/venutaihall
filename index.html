@@ -235,11 +235,27 @@
         <div class="hero-copy">
           <h1>Banquet Hall for<br class="hero-h1-break" /> Every Celebration.<span class="heading-mr" lang="mr">(प्रत्येक आनंदासाठी सभागृह)</span></h1>
           <div class="hero-ctas">
-            <a class="button button-light button-lg" href="check-availability.html">Check Availability <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+            <a class="button button-light button-lg" href="#hero-form">Check Availability <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></a>
             <a class="button button-ghost-light button-lg" href="big-hall.html">Explore Big Hall</a>
           </div>
           <p class="hero-place"><svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg> Nigdi, Pune</p>
         </div>
+        <form class="enquiry-form hero-form" id="hero-form" action="booking.php" method="post" novalidate aria-labelledby="hero-form-title">
+          <p class="hero-form-title" id="hero-form-title">Check your date</p>
+          <div class="form-grid form-grid-2">
+            <div class="field"><label for="hf-name">Name <span class="req">*</span></label><input id="hf-name" name="name" autocomplete="name" required /></div>
+            <div class="field"><label for="hf-phone">Mobile <span class="req">*</span></label><input id="hf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() -]{10,18}" required /></div>
+            <div class="field"><label for="hf-email">Email</label><input id="hf-email" name="email" type="email" autocomplete="email" /></div>
+            <div class="field"><label for="hf-hall">Space <span class="req">*</span></label><select id="hf-hall" name="hall" required><option value="">Choose…</option><option value="big">Big Hall — up to 1200</option><option value="small">Small Hall — up to 350</option></select></div>
+            <div class="field"><label for="hf-event">Event <span class="req">*</span></label><select id="hf-event" name="event" required><option value="">Select…</option><option>Wedding</option><option>Engagement</option><option>Reception</option><option>Birthday</option><option>Naming Ceremony</option><option>Family Function</option><option>Corporate Event</option><option>Social Gathering</option><option>Venue Visit</option><option>Other Event</option></select></div>
+            <div class="field"><label for="hf-date">Date <span class="req">*</span></label><input id="hf-date" name="date" type="date" required /></div>
+            <div class="field"><label for="hf-cb">Call back</label><select id="hf-cb" name="call_back_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
+            <div class="field"><label for="hf-et">Event time</label><select id="hf-et" name="event_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Night</option></select></div>
+          </div>
+          <label class="booking-trap" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label>
+          <button class="button button-wine" type="submit">Send Enquiry <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
       <a class="hero-scroll" href="#package-title">Explore Venue <svg class="icon" aria-hidden="true"><use href="#i-arrow-down" /></svg></a>
     </section>
