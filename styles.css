@@ -2295,8 +2295,9 @@
   .brand-logo { display: block; line-height: 0; }
   .brand-logo-sepia { display: none; line-height: 0; }
   .site-header .brand-logo { display: none; }
-  .site-header .brand-logo-sepia { display: block; }
-  .site-header .brand-logo-sepia img { width: auto; height: 72px; }
+  .site-header .brand-logo-sepia { display: none; }
+  .site-header.is-scrolled .brand-logo-sepia, .site-header.is-solid .brand-logo-sepia { display: block; }
+  .site-header.is-scrolled .brand-logo-sepia img, .site-header.is-solid .brand-logo-sepia img { width: auto; height: 72px; }
   .site-header .brand { transform: translate(6px, 3px); }
   .brand-logo img { display: block; width: auto; height: 80px; }
   .footer-brand .brand-logo { display: none; }
