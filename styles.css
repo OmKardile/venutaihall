@@ -1834,8 +1834,8 @@
   }
   .footer-grid {
     display: grid;
-    grid-template-columns: 0.5fr 1.6fr 1fr 1fr;
-    gap: clamp(20px, 3vw, 40px);
+    grid-template-columns: 0.8fr 1.3fr 1fr 1fr;
+    gap: clamp(12px, 2vw, 24px);
     padding-bottom: clamp(40px, 5vw, 64px);
   }
   .footer-brand {
@@ -2305,7 +2305,7 @@
   .brand-logo img { display: block; width: auto; height: 80px; }
   .footer-brand .brand-logo { display: none; }
   .footer-brand .brand-logo-sepia { display: block; }
-  .footer-brand .brand-logo-sepia img { height: 96px; width: auto; max-width: 100%; }
+  .footer-brand .brand-logo-sepia img { width: 100%; height: auto; max-width: 100%; }
   .brand-en { margin-top: 6px; font-family: var(--font-body); font-size: 11px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); text-align: center; line-height: 1.25; }
   .site-header .brand-en { white-space: nowrap; }
   .footer-brand .brand-logo img { height: 72px; max-width: none; }
