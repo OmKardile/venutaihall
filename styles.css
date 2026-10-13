@@ -1620,7 +1620,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(30, 16, 14, 0.62) 0%, rgba(30, 16, 14, 0.34) 45%, rgba(30, 16, 14, 0.8) 100%);
+    background: linear-gradient(180deg, rgba(30, 16, 14, 0.72) 0%, rgba(30, 16, 14, 0.55) 45%, rgba(30, 16, 14, 0.88) 100%);
   }
   .page-hero-inner {
     position: relative;
@@ -1632,7 +1632,7 @@
   .page-hero .eyebrow { color: var(--sand); }
   .page-hero .eyebrow::before { background: var(--brass); }
   .page-hero h1 { color: var(--ivory); font-size: clamp(38px, 5.6vw, 68px); max-width: 18ch; }
-  .page-hero .lede { color: rgba(246, 241, 232, 0.85); margin-top: 18px; }
+  .page-hero .lede { color: rgba(246, 241, 232, 0.92); margin-top: 18px; }
 
   .breadcrumb {
     display: flex;
@@ -1643,7 +1643,7 @@
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(246, 241, 232, 0.72);
+    color: rgba(246, 241, 232, 0.88);
     margin-bottom: 22px;
   }
   .breadcrumb a { color: inherit; opacity: 0.85; transition: opacity 0.2s ease; }
@@ -1834,7 +1834,7 @@
   }
   .footer-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    grid-template-columns: 1.4fr 1fr 1fr;
     gap: clamp(20px, 3vw, 40px);
     padding-bottom: clamp(40px, 5vw, 64px);
   }
@@ -2294,11 +2294,14 @@
   .hl-dark.hl-dark { color: #f2dcae; font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
   .brand-logo { display: block; line-height: 0; }
   .brand-logo-sepia { display: none; line-height: 0; }
-  .site-header .brand-logo { display: none; }
-  .site-header .brand-logo-sepia { display: block; }
-  .site-header .brand-logo-sepia img { width: auto; height: 52px; }
+  .site-header:not(.is-scrolled):not(.is-solid) .brand-logo { display: none; }
+  .site-header:not(.is-scrolled):not(.is-solid) .brand-logo-sepia { display: block; }
+  .site-header:not(.is-scrolled):not(.is-solid) .brand-logo-sepia img { width: auto; height: 52px; }
   .site-header .brand { transform: translate(6px, 3px); }
   .brand-logo img { display: block; width: auto; height: 80px; }
+  .footer-brand .brand-logo { display: none; }
+  .footer-brand .brand-logo-sepia { display: block; }
+  .footer-brand .brand-logo-sepia img { height: 72px; max-width: none; }
   .brand-en { margin-top: 6px; font-family: var(--font-body); font-size: 11px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); text-align: center; line-height: 1.25; }
   .site-header .brand-en { white-space: nowrap; }
   .footer-brand .brand-logo img { height: 72px; max-width: none; }
