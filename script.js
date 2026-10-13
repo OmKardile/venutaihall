@@ -155,7 +155,6 @@
   const revealPanel = qs('#celebrate-reveal');
   if (eventCards.length && revealPanel) {
     const revealTitle = qs('#reveal-title');
-    const revealSpaces = qs('#reveal-spaces');
     const revealPage = qs('#reveal-page');
     const revealCta = qs('#reveal-cta');
 
@@ -178,22 +177,6 @@
         const heading = qs('h3', card)?.textContent || eventName;
         const keys = (card.dataset.spaces || '').split(',').map((s) => s.trim()).filter(Boolean);
         if (revealTitle) revealTitle.textContent = heading;
-        if (revealSpaces) {
-          revealSpaces.replaceChildren();
-          keys.forEach((key) => {
-            const info = SPACE_INFO[key];
-            if (!info) return;
-            const chip = document.createElement('a');
-            chip.className = 'reveal-space';
-            chip.href = info.page;
-            const label = document.createElement('span');
-            label.textContent = info.name;
-            const cap = document.createElement('small');
-            cap.textContent = info.cap;
-            chip.append(label, cap);
-            revealSpaces.append(chip);
-          });
-        }
         const revealHl = qs('#reveal-highlights');
         if (revealHl) {
           revealHl.replaceChildren();

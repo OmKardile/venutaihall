@@ -1298,53 +1298,31 @@ def hall_options():
                       <option value="rooms">A/C Guest Rooms — 8 rooms</option>"""
 
 
-def contact_form_card(form_id="enquire"):
+def enquiry_form(form_id, title="Check your date"):
+    """Unified 6-field enquiry form — same structure as the homepage hero
+    form (Name, Mobile, Email, Space, Event, Date). Used everywhere a booking
+    enquiry form appears so the field set is consistent across the site."""
     return f"""
-          <form class="enquiry-form form-card reveal" id="{form_id}" action="booking.php" method="post" aria-labelledby="form-title">
-            <div>
-              <p class="eyebrow">Send an enquiry</p>
-              <h2 id="form-title">Tell us about your event</h2>
-              <p class="lede" style="margin-top:10px">Share a few details and our team will contact you with availability and next steps.</p>
+          <form class="enquiry-form check-form" id="{form_id}" action="/booking.php" method="post" novalidate aria-labelledby="{form_id}-title">
+            <div class="hero-form-card">
+              <div class="hero-form-head"><p class="hero-form-title" id="{form_id}-title">{title}</p></div>
+              <div class="form-grid form-grid-2">
+                <div class="field"><label for="{form_id}-name">Name <span class="req">*</span></label><input id="{form_id}-name" name="name" autocomplete="name" required /></div>
+                <div class="field"><label for="{form_id}-phone">Mobile <span class="req">*</span></label><input id="{form_id}-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() -]{{10,18}}" required /></div>
+                <div class="field"><label for="{form_id}-email">Email</label><input id="{form_id}-email" name="email" type="email" autocomplete="email" /></div>
+                <div class="field"><label for="{form_id}-hall">Space <span class="req">*</span></label><select id="{form_id}-hall" name="hall" required><option value="">Choose…</option><option value="big">Big Hall — up to 1200</option><option value="small">Small Hall — up to 350</option></select></div>
+                <div class="field"><label for="{form_id}-event">Event <span class="req">*</span></label><select id="{form_id}-event" name="event" required><option value="">Select…</option><option>Wedding</option><option>Engagement</option><option>Reception</option><option>Birthday</option><option>Naming Ceremony</option><option>Family Function</option><option>Corporate Event</option><option>Social Gathering</option><option>Venue Visit</option><option>Other Event</option></select></div>
+                <div class="field"><label for="{form_id}-date">Date <span class="req">*</span></label><input id="{form_id}-date" name="date" type="date" required /></div>
+              </div>
+              <label class="booking-trap" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label>
+              <button class="button button-wine" type="submit">Send Enquiry {icon("i-arrow")}</button>
+              <p class="form-status" role="status" aria-live="polite"></p>
             </div>
-            <div class="form-grid">
-              <div class="field">
-                <label for="c-name">Your name <span class="req">*</span></label>
-                <input id="c-name" name="name" autocomplete="name" required />
-              </div>
-              <div class="field-row">
-                <div class="field">
-                  <label for="c-phone">Phone <span class="req">*</span></label>
-                  <input id="c-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() -]{{10,18}}" required />
-                </div>
-                <div class="field">
-                  <label for="c-email">Email <span class="hint">(optional)</span></label>
-                  <input id="c-email" name="email" type="email" autocomplete="email" />
-                </div>
-              </div>
-              <div class="field-row">
-                <div class="field">
-                  <label for="c-event">Event type <span class="req">*</span></label>
-                  <select id="c-event" name="event" required>{event_options()}</select>
-                </div>
-                <div class="field">
-                  <label for="c-date">Preferred date <span class="req">*</span></label>
-                  <input id="c-date" name="date" type="date" required />
-                </div>
-              </div>
-              <div class="field field-full">
-                <label for="c-hall">Preferred space <span class="hint">(optional)</span></label>
-                <select id="c-hall" name="hall">{hall_options()}</select>
-              </div>
-              <div class="field">
-                <label for="c-message">Message <span class="hint">(optional)</span></label>
-                <textarea id="c-message" name="message" rows="4" maxlength="2000" placeholder="Guest count, layout ideas, questions…"></textarea>
-              </div>
-            </div>
-            <label class="booking-trap" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label>
-            <button class="button button-wine" type="submit">Send Enquiry {icon("i-arrow")}</button>
-            <p class="form-status" role="status" aria-live="polite"></p>
-            <p class="form-assurance" style="font-size:13px;color:var(--ink-3);text-align:center">This is an enquiry. Our team will contact you; the date is booked only after they confirm it.</p>
           </form>"""
+
+
+def contact_form_card(form_id="enquire"):
+    return enquiry_form(form_id, title="Send an enquiry")
 
 
 contact_main = f"""
@@ -1504,25 +1482,7 @@ wizard_main = f"""
 
       <section class="section" aria-label="Availability enquiry">
         <div class="shell-narrow">
-          <form class="enquiry-form check-form" id="check-form" action="/booking.php" method="post" novalidate aria-labelledby="check-form-title">
-            <div class="hero-form-card">
-              <div class="hero-form-head"><p class="hero-form-title" id="check-form-title">Check your date</p></div>
-              <div class="form-grid form-grid-2">
-                <div class="field"><label for="cf-name">Name <span class="req">*</span></label><input id="cf-name" name="name" autocomplete="name" required /></div>
-                <div class="field"><label for="cf-phone">Mobile <span class="req">*</span></label><input id="cf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() -]{{10,18}}" required /></div>
-                <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" /></div>
-                <div class="field"><label for="cf-hall">Space <span class="req">*</span></label><select id="cf-hall" name="hall" required><option value="">Choose…</option><option value="big">Big Hall — up to 1200</option><option value="small">Small Hall — up to 350</option></select></div>
-                <div class="field"><label for="cf-event">Event <span class="req">*</span></label><select id="cf-event" name="event" required><option value="">Select…</option><option>Wedding</option><option>Engagement</option><option>Reception</option><option>Birthday</option><option>Naming Ceremony</option><option>Family Function</option><option>Corporate Event</option><option>Social Gathering</option><option>Venue Visit</option><option>Other Event</option></select></div>
-                <div class="field"><label for="cf-date">Date <span class="req">*</span></label><input id="cf-date" name="date" type="date" required /></div>
-                <div class="field"><label for="cf-cb">Call back</label><select id="cf-cb" name="call_back_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
-                <div class="field"><label for="cf-et">Event time</label><select id="cf-et" name="event_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Night</option></select></div>
-                <div class="field field-full"><label for="cf-message">Message <span class="hint">(optional)</span></label><textarea id="cf-message" name="message" rows="3" maxlength="2000" placeholder="Questions, layout ideas, anything else…"></textarea></div>
-              </div>
-              <label class="booking-trap" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label>
-              <button class="button button-wine" type="submit">Send Enquiry {icon("i-arrow")}</button>
-              <p class="form-status" role="status" aria-live="polite"></p>
-            </div>
-          </form>
+          {enquiry_form("check-form", title="Check your date")}
         </div>
       </section>
 """
@@ -1823,35 +1783,13 @@ everything_included_main = f"""
 
 
 def booking_form(form_id, with_message=True):
-    msg = ""
-    if with_message:
-        msg = f'''
-              <div class="field field-full">
-                <label for="{form_id}-message">Message <span class="hint">(optional)</span></label>
-                <textarea id="{form_id}-message" name="message" rows="3" maxlength="2000" placeholder="Questions, layout ideas, anything else…"></textarea>
-              </div>'''
+    """Unified 6-field booking enquiry form (matches the homepage hero form).
+    The with_message parameter is kept for backward-call compatibility but
+    no longer appends a message field — the hero form has no message field."""
     return f"""
         <section class="section" aria-label="Booking enquiry">
           <div class="shell-narrow">
-            <form class="enquiry-form check-form" id="{form_id}" action="/booking.php" method="post" novalidate aria-labelledby="{form_id}-title">
-              <div class="hero-form-card">
-                <div class="hero-form-head"><p class="hero-form-title" id="{form_id}-title">Check your date</p></div>
-                <div class="form-grid form-grid-2">
-                  <div class="field"><label for="{form_id}-name">Name <span class="req">*</span></label><input id="{form_id}-name" name="name" autocomplete="name" required /></div>
-                  <div class="field"><label for="{form_id}-phone">Mobile <span class="req">*</span></label><input id="{form_id}-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() -]{{10,18}}" required /></div>
-                  <div class="field"><label for="{form_id}-email">Email</label><input id="{form_id}-email" name="email" type="email" autocomplete="email" /></div>
-                  <div class="field"><label for="{form_id}-hall">Space <span class="req">*</span></label><select id="{form_id}-hall" name="hall" required><option value="">Choose…</option><option value="big">Big Hall — up to 1200</option><option value="small">Small Hall — up to 350</option></select></div>
-                  <div class="field"><label for="{form_id}-event">Event <span class="req">*</span></label><select id="{form_id}-event" name="event" required><option value="">Select…</option><option>Wedding</option><option>Engagement</option><option>Reception</option><option>Birthday</option><option>Naming Ceremony</option><option>Family Function</option><option>Corporate Event</option><option>Social Gathering</option><option>Venue Visit</option><option>Other Event</option></select></div>
-                  <div class="field"><label for="{form_id}-date">Date <span class="req">*</span></label><input id="{form_id}-date" name="date" type="date" required /></div>
-                  <div class="field"><label for="{form_id}-cb">Call back</label><select id="{form_id}-cb" name="call_back_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
-                  <div class="field"><label for="{form_id}-et">Event time</label><select id="{form_id}-et" name="event_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Night</option></select></div>
-                  {msg}
-                </div>
-                <label class="booking-trap" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label>
-                <button class="button button-wine" type="submit">Send Enquiry {icon("i-arrow")}</button>
-                <p class="form-status" role="status" aria-live="polite"></p>
-              </div>
-            </form>
+            {enquiry_form(form_id, title="Check your date")}
           </div>
         </section>"""
 

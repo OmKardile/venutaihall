@@ -699,8 +699,6 @@
     color: var(--brass);
     margin-bottom: 12px;
   }
-  .reveal-spaces { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-
   .hl-num { font-family: var(--font-display); font-size: 1.2em; font-weight: 600; color: var(--wine); letter-spacing: -0.01em; white-space: nowrap; }
   .band-wine .hl-num, .celebrate-reveal .hl-num, .hall-panel .hl-num, .hero .hl-num { color: #f2dcae; }
   .reveal-highlights { margin-top: 18px; display: grid; gap: 16px; }
@@ -711,21 +709,6 @@
   .reveal-hl-row .hl-num { font-size: 22px; }
   .reveal-hl-row .hl-cap { font-size: 11px; color: rgba(246, 241, 232, 0.5); margin-left: auto; font-variant: small-caps; letter-spacing: 0.06em; }
 
-  .reveal-space {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    background: rgba(246, 241, 232, 0.08);
-    border: 1px solid rgba(246, 241, 232, 0.28);
-    border-radius: var(--radius-2);
-    font-size: 13px;
-    font-weight: 650;
-    color: var(--ivory);
-    transition: background 0.2s ease, border-color 0.2s ease;
-  }
-  .reveal-space:hover { background: rgba(246, 241, 232, 0.16); border-color: var(--sand); }
-  .reveal-space small { font-size: 11px; color: rgba(246, 241, 232, 0.6); font-weight: 500; }
   .celebrate-reveal-actions { display: flex; flex-direction: column; gap: 12px; min-width: 230px; }
   .celebrate-reveal-actions .note { font-size: 12.5px; color: rgba(246, 241, 232, 0.6); line-height: 1.5; }
 
@@ -820,10 +803,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 0;
   }
   .hall-eyebrow { font-family: var(--font-body); font-size: 11.5px; font-weight: 750; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sand); margin: 0 0 8px; }
   .hall-name { font-family: var(--font-display); font-size: clamp(28px, 3vw, 40px); font-weight: 450; color: var(--ivory); letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 clamp(18px, 2vw, 26px); }
-  .hall-numbers { margin: 0; padding: 0; }
+  .hall-numbers { margin: 0; padding: 0; min-width: 0; }
   .hall-row {
     display: flex;
     align-items: baseline;
@@ -831,6 +815,7 @@
     gap: clamp(12px, 2vw, 24px);
     padding: clamp(11px, 1.4vw, 16px) 0;
     border-top: 1px solid rgba(154, 123, 69, 0.45);
+    min-width: 0;
   }
   .hall-row:last-of-type { border-bottom: 1px solid rgba(154, 123, 69, 0.45); }
   .hall-row-label {
@@ -885,7 +870,7 @@
     border-radius: 999px;
     vertical-align: middle;
   }
-  .hall-chips { list-style: none; margin: clamp(18px, 2vw, 24px) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .hall-chips { list-style: none; margin: clamp(18px, 2vw, 24px) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; min-width: 0; }
   .hall-chip {
     display: inline-flex;
     align-items: center;
@@ -909,26 +894,64 @@
     .hall-photo { aspect-ratio: 16 / 10; }
   }
   @media (max-width: 768px) {
-    .hall-numbers { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .hall-numbers { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .hall-row {
       flex-direction: column;
       align-items: flex-start;
-      gap: 6px;
-      padding: 14px 12px;
+      gap: 4px;
+      padding: 12px 11px;
       border-top: 1px solid rgba(154, 123, 69, 0.45);
       border-bottom: none;
       background: rgba(0, 0, 0, 0.06);
       border-radius: 4px;
     }
     .hall-row:last-of-type { border-bottom: none; }
-    .hall-row-label { font-size: 18px; }
-    .hall-num-val { font-size: clamp(56px, 12vw, 72px); }
-    .hall-row-num-featured .hall-num-val { font-size: clamp(78px, 16vw, 96px); }
-    .hall-row-featured { padding-inline: 12px; margin-inline: 0; }
+    .hall-row-label { font-size: 13px; white-space: normal; overflow-wrap: anywhere; letter-spacing: 0.04em; }
+    .hall-num-val { font-size: clamp(38px, 9.5vw, 48px); }
+    .hall-num-cap { font-size: 10px; letter-spacing: 0.06em; }
+    /* Speciality badge: tuck into the top-right corner of the featured cell
+       so it reads as an accent rather than pushing the number down — keeps
+       all four cells visually consistent (label → number → cap). The featured
+       cell uses align-items:stretch and the label gets flex-basis:100% +
+       explicit max-width + right-padding so its text is constrained to the
+       cell width (minus the badge area) and wraps cleanly instead of
+       overflowing into the badge on narrow viewports. */
+    .hall-row-featured { position: relative; padding-inline: 11px; margin-inline: 0; align-items: stretch; }
+    .hall-row-featured .hall-row-label { flex: 1 0 100%; max-width: 100%; padding-right: 78px; }
+    .hall-row-label .hall-speciality {
+      position: absolute;
+      top: 8px;
+      right: 9px;
+      margin: 0;
+      padding: 3px 8px;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      line-height: 1;
+    }
+    .hall-row-num-featured .hall-num-val { font-size: clamp(48px, 12vw, 60px); }
   }
   @media (max-width: 480px) {
+    .hall-numbers { gap: 7px; }
+    .hall-row { padding: 10px 10px 11px; }
+    .hall-row-label { font-size: 12.5px; }
+    .hall-num-val { font-size: clamp(34px, 9vw, 42px); }
+    .hall-row-num-featured .hall-num-val { font-size: clamp(42px, 11vw, 50px); }
+    .hall-num-cap { font-size: 9.5px; }
+    .hall-row-featured .hall-row-label { padding-right: 68px; }
+    .hall-row-label .hall-speciality { padding: 2px 7px; font-size: 8.5px; top: 7px; right: 7px; }
     .hall-chips { gap: 6px; }
-    .hall-chip { font-size: 13px; padding: 7px 12px; }
+    .hall-chip { font-size: 12.5px; padding: 6px 11px; }
+    .hall-chip .icon { width: 18px; height: 18px; }
+  }
+  /* At very narrow viewports (<=360px — e.g. iPhone SE 1st gen) the 2x2
+     grid is too tight for the featured cell (the Speciality badge + 'A/C
+     Guest Rooms' label can't share a single cell — overflow-wrap:anywhere
+     breaks the label character-by-character). Switch to a single column so
+     each stat gets the full panel width. 375px+ keeps the 2x2 grid. */
+  @media (max-width: 360px) {
+    .hall-numbers { grid-template-columns: 1fr; }
+    .hall-row-featured .hall-row-label { padding-right: 84px; }
+    .hall-row-label .hall-speciality { top: 9px; right: 11px; padding: 3px 8px; font-size: 9px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .hall-card:hover { transform: none; }
@@ -1378,7 +1401,17 @@
   .facility-bullet-group li::before { content: ""; position: absolute; left: 0; top: 9px; width: 8px; height: 8px; border-radius: 50%; background: var(--brass); transition: background 0.2s ease, transform 0.2s ease; }
   .facility-bullet-group li:hover { color: var(--wine); }
   .facility-bullet-group li:hover::before { background: var(--wine); transform: scale(1.35); }
-  @media (max-width: 640px) { .facility-bullets { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) {
+    .facility-bullets { grid-template-columns: 1fr; }
+    /* On mobile, move the facility-icon inline as a prefix to the group
+       title instead of stacking it above. Saves vertical space and reads
+       as a tidy icon + label row, with the bullet list wrapping below. */
+    .facility-bullet-group { flex-direction: row; flex-wrap: wrap; align-items: center; padding: 16px 18px; }
+    .facility-icon { width: 36px; height: 36px; margin: 0 12px 0 0; }
+    .facility-icon .icon { width: 19px; height: 19px; }
+    .facility-bullet-group h3 { margin: 0; flex: 1; }
+    .facility-bullet-group ul { flex: 1 0 100%; margin-top: 12px; }
+  }
 
   .setups-grid {
     display: grid;
@@ -1885,11 +1918,15 @@
 
   .footer-brand { display: flex; flex-direction: column; gap: 14px; }
   .footer-brand .brand { flex-shrink: 0; padding: 6px 0; }
-  /* Wider footer shell — smaller horizontal margins so the brand/logo column
-     has more room to extend to the left edge of the viewport. */
+  /* Wider footer shell on desktop — smaller horizontal margins so the
+     brand/logo column has more room to extend to the left edge of the
+     viewport. On mobile (<=960px) the layout collapses to 1 column and the
+     logo is no longer the constraint, so we restore comfortable page-matching
+     left/right margins. */
   .site-footer .shell { width: min(100% - 16px, 1440px); }
-  @media (max-width: 960px) { .site-footer .shell { width: min(100% - 12px, 1440px); } }
-  @media (max-width: 640px) { .site-footer .shell { width: min(100% - 8px, 1440px); } }
+  @media (max-width: 960px) { .site-footer .shell { width: min(100% - 48px, 1440px); } }
+  @media (max-width: 640px) { .site-footer .shell { width: min(100% - 40px, 1440px); } }
+  @media (max-width: 400px) { .site-footer .shell { width: min(100% - 32px, 1440px); } }
 
   .footer-brand-map { border-radius: 6px; overflow: hidden; border: 1px solid var(--line); background: var(--bone); }
   .footer-brand-map iframe { display: block; }
@@ -2476,6 +2513,10 @@
     .nav-drawer-scrim { display: none; }
     .nav-drawer-panel { padding: 22px 22px 34px; }
     .header-cta { display: none; }
+    /* Hide the hero's primary "Check Availability" button on mobile — the
+       bottom-bar already exposes a primary Check Availability CTA, so the
+       duplicate is removed to declutter the hero. */
+    .hero-ctas .button-light { display: none; }
     .section-head { flex-direction: column; align-items: flex-start; gap: 18px; }
     .field-row { grid-template-columns: 1fr; }
     .fit-grid { grid-template-columns: 1fr; }

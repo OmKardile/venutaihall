@@ -23,7 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Serif+Devanagari:wght@500;600&display=swap" rel="stylesheet" />
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/styles.css" />
-  <script src="/script.js?v=e1ecfcae" defer></script>
+  <script src="/script.js?v=d160a5dd" defer></script>
 </head>
 <body>
   
@@ -157,29 +157,23 @@
       
         <section class="section" aria-label="Booking enquiry">
           <div class="shell-narrow">
-            <form class="enquiry-form check-form" id="bh-form" action="/booking.php" method="post" novalidate aria-labelledby="bh-form-title">
-              <div class="hero-form-card">
-                <div class="hero-form-head"><p class="hero-form-title" id="bh-form-title">Check your date</p></div>
-                <div class="form-grid form-grid-2">
-                  <div class="field"><label for="bh-form-name">Name <span class="req">*</span></label><input id="bh-form-name" name="name" autocomplete="name" required /></div>
-                  <div class="field"><label for="bh-form-phone">Mobile <span class="req">*</span></label><input id="bh-form-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() -]{10,18}" required /></div>
-                  <div class="field"><label for="bh-form-email">Email</label><input id="bh-form-email" name="email" type="email" autocomplete="email" /></div>
-                  <div class="field"><label for="bh-form-hall">Space <span class="req">*</span></label><select id="bh-form-hall" name="hall" required><option value="">Choose…</option><option value="big">Big Hall — up to 1200</option><option value="small">Small Hall — up to 350</option></select></div>
-                  <div class="field"><label for="bh-form-event">Event <span class="req">*</span></label><select id="bh-form-event" name="event" required><option value="">Select…</option><option>Wedding</option><option>Engagement</option><option>Reception</option><option>Birthday</option><option>Naming Ceremony</option><option>Family Function</option><option>Corporate Event</option><option>Social Gathering</option><option>Venue Visit</option><option>Other Event</option></select></div>
-                  <div class="field"><label for="bh-form-date">Date <span class="req">*</span></label><input id="bh-form-date" name="date" type="date" required /></div>
-                  <div class="field"><label for="bh-form-cb">Call back</label><select id="bh-form-cb" name="call_back_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></div>
-                  <div class="field"><label for="bh-form-et">Event time</label><select id="bh-form-et" name="event_time"><option value="">Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Night</option></select></div>
-                  
-              <div class="field field-full">
-                <label for="bh-form-message">Message <span class="hint">(optional)</span></label>
-                <textarea id="bh-form-message" name="message" rows="3" maxlength="2000" placeholder="Questions, layout ideas, anything else…"></textarea>
+            
+          <form class="enquiry-form check-form" id="bh-form" action="/booking.php" method="post" novalidate aria-labelledby="bh-form-title">
+            <div class="hero-form-card">
+              <div class="hero-form-head"><p class="hero-form-title" id="bh-form-title">Check your date</p></div>
+              <div class="form-grid form-grid-2">
+                <div class="field"><label for="bh-form-name">Name <span class="req">*</span></label><input id="bh-form-name" name="name" autocomplete="name" required /></div>
+                <div class="field"><label for="bh-form-phone">Mobile <span class="req">*</span></label><input id="bh-form-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() -]{10,18}" required /></div>
+                <div class="field"><label for="bh-form-email">Email</label><input id="bh-form-email" name="email" type="email" autocomplete="email" /></div>
+                <div class="field"><label for="bh-form-hall">Space <span class="req">*</span></label><select id="bh-form-hall" name="hall" required><option value="">Choose…</option><option value="big">Big Hall — up to 1200</option><option value="small">Small Hall — up to 350</option></select></div>
+                <div class="field"><label for="bh-form-event">Event <span class="req">*</span></label><select id="bh-form-event" name="event" required><option value="">Select…</option><option>Wedding</option><option>Engagement</option><option>Reception</option><option>Birthday</option><option>Naming Ceremony</option><option>Family Function</option><option>Corporate Event</option><option>Social Gathering</option><option>Venue Visit</option><option>Other Event</option></select></div>
+                <div class="field"><label for="bh-form-date">Date <span class="req">*</span></label><input id="bh-form-date" name="date" type="date" required /></div>
               </div>
-                </div>
-                <label class="booking-trap" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label>
-                <button class="button button-wine" type="submit">Send Enquiry <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></button>
-                <p class="form-status" role="status" aria-live="polite"></p>
-              </div>
-            </form>
+              <label class="booking-trap" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off" /></label>
+              <button class="button button-wine" type="submit">Send Enquiry <svg class="icon" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+              <p class="form-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
           </div>
         </section>
       
@@ -252,7 +246,7 @@
     </div>
     <div class="footer-bottom shell">
       <span>© 2025 Late Venutai Chavan Multipurpose Hall. All Rights Reserved.</span>
-      <p style="font-family: Arial, sans-serif; font-size: 12px; color: rgba(246, 241, 232, 0.4); margin: 0; text-align: center;">Powered by Mega Techzy</p>
+      <p style="font-family: Arial, sans-serif; font-size: 12px; color: rgba(246, 241, 232, 0.4); margin: 0; text-align: center;">Powered by <a href="https://www.megatechzy.com/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">Mega Techzy</a></p>
       <nav aria-label="Legal">
         <a href="https://www.google.com/maps/search/?api=1&amp;query=Yashwantrao+Chavan+Smarak+Sector+27A+Pradhikaran+Nigdi+Pune+411044" target="_blank" rel="noopener noreferrer">Google Maps</a>
         <a href="privacy-policy">Privacy Policy</a>
