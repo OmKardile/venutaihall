@@ -1871,7 +1871,7 @@
   .footer-brand-map { border-radius: 6px; overflow: hidden; border: 1px solid var(--line); background: var(--bone); }
   .footer-brand-map iframe { display: block; }
   .footer-brand .button { align-self: center; }
-  .footer-brand-addr { font-size: 13px; line-height: 1.55; color: var(--ink-2); margin: 0; text-align: center; }
+  .footer-brand-addr { font-size: 13px; line-height: 1.55; color: rgba(246, 241, 232, 0.6); margin: 0; text-align: center; }
   .footer-map { background: var(--wine-ink); border-top: 1px solid rgba(154, 123, 69, 0.3); padding: clamp(32px, 4vw, 52px) 0; scroll-margin-top: 120px; color: rgba(246, 241, 232, 0.8); }
   .footer-map-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(24px, 4vw, 48px); align-items: center; }
   .footer-map-media { border-radius: 6px; overflow: hidden; border: 1px solid rgba(154, 123, 69, 0.35); height: clamp(220px, 30vw, 320px); background: var(--wine-deep); }
