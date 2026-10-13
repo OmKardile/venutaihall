@@ -1834,7 +1834,7 @@
   }
   .footer-grid {
     display: grid;
-    grid-template-columns: 0.8fr 1.3fr 1fr 1fr;
+    grid-template-columns: 0.5fr 1.6fr 1fr 1fr;
     gap: clamp(20px, 3vw, 40px);
     padding-bottom: clamp(40px, 5vw, 64px);
   }
