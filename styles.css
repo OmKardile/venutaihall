@@ -1591,7 +1591,16 @@
   }
   .faq-item .faq-answer p + p { margin-top: 10px; }
 
-  .cta-band { background: var(--wine); color: rgba(246, 241, 232, 0.85); }
+  .cta-band { background: var(--wine); color: rgba(246, 241, 232, 0.85); position: relative; overflow: hidden; }
+  .cta-band::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    width: 96px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--brass), transparent);
+    transform: translateX(-50%);
+    opacity: 0.85;
+  }
   .cta-band-inner {
     display: flex;
     align-items: center;
@@ -1601,9 +1610,12 @@
     padding-block: clamp(48px, 6vw, 76px);
   }
   .cta-band h2 { color: var(--ivory); max-width: 17ch; }
+  .cta-band h2 em { color: var(--brass); font-style: italic; }
   .cta-band p { margin-top: 14px; max-width: 54ch; font-size: 16.5px; line-height: 1.7; color: rgba(246, 241, 232, 0.8); }
   .cta-band .cta-note { margin-top: 14px; font-size: 13px; color: rgba(246, 241, 232, 0.62); letter-spacing: 0.02em; }
   .cta-band-actions { display: flex; flex-direction: column; gap: 12px; min-width: 240px; }
+  .cta-band .button { transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease; }
+  .cta-band .button:hover { transform: translateY(-2px); }
 
   .page-hero {
     position: relative;
