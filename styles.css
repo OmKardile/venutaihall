@@ -2294,7 +2294,9 @@
   .hl-dark.hl-dark { color: #f2dcae; font-family: var(--font-display); font-weight: 640; letter-spacing: -0.01em; }
   .brand-logo { display: block; line-height: 0; }
   .brand-logo-sepia { display: none; line-height: 0; }
-  .site-header .brand-logo-sepia { display: none; }
+  .site-header .brand-logo { display: none; }
+  .site-header .brand-logo-sepia { display: block; }
+  .site-header .brand-logo-sepia img { width: auto; height: 52px; }
   .site-header .brand { transform: translate(6px, 3px); }
   .brand-logo img { display: block; width: auto; height: 80px; }
   .footer-brand .brand-logo { display: none; }
