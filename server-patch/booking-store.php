@@ -100,7 +100,7 @@ function booking_send_email(PDO $db, int $id, array $row): void
     $sent = false;
     try {
         $sent = mail($to, $subject, $body, $headers);
-    } catch (Throwable) {
+    } catch (Throwable $error) {
         // Keep the saved request visible to the admin when mail delivery fails.
     }
     $update = $db->prepare('UPDATE bookings SET email_state = ? WHERE id = ?');
