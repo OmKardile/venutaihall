@@ -2600,13 +2600,17 @@
   .event-card:hover .media-frame img { transform: scale(1.03); }
   .setup-card:hover .media-frame img { transform: scale(1.03); }
   @media (max-width: 960px) {
-    .brand-logo img { height: 38px; }
-    .site-header .brand-logo-sepia img { height: 44px; }
+    /* Mobile: bigger navbar logo — overflows the navbar height intentionally.
+       --header-h stays at 72px so the nav layout doesn't shift; the logo
+       visually extends past the navbar bounds (centered alignment means it
+       overflows symmetrically above and below the navbar). */
+    .brand-logo img { height: 96px; }
+    .site-header .brand-logo-sepia img { height: 96px; }
     .footer-brand .brand-logo img { height: 101px; }
   }
   @media (max-width: 620px) {
-    .brand-logo img { height: 32px; }
-    .site-header .brand-logo-sepia img { height: 38px; }
+    .brand-logo img { height: 88px; }
+    .site-header .brand-logo-sepia img { height: 88px; }
     .brand-en { font-size: 8.5px; letter-spacing: 0.07em; margin-top: 6px; }
     .footer-brand .brand-logo img { height: 78px; }
     .footer-brand .brand-en { font-size: 10px; max-width: 195px; }
